@@ -1,0 +1,69 @@
+# Gita Studio configuration. Secrets never go here — use environment variables (see .env.example).
+
+brand:
+  name: "Gita Daily"
+  voice: >
+    Calm, reverent, warm and clear. Speaks to modern seekers (students, professionals,
+    parents) without preaching. Never sensational, never sectarian, never mocking.
+  languages: ["en"]          # add "hi", "ne", etc. to generate translated captions
+  audience: "Spiritually curious adults, 18-45, global Hindu diaspora and newcomers"
+
+model:
+  id: "claude-opus-5-5"
+  effort:
+    ideate: "high"
+    script: "high"
+    review: "high"
+    captions: "medium"
+    strategy: "high"
+
+content:
+  posts_per_day: 1
+  formats: ["short_video", "carousel", "quote_card"]
+  # Walk the Gita in order (sequential) or let the strategist pick (strategic).
+  verse_selection: "strategic"
+  # Every post carries a visible AI-generated label. Required by YouTube, Meta and TikTok
+  # policies for realistic synthetic media; do not turn this off.
+  ai_disclosure: "AI-generated visuals. Verse text from {translation_source}."
+  # How deities/figures may be depicted. Fed to every visual prompt.
+  depiction_rules:
+    - "Depict Krishna, Arjuna and all figures with dignity, in traditional iconography."
+    - "No sexualised, comedic, violent-gore or meme-style depictions of divine figures."
+    - "No real living people, no celebrity likenesses, no political symbols."
+    - "Kurukshetra battle scenes may be shown at a distance; avoid graphic injury."
+
+review:
+  # Minimum fidelity score (0-10) from the scripture reviewer for auto-approval.
+  min_fidelity_score: 8
+  # true  = everything waits in the review queue for a human click (recommended at launch)
+  # false = posts that pass the automated reviewer go straight to scheduling
+  require_human_approval: true
+
+schedule:
+  timezone: "Asia/Kathmandu"
+  # Local posting slots; the scheduler fills them in order.
+  slots: ["06:30", "19:00"]
+
+platforms:
+  # Each enabled platform gets its own caption, hashtags and aspect ratio.
+  instagram: {enabled: true, aspect: "4:5"}
+  youtube_shorts: {enabled: true, aspect: "9:16"}
+  tiktok: {enabled: true, aspect: "9:16"}
+  facebook: {enabled: true, aspect: "4:5"}
+  x: {enabled: false, aspect: "16:9"}
+
+media:
+  # prompt_only : write image/video/voice prompts to disk for your generator of choice
+  # webhook     : POST each prompt to MEDIA_WEBHOOK_URL (n8n / Make / Zapier / your own service)
+  provider: "prompt_only"
+
+publishing:
+  # outbox  : dry run — write ready-to-post packages to ./outbox (default, safe)
+  # webhook : POST packages to PUBLISH_WEBHOOK_URL (Buffer / Make / Zapier / n8n / your own)
+  provider: "outbox"
+
+paths:
+  db: "studio.db"
+  verses: "data/verses.json"
+  outbox: "outbox"
+  media: "media"

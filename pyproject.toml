@@ -1,0 +1,26 @@
+[project]
+name = "gita-studio"
+version = "0.1.0"
+description = "Automated, scripture-faithful Bhagavad Gita content studio powered by Claude"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=1.0",
+    "pydantic>=2.6",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+gita = "gita_studio.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["gita_studio*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

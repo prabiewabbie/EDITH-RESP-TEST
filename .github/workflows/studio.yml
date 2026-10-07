@@ -1,0 +1,93 @@
+name: Gita Studio
+
+on:
+  schedule:
+    - cron: "40 23 * * *"   # daily create + schedule (05:25 Asia/Kathmandu)
+    - cron: "*/30 * * * *"  # publish anything due
+    - cron: "17 2 * * 1"    # weekly strategy refresh (Mondays)
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "create | approve | reject | publish | strategy | run-daily | status"
+        default: "status"
+      args:
+        description: "Arguments, e.g. post ids for approve: 12 13 14"
+        default: ""
+
+concurrency:
+  group: gita-studio   # one run at a time: they share the state branch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  STATE_BRANCH: studio-state
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -e .
+
+      # studio.db, the verse corpus, media prompts and the outbox live on a separate branch so
+      # state survives between runs without cluttering main.
+      - name: Restore state
+        run: |
+          if git fetch origin "$STATE_BRANCH" 2>/dev/null; then
+            git checkout "origin/$STATE_BRANCH" -- . 2>/dev/null || true
+            git reset -q
+          fi
+
+      - name: Pick command
+        id: pick
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          IN_CMD: ${{ inputs.command }}
+          IN_ARGS: ${{ inputs.args }}
+        run: |
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            case "$IN_CMD" in create|approve|reject|publish|strategy|run-daily|status|queue|schedule) ;;
+              *) echo "unknown command: $IN_CMD"; exit 1 ;; esac
+            case "$IN_ARGS" in *[!a-zA-Z0-9\ ._-]*) echo "args may only contain letters, digits, spaces, . _ -"; exit 1 ;; esac
+            echo "cmd=$IN_CMD $IN_ARGS" >> "$GITHUB_OUTPUT"
+          elif [ "$SCHEDULE" = "40 23 * * *" ]; then
+            echo "cmd=run-daily" >> "$GITHUB_OUTPUT"
+          elif [ "$SCHEDULE" = "17 2 * * 1" ]; then
+            echo "cmd=strategy" >> "$GITHUB_OUTPUT"
+          else
+            echo "cmd=publish" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MEDIA_WEBHOOK_URL: ${{ secrets.MEDIA_WEBHOOK_URL }}
+          PUBLISH_WEBHOOK_URL: ${{ secrets.PUBLISH_WEBHOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+          CMD: ${{ steps.pick.outputs.cmd }}
+        run: |
+          set -o pipefail
+          gita -v $CMD | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Save state
+        if: always()
+        env:
+          CMD: ${{ steps.pick.outputs.cmd }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/state" && cd "$RUNNER_TEMP/state"
+          git init -q && git checkout -q -b "$STATE_BRANCH"
+          for p in studio.db data/verses.json outbox media; do
+            [ -e "$GITHUB_WORKSPACE/$p" ] && mkdir -p "$(dirname "$p")" && cp -r "$GITHUB_WORKSPACE/$p" "$p"
+          done
+          git add -A
+          git -c user.name="gita-studio-bot" -c user.email="actions@users.noreply.github.com" \
+            commit -q -m "state: $CMD" || exit 0
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" "$STATE_BRANCH"
