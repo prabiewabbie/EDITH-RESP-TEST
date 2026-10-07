@@ -75,6 +75,13 @@ jobs:
           CMD: ${{ steps.pick.outputs.cmd }}
         run: |
           set -o pipefail
+          # Skip quietly (not fail) until the studio is configured, so the schedule doesn't spam red runs.
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::ANTHROPIC_API_KEY secret not set; skipping. See README > Going live."; exit 0
+          fi
+          if [ ! -f data/verses.json ]; then
+            echo "::notice::data/verses.json missing; import a translation first. Skipping."; exit 0
+          fi
           gita -v $CMD | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Save state
