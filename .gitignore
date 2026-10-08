@@ -10,5 +10,5 @@ media/
 client_secret.json
 youtube_token.json
 shorts/
-verses.json
-music.mp3
+/verses.json
+/music.mp3
