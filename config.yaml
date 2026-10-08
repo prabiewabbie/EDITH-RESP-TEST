@@ -1,7 +1,7 @@
 # Gita Studio configuration. Secrets never go here — use environment variables (see .env.example).
 
 brand:
-  name: "Gita Daily"
+  name: "Echoes of Gita"
   voice: >
     Calm, reverent, warm and clear. Speaks to modern seekers (students, professionals,
     parents) without preaching. Never sensational, never sectarian, never mocking.
@@ -55,7 +55,16 @@ platforms:
 media:
   # prompt_only : write image/video/voice prompts to disk for your generator of choice
   # webhook     : POST each prompt to MEDIA_WEBHOOK_URL (n8n / Make / Zapier / your own service)
+  # fal         : render stills (Nano Banana 2) and clips (Veo 3.1 Fast) on fal.ai; needs FAL_KEY
   provider: "prompt_only"
+  fal:
+    image_model: "fal-ai/nano-banana-2"
+    video_model: "fal-ai/veo3.1/fast/image-to-video"
+    video_resolution: "720p"
+    video_audio: false          # narration is added later from our own voice track
+    daily_budget_usd: 10        # hard stop; ~$300/month at most
+    image_price_usd: 0.08
+    video_price_per_second_usd: 0.10
 
 publishing:
   # outbox  : dry run — write ready-to-post packages to ./outbox (default, safe)
