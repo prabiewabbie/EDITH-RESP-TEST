@@ -49,6 +49,26 @@ class Provider(BaseModel):
     provider: str
 
 
+class FalSettings(BaseModel):
+    image_model: str = "fal-ai/nano-banana-2"
+    video_model: str = "fal-ai/veo3.1/fast/image-to-video"
+    image_resolution: Literal["0.5K", "1K", "2K", "4K"] = "1K"
+    video_resolution: Literal["720p", "1080p", "4k"] = "720p"
+    # Narration is our own voice track, so clips are rendered silent (also cheaper).
+    video_audio: bool = False
+    # Hard ceiling on fal spend per UTC day. Assets that would cross it are skipped, not rendered.
+    daily_budget_usd: float = 10.0
+    # List prices used to estimate spend before each call. Update if fal changes pricing.
+    image_price_usd: float = 0.08
+    video_price_per_second_usd: float = 0.10
+    poll_seconds: float = 5.0
+    timeout_seconds: float = 900.0
+
+
+class MediaSettings(Provider):
+    fal: FalSettings = FalSettings()
+
+
 class Paths(BaseModel):
     db: str = "studio.db"
     verses: str = "data/verses.json"
@@ -63,7 +83,7 @@ class Config(BaseModel):
     review: Review = Review()
     schedule: Schedule = Schedule()
     platforms: dict[str, Platform]
-    media: Provider = Provider(provider="prompt_only")
+    media: MediaSettings = MediaSettings(provider="prompt_only")
     publishing: Provider = Provider(provider="outbox")
     paths: Paths = Paths()
 
