@@ -47,6 +47,10 @@ TOKEN_FILE = Path("youtube_token.json")
 MIN_SCORE = 8                         # reviewer score (0-10) required to render
 W, H, FPS = 1080, 1920, 30
 AI_DISCLOSURE = "Visuals and voice are AI-generated. Verse translation: {source}."
+STYLE = "cinematic"                    # "cinematic" = dramatic structure, graded film look, score; "plain" = old look
+CINEMA_LOOK = ("large-format IMAX-style cinematography, practical natural light, deep blacks with warm highlights, "
+               "monumental scale, anamorphic lens flare, shallow depth of field, film grain, no text, no logos")
+MUSIC_LEVEL = 0.18                    # background score volume under the voice-over
 
 GUARDRAILS = """\
 - The Bhagavad Gita is sacred to roughly a billion people. Be reverent, warm and clear.
@@ -63,9 +67,13 @@ comedic or gory; no real people or celebrity likenesses."""
 # Structured outputs
 # ----------------------------------------------------------------------------------------
 class Scene(BaseModel):
+    beat: Literal["cold_open", "stakes", "revelation", "turn", "resolution", "silence"] = Field(
+        description="Dramatic function of this scene in the three-act structure")
     narration: str = Field(description="Voice-over for this scene, 1-2 short sentences")
     on_screen_text: str = Field(description="Max 12 words shown on screen")
-    image_prompt: str = Field(description="Detailed prompt for an AI image generator, 9:16, no text in image")
+    image_prompt: str = Field(description="Detailed still-image prompt, 9:16 hero framing, no text in image")
+    camera: str = Field(description="One camera move for the shot, e.g. 'slow push-in on Arjuna's face'")
+    seconds: float = Field(description="Target duration of this scene, 3-9 seconds")
 
 
 class Short(BaseModel):
@@ -95,6 +103,7 @@ class Review(BaseModel):
 # Claude
 # ----------------------------------------------------------------------------------------
 _client: anthropic.Anthropic | None = None
+USAGE = {"calls": 0, "input_tokens": 0, "output_tokens": 0, "cache_read_tokens": 0}   # printed per Short
 
 
 def ask(system: str, prompt: str, schema: type[BaseModel], effort: str = "high") -> BaseModel:
@@ -110,6 +119,10 @@ def ask(system: str, prompt: str, schema: type[BaseModel], effort: str = "high")
         fallbacks="default",                         # re-run on a fallback model if declined
         betas=["server-side-fallback-2026-07-01"],
     )
+    USAGE["calls"] += 1
+    USAGE["input_tokens"] += resp.usage.input_tokens
+    USAGE["output_tokens"] += resp.usage.output_tokens
+    USAGE["cache_read_tokens"] += resp.usage.cache_read_input_tokens or 0
     if resp.stop_reason == "refusal":
         raise RuntimeError("Claude declined this request; try another verse.")
     if resp.parsed_output is None:
@@ -127,10 +140,22 @@ def normalise(s: str) -> str:
     return " ".join(s.strip().strip("\"'“”‘’").split())
 
 
+CINEMATIC_BRIEF = """\
+Structure (cinematic style): open in medias res on a high-stakes moment (cold_open), raise the stakes
+(stakes), reveal the teaching through the verse (revelation), turn the emotion (turn), resolve quietly
+(resolution), and end on a held silence and one question (silence). Use short, punchy lines and
+deliberate pauses. Dramatic devices (ticking clock, mirrored shots, a long silence, a single close-up)
+are welcome, but they may only dramatise the setting. The only words attributed to Krishna are the
+provided verse translation, quoted exactly. Image prompts must be shot as: """ + CINEMA_LOOK + "."
+
+PLAIN_BRIEF = ("Connect one verse to one concrete, relatable modern situation. Hook in the first 2 seconds, "
+               "quote the verse, explain it simply, end with a reflection question.")
+
+
 def write_and_review(v: dict, angle: str | None) -> tuple[Short, Review]:
+    brief = CINEMATIC_BRIEF if STYLE == "cinematic" else PLAIN_BRIEF
     writer = (f"You write YouTube Shorts for '{CHANNEL_NAME}', a Bhagavad Gita channel for modern seekers.\n"
-              f"Connect one verse to one concrete, relatable modern situation. Hook in the first 2 seconds, "
-              f"quote the verse, explain it simply, end with a reflection question.\n{GUARDRAILS}")
+              f"{brief}\n{GUARDRAILS}")
     reviewer = ("You are a strict scripture-fidelity reviewer who did not write this script. Check the quote is "
                 "exact, the meaning is faithful, nothing modern is presented as scripture, and the tone and image "
                 "prompts are respectful. Approve only with no blocker/major issues.\n" + GUARDRAILS)
@@ -185,51 +210,47 @@ def font(size: int, bold: bool = False):
 
 
 def background(i: int, folder: Path):
-    """Use images/scene_<i>.(png|jpg) if you generated one from the prompt, else a warm gradient."""
+    """images/scene_<i>.(png|jpg|webp) if you generated a still, else a warm gradient. Always W x H."""
     from PIL import Image, ImageFilter
     for ext in ("png", "jpg", "jpeg", "webp"):
         p = folder / "images" / f"scene_{i}.{ext}"
         if p.exists():
             img = Image.open(p).convert("RGB")
-            scale = max(W * 1.15 / img.width, H * 1.15 / img.height)   # headroom for the slow zoom
-            img = img.resize((int(img.width * scale), int(img.height * scale)))
-            left, top = (img.width - int(W * 1.15)) // 2, (img.height - int(H * 1.15)) // 2
-            return img.crop((left, top, left + int(W * 1.15), top + int(H * 1.15)))
+            scale = max(W / img.width, H / img.height)                  # cover-fit, centre crop
+            img = img.resize((round(img.width * scale), round(img.height * scale)))
+            left, top = (img.width - W) // 2, (img.height - H) // 2
+            return img.crop((left, top, left + W, top + H))
     palettes = [((255, 153, 51), (60, 20, 90)), ((250, 200, 90), (20, 40, 90)), ((230, 110, 60), (25, 25, 60))]
     top, bottom = palettes[i % len(palettes)]
-    w, h = int(W * 1.15), int(H * 1.15)
-    grad = Image.new("RGB", (1, h))
-    for y in range(h):
-        t = y / h
+    grad = Image.new("RGB", (1, H))
+    for y in range(H):
+        t = y / H
         grad.putpixel((0, y), tuple(int(top[k] * (1 - t) + bottom[k] * t) for k in range(3)))
-    return grad.resize((w, h)).filter(ImageFilter.GaussianBlur(2))
+    return grad.resize((W, H)).filter(ImageFilter.GaussianBlur(2))
 
 
-def draw_frame(i: int, scene: Scene, ref: str, folder: Path, path: Path) -> None:
+def draw_text_layer(scene: Scene, ref: str, path: Path) -> None:
+    """Transparent overlay with captions and labels. Kept separate so the text stays sharp while the picture moves."""
     from PIL import Image, ImageDraw
-    img = background(i, folder).convert("RGBA")
-    shade = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    d = ImageDraw.Draw(shade)
-    for y in range(img.height // 2, img.height):                       # darken the lower half for legibility
-        d.line([(0, y), (img.width, y)], fill=(0, 0, 0, int(200 * (y - img.height / 2) / (img.height / 2))))
-    img = Image.alpha_composite(img, shade)
-    d = ImageDraw.Draw(img)
-    ox, oy = (img.width - W) // 2, (img.height - H) // 2                # draw inside the centre crop
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    for y in range(H // 2, H):                                          # darken the lower half for legibility
+        d.line([(0, y), (W, y)], fill=(0, 0, 0, int(170 * (y - H / 2) / (H / 2))))
     f_big, f_small = font(64, bold=True), font(36)
-    lines = textwrap.wrap(scene.on_screen_text, width=22)
-    y = oy + int(H * 0.62)
-    for line in lines:
+    y = int(H * 0.66)
+    for line in textwrap.wrap(scene.on_screen_text, width=22):
         tw = d.textlength(line, font=f_big)
-        d.text((ox + (W - tw) / 2, y), line, font=f_big, fill="white", stroke_width=3, stroke_fill="black")
+        d.text(((W - tw) / 2, y), line, font=f_big, fill="white", stroke_width=3, stroke_fill="black")
         y += 82
-    d.text((ox + 60, oy + 90), f"{CHANNEL_NAME} · {ref}", font=f_small, fill=(255, 235, 200))
-    d.text((ox + 60, oy + H - 110), "AI-generated", font=font(28), fill=(220, 220, 220))
-    img.convert("RGB").save(path)
+    d.text((60, 90), f"{CHANNEL_NAME} · {ref}", font=f_small, fill=(255, 235, 200))
+    d.text((60, H - 110), "AI-generated", font=font(28), fill=(220, 220, 220))
+    layer.save(path)
 
 
 async def tts(text: str, path: Path) -> None:
     import edge_tts
-    await edge_tts.Communicate(text, VOICE, rate="-5%").save(str(path))
+    rate = "-8%" if STYLE == "cinematic" else "-5%"                     # slower, heavier delivery for drama
+    await edge_tts.Communicate(text, VOICE, rate=rate).save(str(path))
 
 
 def duration(path: Path) -> float:
@@ -242,37 +263,89 @@ def ffmpeg(*args: str) -> None:
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", *args], check=True)
 
 
+# Film look: lifted contrast, desaturated, teal shadows and warm highlights, vignette, fine grain.
+GRADE = ("eq=contrast=1.14:saturation=0.82:brightness=-0.02,"
+         "colorbalance=rs=-0.05:bs=0.07:rh=0.06:bh=-0.03,"
+         "vignette=PI/4.5,noise=alls=9:allf=t+u")
+
+
+def motion(i: int, frames: int, beat: str) -> str:
+    """Camera move for a still. Alternates an eased push-in and a pull-out; 'silence' drifts very slowly."""
+    if STYLE != "cinematic":
+        z = f"1+0.08*on/{frames}"
+    elif beat == "silence":
+        z = f"1+0.04*on/{frames}"
+    elif i % 2 == 0:
+        z = f"1+0.14*(on/{frames})*(on/{frames})"                       # eased push-in: tension builds
+    else:
+        z = f"1.14-0.14*on/{frames}"                                    # pull-out: reveal the scale
+    return f"zoompan=z='{z}':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS}"
+
+
+def score(total: float, path: Path) -> None:
+    """A generated low drone with a slow swell, used when there is no music.mp3. Replace with real score any time."""
+    ffmpeg("-f", "lavfi", "-i",
+           f"aevalsrc=0.5*sin(2*PI*55*t)*(0.6+0.4*sin(2*PI*0.2*t))+0.2*sin(2*PI*82.5*t):s=44100:d={total:.2f}",
+           "-af", f"lowpass=f=300,afade=t=in:st=0:d=1.5,afade=t=out:st={max(total - 2, 0):.2f}:d=2",
+           "-ac", "2", str(path))
+
+
 def render(short: Short, ref: str, folder: Path) -> Path:
     work = folder / "work"
     work.mkdir(parents=True, exist_ok=True)
+    cinematic = STYLE == "cinematic"
     clips = []
     for i, scene in enumerate(short.scenes):
-        frame, voice, clip = work / f"f{i}.png", work / f"v{i}.mp3", work / f"c{i}.mp4"
-        draw_frame(i, scene, ref, folder, frame)
-        text = (short.hook + " " + scene.narration) if i == 0 else scene.narration
+        still, text_png, voice, clip = work / f"f{i}.png", work / f"t{i}.png", work / f"v{i}.mp3", work / f"c{i}.mp4"
+        background(i, folder).save(still)
+        draw_text_layer(scene, ref, text_png)
+        spoken = (short.hook + " " + scene.narration) if i == 0 else scene.narration
         try:
-            asyncio.run(tts(text, voice))
+            asyncio.run(tts(spoken, voice))
             secs = duration(voice) + 0.35
             audio = ["-i", str(voice)]
         except Exception as e:  # no network / edge-tts missing: silent scene sized to reading time
             print(f"  voice-over skipped for scene {i}: {e}")
-            secs, audio = max(2.5, len(text.split()) / 2.6), ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
+            secs, audio = max(2.5, len(spoken.split()) / 2.6), ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
+        if cinematic and scene.beat == "silence":
+            secs += 1.5                                                  # let the held silence land
         frames = int(secs * FPS)
-        zoom = f"zoompan=z='1+0.08*on/{frames}':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS}"
-        ffmpeg("-i", str(frame), *audio, "-filter_complex", f"[0:v]{zoom},format=yuv420p[v]",
-               "-map", "[v]", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
+
+        # Use a generated video clip if you provided one (images/scene_N.mp4), else animate the still.
+        video_src = folder / "images" / f"scene_{i}.mp4"
+        grade = f"{GRADE}," if cinematic else ""
+        fade = f"fade=t=in:st=0:d=0.3,fade=t=out:st={secs - 0.35:.2f}:d=0.35," if cinematic else ""
+        if video_src.exists():
+            head = (f"[0:v]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,fps={FPS},"
+                    f"tpad=stop_mode=clone:stop_duration={secs:.2f},")
+            inputs = ["-i", str(video_src)]
+        else:
+            head = f"[0:v]{motion(i, frames, scene.beat)},"
+            inputs = ["-i", str(still)]
+        chain = f"{head}{grade}{fade}format=yuv420p[g];[g][2:v]overlay=0:0,format=yuv420p[v]"
+        ffmpeg(*inputs, *audio, "-i", str(text_png), "-filter_complex", chain,
+               "-map", "[v]", "-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "19",
                "-c:a", "aac", "-ar", "44100", "-ac", "2", "-t", f"{secs:.2f}", str(clip))
         clips.append(clip)
+
     listing = work / "clips.txt"
     listing.write_text("".join(f"file '{c.resolve().as_posix()}'\n" for c in clips))
     joined, final = work / "joined.mp4", folder / "short.mp4"
     ffmpeg("-f", "concat", "-safe", "0", "-i", str(listing), "-c", "copy", str(joined))
+
     if MUSIC_FILE.exists():
-        ffmpeg("-i", str(joined), "-stream_loop", "-1", "-i", str(MUSIC_FILE), "-filter_complex",
-               "[1:a]volume=0.12[m];[0:a][m]amix=inputs=2:duration=first[a]", "-map", "0:v", "-map", "[a]",
-               "-c:v", "copy", "-c:a", "aac", str(final))
+        music, loop = MUSIC_FILE, ["-stream_loop", "-1"]
+    elif cinematic:
+        music, loop = work / "score.wav", []
+        score(duration(joined), music)
     else:
+        music = None
+    if music is None:
         joined.replace(final)
+    else:
+        ffmpeg("-i", str(joined), *loop, "-i", str(music), "-filter_complex",
+               f"[1:a]volume={MUSIC_LEVEL}[m];[0:a][m]amix=inputs=2:duration=first[a]",
+               "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", str(final))
     return final
 
 
@@ -345,6 +418,9 @@ def make(ref: str | None, angle: str | None) -> Path | None:
 
     ok = (review.verdict == "approve" and review.quote_is_exact
           and min(review.fidelity_score, review.respect_score) >= MIN_SCORE)
+    cost = (USAGE["input_tokens"] * 4 + USAGE["output_tokens"] * 20) / 1_000_000   # Opus 5.5: $4 in / $20 out per MTok
+    print(f"Claude usage: {USAGE['calls']} calls, {USAGE['input_tokens']} in / {USAGE['output_tokens']} out tokens "
+          f"(about ${cost:.3f} at list price)")
     print(f"Review: {review.verdict} (fidelity {review.fidelity_score}, respect {review.respect_score})")
     for i in review.issues:
         print(f"  [{i.severity}] {i.problem}")
@@ -367,6 +443,7 @@ def main() -> None:
     m = sub.add_parser("make", help="write, review and render one Short")
     m.add_argument("--verse", help="e.g. 2.47 (default: a random unused verse)")
     m.add_argument("--angle", help="e.g. 'exam results anxiety'")
+    m.add_argument("--style", choices=["cinematic", "plain"], help="default: cinematic")
     r = sub.add_parser("rerender", help="re-render after adding your own images/scene_N.png")
     r.add_argument("folder", type=Path)
     u = sub.add_parser("upload", help="upload a rendered Short")
@@ -376,6 +453,8 @@ def main() -> None:
     a = sub.add_parser("auto", help="make + upload (private, or scheduled with --publish-at)")
     a.add_argument("--publish-at")
     args = p.parse_args()
+    global STYLE
+    STYLE = getattr(args, "style", None) or STYLE
 
     if args.cmd == "make":
         make(args.verse, args.angle)
