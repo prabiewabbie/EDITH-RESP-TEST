@@ -63,7 +63,7 @@ gita strategy                       # Claude writes next week's brief; the ideas
 | Mondays | `strategy`: refreshes the brief from analytics |
 | Manual (Actions tab → Run workflow) | `approve 12 13`, `reject 14 reason`, `queue`, `status`, … |
 
-State (`studio.db`, media prompts, outbox) is saved to a `studio-state` branch between runs. Add these repository secrets: `ANTHROPIC_API_KEY`, plus `MEDIA_WEBHOOK_URL`, `PUBLISH_WEBHOOK_URL` and `WEBHOOK_SECRET` once you switch those providers to `webhook`. Commit your `data/verses.json` to the repo, or to the state branch, so the runner can read it.
+State (`studio.db`, media prompts, outbox) is saved to a `studio-state` branch between runs. Add these repository secrets: `ANTHROPIC_API_KEY`, plus `FAL_KEY` when `media.provider` is `fal`, `MEDIA_WEBHOOK_URL`, `PUBLISH_WEBHOOK_URL` and `WEBHOOK_SECRET` once you switch those providers to `webhook`. Commit your `data/verses.json` to the repo, or to the state branch, so the runner can read it.
 
 ## Visuals and posting
 
@@ -72,6 +72,7 @@ Two connection points, both set in `config.yaml`:
 - **`media.provider`**
   - `prompt_only` (default): writes `media/post-NNNNN/prompts.md` with a shared style guide plus one image/video/voice/music prompt per scene. Paste these into any generator.
   - `webhook`: POSTs them to an n8n/Make/Zapier flow (or your own service) that calls your generators and returns asset URLs.
+  - `fal`: renders each image asset with Nano Banana 2 and each video asset as a still animated by Veo 3.1 Fast (silent, 4/6/8 s), on fal.ai. Files land in `media/post-NNNNN/`. `media.fal.daily_budget_usd` is a hard daily stop tracked in `media/spend.json`; assets past it are skipped. Needs the `FAL_KEY` secret.
 - **`publishing.provider`**
   - `outbox` (default): a safe dry run that writes one JSON per platform.
   - `webhook`: POSTs to Buffer/Make/Zapier/n8n or your own poster. Those tools hold the platform OAuth tokens, which keeps them out of this repo. Payloads are HMAC-signed when `WEBHOOK_SECRET` is set.

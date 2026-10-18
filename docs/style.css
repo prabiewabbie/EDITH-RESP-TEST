@@ -1,0 +1,8 @@
+:root { --ink: #1b1f3b; --gold: #b8862b; --bg: #fbf8f1; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 Georgia, "Times New Roman", serif; }
+main { max-width: 720px; margin: 0 auto; padding: 48px 16px 64px; }
+h1 { font-size: 2rem; margin: 0 0 4px; }
+h2 { font-size: 1.2rem; margin-top: 2rem; color: var(--gold); }
+a { color: var(--ink); }
+.muted { color: #5b5f7a; font-size: .95rem; }
+nav a { margin-right: 16px; }

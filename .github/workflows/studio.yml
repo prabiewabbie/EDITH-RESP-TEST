@@ -70,6 +70,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           MEDIA_WEBHOOK_URL: ${{ secrets.MEDIA_WEBHOOK_URL }}
+          FAL_KEY: ${{ secrets.FAL_KEY }}
           PUBLISH_WEBHOOK_URL: ${{ secrets.PUBLISH_WEBHOOK_URL }}
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
           CMD: ${{ steps.pick.outputs.cmd }}
@@ -94,6 +95,9 @@ jobs:
           for p in studio.db data/verses.json outbox media; do
             [ -e "$GITHUB_WORKSPACE/$p" ] && mkdir -p "$(dirname "$p")" && cp -r "$GITHUB_WORKSPACE/$p" "$p"
           done
+          # Rendered stills and clips stay at their fal URLs (recorded in each post's package);
+          # only prompts, plans and the spend ledger go on the state branch.
+          [ -d media ] && find media -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.mp4' \) -delete
           git add -A
           git -c user.name="gita-studio-bot" -c user.email="actions@users.noreply.github.com" \
             commit -q -m "state: $CMD" || exit 0
