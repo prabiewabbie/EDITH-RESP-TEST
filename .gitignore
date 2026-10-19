@@ -12,3 +12,6 @@ youtube_token.json
 shorts/
 /verses.json
 /music.mp3
+.cache/
+reels/
+style/refs/

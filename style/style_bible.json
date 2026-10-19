@@ -1,0 +1,25 @@
+{
+  "source": "Measured from the user's 11.8 s reference reel (720x1280, 24 fps, 6 shots). Style reference only; no footage is reused.",
+  "look": "photoreal cinematic CGI of an Indian epic, golden-hour backlight, sun low in frame, volumetric haze and dust, warm rim light on skin and metal, shallow depth of field, anamorphic flare, heroic scale",
+  "palette_hex": ["#000000", "#200000", "#402000", "#604020", "#c0a080", "#e0a080", "#e0c0a0"],
+  "exposure": "deep crushed blacks (5th-percentile luma ~11/255), bright creamy highlights (95th ~222), mid-tones low (~82)",
+  "saturation": 0.49,
+  "warm_pixel_share": 0.84,
+  "fps": 24,
+  "avg_shot_seconds": 2.0,
+  "shot_seconds_range": [1.4, 3.2],
+  "motion": "slow, smooth, stabilised camera moves (push-in, slow tracking, rack focus); one larger move per reel; no shaky cam",
+  "shot_scale_pattern": [
+    "hero close-up of a face looking up, crown/ornament detail",
+    "wide procession or army against the sun",
+    "macro insert of a small living detail backlit by the sun",
+    "low-angle ground detail: feet, shadows, dust",
+    "close detail of a prop in motion: bow, cloth, banner",
+    "return to the wide establishing shot"
+  ],
+  "transitions": "hard cuts on the beat; occasional quick dip to white on a big reveal",
+  "special_framing": "some widescreen shots are laid sideways (rotated 90 degrees) inside the vertical frame; use sparingly",
+  "text": "almost none: channel handle and music credit only; at most one short verse line",
+  "audio": "music-led, integrated loudness -14.3 LUFS, loudness range 5.1 LU; voice presence unverified",
+  "negative_prompt": "cartoon, anime, flat lighting, oversaturated neon, text, watermark, logo, extra fingers, deformed hands, distorted face, gore, blood, sexualised, comedic, modern objects in epic scenes"
+}
