@@ -24,3 +24,15 @@ def test_besant_page_parses_verses_with_sanskrit_and_strips_footnotes():
     assert v[43]["translation"] == "With desire for self, with heaven for goal, they offer birth as the fruit of action."
     assert v[44]["translated_with"] == "44-45" and v[45]["translation"] == v[44]["translation"]
     assert 99 not in v
+
+
+def test_misprinted_or_missing_markers_fall_back_to_the_sanskrit_order():
+    html = """<div lang="sa"><p>क ॥ ४१ ॥</p></div><p>Verse forty-one. <span>(41)</span></p>
+<div lang="sa"><p>ख ॥ ४२ ॥</p></div><p>Verse forty-two as printed. <span title="[sic] '(42)'">(42</span></p>
+<div lang="sa"><p>ग ॥ ४३ ॥</p></div><p>Verse forty-three with no marker.</p>
+<div lang="sa"><p>घ ॥ ४४ ॥</p></div><p>Verse forty-four. <span>(44)</span></p>
+<p>Thus in the glorious Bhagavad-Gita ends the third discourse.</p>"""
+    v = parse_discourse(html)
+    assert v[42]["translation"] == "Verse forty-two as printed."
+    assert v[43]["translation"] == "Verse forty-three with no marker."
+    assert v[44]["translation"] == "Verse forty-four." and 45 not in v

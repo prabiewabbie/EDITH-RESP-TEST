@@ -42,6 +42,7 @@ class _Discourse(HTMLParser):
         self.english: dict[int, str] = {}
         self.ranges: dict[int, tuple[int, int]] = {}
         self.started = False      # English is collected only after the first Sanskrit verse
+        self.last: int | None = None
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -94,8 +95,18 @@ class _Discourse(HTMLParser):
         lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
         m = re.search(r"॥\s*([०-९0-9]+)\s*॥", " ".join(lines))
         if m:
-            self.sanskrit[int(m.group(1).translate(DEVANAGARI_DIGITS))] = "\n".join(lines)
+            self._flush()
+            self.last = int(m.group(1).translate(DEVANAGARI_DIGITS))
+            self.sanskrit[self.last] = "\n".join(lines)
             self.started = True
+
+    def _flush(self):
+        """English left over when the next Sanskrit verse starts belongs to the previous one. This covers the
+        scan's misprinted markers, which Wikisource keeps as printed ("(42", "32)", or none at all)."""
+        body = re.sub(r"\(?\d*\)?\s*$", "", self.en).strip()
+        if body and self.last is not None and self.last not in self.english:
+            self.english[self.last] = body
+        self.en = ""
 
     def _paragraph(self, text):
         text = re.sub(r"\s+", " ", unescape(text)).strip()
@@ -112,10 +123,15 @@ class _Discourse(HTMLParser):
                     self.ranges[v] = (first, last)
             self.en = ""
 
+    def close(self):
+        super().close()
+        self.en = ""  # trailing text after the last verse is the colophon, not a verse
+
 
 def parse_discourse(html: str) -> dict[int, dict]:
     p = _Discourse()
     p.feed(html)
+    p.close()
     out = {}
     for v, text in p.english.items():
         out[v] = {"translation": text, "sanskrit": p.sanskrit.get(v, "")}
