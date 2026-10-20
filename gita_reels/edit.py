@@ -4,7 +4,7 @@ Every reel folder is a self-contained editing project:
     clips_raw/        untouched model output
     clips/            conformed shots (1080x1920, 24 fps, trimmed, graded) used on the timeline
     titles/           transparent PNG layers (verse line, channel brand)
-    audio/            music.wav, ambience.wav, voice.wav, mix.wav stems
+    audio/            music.wav, ambience.wav, sfx.wav, voice.wav, mix.wav stems
     captions.srt      verse line and narration with timings
     timeline.otio     OpenTimelineIO (DaVinci Resolve, Premiere via OTIO, Nuke, etc.)
     timeline.xml      FCP 7 XML (File > Import in Premiere Pro and DaVinci Resolve)
@@ -23,9 +23,40 @@ from .produce import ShotResult
 from .settings import Settings
 from .writer import ReelPlan
 
-# Light touch: the generated footage already carries the look; this only unifies shots.
-GRADE = "eq=contrast=1.06:saturation=0.96,colorbalance=rh=0.03:bh=-0.03:bs=0.02,noise=alls=4:allf=t"
 FLASH_FRAMES = 4
+
+
+def grade_chain(s: Settings) -> str:
+    """Grade preset from style/cinematography.yaml. Light touch: the footage already carries the look; this
+    unifies shots, protects highlights and adds fine grain. The source colour space of hosted models is
+    plain Rec.709 SDR, so no colour-managed transform is applied."""
+    from .cinema import presets
+    g = presets(s)["grades"].get(s.reel.grade) or presets(s)["grades"]["neutral"]
+    return g["filter"] + (f",noise=alls={g['grain']}:allf=t" if g.get("grain") else "")
+
+
+def mean_rgb(path: Path) -> tuple[float, float, float]:
+    """Average colour of a clip's middle frame (for shot matching)."""
+    import numpy as np
+    t = duration(path) / 2
+    raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-ss", f"{t:.2f}", "-i", str(path), "-frames:v", "1",
+                          "-vf", "scale=64:64,format=rgb24", "-f", "rawvideo", "-"], capture_output=True,
+                         check=True).stdout
+    px = np.frombuffer(raw, np.uint8).reshape(-1, 3).astype(float)
+    return tuple(float(x) for x in px.mean(axis=0))
+
+
+def match_gains(means: list[tuple[float, float, float]], strength: float = 0.5, limit: float = 0.08) -> list[str]:
+    """Per-shot colourchannelmixer gains that pull each shot halfway toward the reel's median colour balance,
+    capped at +/-8 percent so a deliberately different shot keeps its character."""
+    import numpy as np
+    m = np.array(means) + 1.0
+    target = np.median(m, axis=0)
+    out = []
+    for row in m:
+        g = np.clip((target / row) ** strength, 1 - limit, 1 + limit)
+        out.append(f"colorchannelmixer=rr={g[0]:.3f}:gg={g[1]:.3f}:bb={g[2]:.3f}")
+    return out
 
 
 def ff(*args: str) -> None:
@@ -90,13 +121,15 @@ def brand_layer(handle: str, w: int, h: int, path: Path) -> Path:
 
 
 # --- conform --------------------------------------------------------------------------------
-def conform(result: ShotResult, secs: float, framing: str, flash: bool, s: Settings, folder: Path) -> tuple[Path, Path]:
+def conform(result: ShotResult, secs: float, framing: str, flash: bool, s: Settings, folder: Path,
+            match: str = "") -> tuple[Path, Path]:
     r = s.reel
     src = result.clip
     offset = max(0.0, min(0.5, duration(src) - secs))      # skip the keyframe-still first instant
     vf = (["transpose=1"] if framing == "rotated_wide" else []) + [
         f"scale={r.width}:{r.height}:force_original_aspect_ratio=increase", f"crop={r.width}:{r.height}",
-        "setsar=1", f"fps={r.fps}", f"tpad=stop_mode=clone:stop_duration={secs:.2f}", GRADE]
+        "setsar=1", f"fps={r.fps}", f"tpad=stop_mode=clone:stop_duration={secs:.2f}"] + (
+        [match] if match else []) + [grade_chain(s)]
     if flash:
         vf.append(f"fade=t=in:st=0:d={FLASH_FRAMES / r.fps:.3f}:color=white")
     vf.append("format=yuv420p")
@@ -160,15 +193,55 @@ def build_voice(plan: ReelPlan, starts: list[float], total: float, s: Settings, 
     return out
 
 
-def mix(music: Path, ambience: Path, voice: Path | None, path: Path) -> None:
+def build_sfx(plan: ReelPlan, starts: list[float], total: float, s: Settings, path: Path) -> Path | None:
+    """Foley/designed-effects stem: each shot's sfx cues are matched to files in sfx/ by name and placed at
+    the start of that shot, trimmed to its length. Quiet shots with no cue stay quiet."""
+    files = [p for p in Path(s.paths.sfx).glob("*") if p.suffix.lower() in (".wav", ".mp3", ".flac", ".m4a")]
+    if not files:
+        return None
+    placed = []
+    for i, sh in enumerate(plan.shots):
+        for cue in [c.strip().lower() for c in sh.sfx.split(",") if c.strip()]:
+            words = [w for w in cue.split() if len(w) > 2]
+            hit = next((f for f in files if words and all(w in f.stem.lower() for w in words[:2])), None) or \
+                next((f for f in files if any(w in f.stem.lower() for w in words)), None)
+            if hit:
+                placed.append((hit, starts[i], sh.on_screen_seconds))
+                break
+    if not placed:
+        return None
+    inputs, chain = [], []
+    for k, (f, start, secs) in enumerate(placed):
+        inputs += ["-i", str(f)]
+        ms = int(start * 1000)
+        chain.append(f"[{k}:a]atrim=0:{secs:.3f},afade=t=out:st={max(secs - 0.3, 0):.3f}:d=0.3,"
+                     f"aformat=sample_rates=48000:channel_layouts=stereo,adelay={ms}|{ms}[s{k}]")
+    labels = "".join(f"[s{k}]" for k in range(len(placed)))
+    ff(*inputs, "-filter_complex", ";".join(chain) + f";{labels}amix=inputs={len(placed)}:normalize=0,apad[a]",
+       "-map", "[a]", "-t", f"{total:.3f}", "-ac", "2", "-ar", "48000", str(path))
+    return path
+
+
+def mix(music: Path, ambience: Path, voice: Path | None, path: Path, sfx: Path | None = None) -> None:
+    """Music ducks under the voice; ambience and effects sit underneath; loudness -14 LUFS with a true-peak
+    ceiling of -1.5 dBTP and a final limiter so nothing clips."""
+    inputs = ["-i", str(music), "-i", str(ambience)]
+    beds = ["[amb]"]
+    graph = "[1:a]volume=0.35[amb];"
+    if sfx:
+        inputs += ["-i", str(sfx)]
+        graph += f"[{len(inputs) // 2 - 1}:a]volume=0.6[fx];"
+        beds.append("[fx]")
     if voice:
-        graph = ("[0:a]volume=0.9[m];[2:a]asplit[v][vk];[m][vk]sidechaincompress=threshold=0.05:ratio=6:"
-                 "attack=20:release=300[md];[1:a]volume=0.35[amb];[md][amb][v]amix=inputs=3:normalize=0,"
-                 "loudnorm=I=-14:TP=-1.5:LRA=7[a]")
-        inputs = ["-i", str(music), "-i", str(ambience), "-i", str(voice)]
+        inputs += ["-i", str(voice)]
+        vi = len(inputs) // 2 - 1
+        graph += (f"[0:a]volume=0.9[m0];[{vi}:a]asplit[v][vk];[m0][vk]sidechaincompress=threshold=0.05:ratio=6:"
+                  f"attack=20:release=300[m];")
+        beds.append("[v]")
     else:
-        graph = "[0:a]volume=0.9[m];[1:a]volume=0.35[amb];[m][amb]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=7[a]"
-        inputs = ["-i", str(music), "-i", str(ambience)]
+        graph += "[0:a]volume=0.9[m];"
+    graph += (f"[m]{''.join(beds)}amix=inputs={len(beds) + 1}:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=7,"
+              "alimiter=limit=0.84:level=false[a]")
     ff(*inputs, "-filter_complex", graph, "-map", "[a]", "-ar", "48000", "-ac", "2", str(path))
 
 
@@ -246,11 +319,13 @@ def _set_sequence_format(xml_path: Path, fps: int, w: int, h: int) -> None:
 # --- the whole edit -------------------------------------------------------------------------
 def edit(plan: ReelPlan, results: list[ShotResult], verse: dict | None, s: Settings, folder: Path) -> dict:
     r = s.reel
+    gains = match_gains([mean_rgb(res.clip) for res in results]) if r.match_shots and len(results) > 1 else []
     conformed, starts, t = [], [], 0.0
-    for res in results:
+    for k, res in enumerate(results):
         shot = plan.shots[res.index]
         starts.append(t)
-        conformed.append(conform(res, shot.on_screen_seconds, shot.framing, shot.transition_in == "flash", s, folder))
+        conformed.append(conform(res, shot.on_screen_seconds, shot.framing, shot.transition_in == "flash", s, folder,
+                                 gains[k] if gains else ""))
         t += shot.on_screen_seconds
     total = t
 
@@ -268,8 +343,9 @@ def edit(plan: ReelPlan, results: list[ShotResult], verse: dict | None, s: Setti
     music = audio / "music.wav"
     build_music(track, total, music)
     voice = build_voice(plan, starts, total, s, folder)
+    sfx = build_sfx(plan, starts, total, s, audio / "sfx.wav")
     mixed = audio / "mix.wav"
-    mix(music, ambience, voice, mixed)
+    mix(music, ambience, voice, mixed, sfx)
 
     titles_dir = folder / "titles"
     titles_dir.mkdir(exist_ok=True)
@@ -296,14 +372,18 @@ def edit(plan: ReelPlan, results: list[ShotResult], verse: dict | None, s: Setti
     inputs += ["-loop", "1", "-t", f"{total:.3f}", "-i", str(brand), "-i", str(mixed)]
     chain.append(f"[{last}][{k}:v]overlay=0:0,format=yuv420p[v]")
     final = folder / "final.mp4"
+    codec = (["-c:v", "libx265", "-tag:v", "hvc1", "-crf", "19"] if r.codec == "h265"
+             else ["-c:v", "libx264", "-crf", "17"])
     ff(*inputs, "-filter_complex", ";".join(chain), "-map", "[v]", "-map", f"{k + 1}:a",
-       "-c:v", "libx264", "-preset", r.preset, "-crf", "17", "-r", str(r.fps), "-c:a", "aac", "-b:a", "192k",
+       *codec, "-preset", r.preset, "-r", str(r.fps), "-c:a", "aac", "-b:a", "192k",
        "-t", f"{total:.3f}", "-movflags", "+faststart", str(final))
     picture.unlink(missing_ok=True)
 
     stems = {"A1 music": music, "A2 ambience": ambience}
     if voice:
         stems["A3 voice"] = voice
+    if sfx:
+        stems["A4 sfx"] = sfx
     write_timeline(plan.title, r.fps, [(v, plan.shots[i].on_screen_seconds) for i, (v, _) in enumerate(conformed)],
                    titles, brand, stems, total, folder)
     return {"final": str(final), "seconds": round(total, 2), "music_track": str(track) if track else None,

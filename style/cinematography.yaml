@@ -1,0 +1,233 @@
+# Cinematography presets: lenses, camera moves, lighting, focus, grades and quality constraints.
+#
+# Planner (Claude) picks preset ids per shot; the prompt composer (gita_reels/cinema.py) expands them into
+# explicit, model-specific language. These are cinematographic intentions, not equipment claims: a hosted
+# video model interprets "85 mm, f/2" or "dolly in" probabilistically, it does not simulate the optics.
+
+camera_body: >-
+  the image character of a modern large-format digital cinema camera: filmic highlight roll-off, wide
+  dynamic range, natural colour separation, smooth skin tones, rich shadow detail, fine organic texture and
+  natural 180-degree-shutter motion blur
+
+lenses:
+  portrait_85:
+    label: "Portrait 85 mm"
+    focal: "85 mm equivalent"
+    aperture: "around f/2"
+    use: "emotional close-ups of faces, eyes, crowns, jewellery and costume detail"
+    look: >-
+      tight framing with natural facial proportions, compressed perspective, strong subject-background
+      separation, smooth creamy background defocus, crisp detail at the eyes with gentle focus falloff
+  normal_50:
+    label: "Normal 50 mm"
+    focal: "50 mm equivalent"
+    aperture: "around f/2.8-f/4"
+    use: "medium shots and environmental portraits that keep the subject grounded in the world"
+    look: "natural perspective, believable proportions, moderate background separation, controlled depth of field"
+  wide_32:
+    label: "Wide 32 mm"
+    focal: "28-35 mm equivalent"
+    aperture: "around f/4"
+    use: "establishing shots, heroic figures in big environments, architecture, processions"
+    look: >-
+      strong spatial depth with a clear foreground element for scale, near-to-far separation, natural
+      perspective with the camera kept a respectful distance from faces
+  ultrawide_21:
+    label: "Extreme wide 21 mm"
+    focal: "18-24 mm equivalent"
+    aperture: "around f/5.6"
+    use: "sparingly: monumental scale, vast landscapes, dramatic ground-level shots"
+    look: "exaggerated depth, strong leading lines, large foreground elements, monumental perspective, no faces near the lens"
+  tele_120:
+    label: "Telephoto 120 mm"
+    focal: "100-135 mm equivalent"
+    aperture: "around f/2.8"
+    use: "compressed landscapes, layered armies, distant figures and silhouettes against the sun"
+    look: "compressed, stacked layers, elegant controlled composition, soft background, minimal perspective distortion"
+  macro_100:
+    label: "Macro 100 mm"
+    focal: "100 mm macro"
+    aperture: "around f/4"
+    use: "small living details: a petal, a bee, a flame, dust in light, threads of silk"
+    look: "extreme magnification with a razor-thin focal plane and luminous backlit bokeh"
+
+camera_moves:
+  push_in:
+    label: "Slow push-in (dolly)"
+    path: "camera dollies slowly forward along the subject's eyeline"
+    start: "medium close-up"
+    end: "close-up"
+    speed: "very slow, about 5 percent of frame height per second"
+    ease: "gentle ease-in, steady middle, soft ease-out to a stop"
+    secondary: "almost imperceptible drift"
+    keep: "subject's eyes on the focal plane; background shifts with real parallax"
+    avoid: "digital zoom, changing facial proportions"
+  pull_out:
+    label: "Slow pull-back reveal"
+    path: "camera dollies slowly backward away from the subject"
+    start: "close-up"
+    end: "medium wide revealing the surroundings"
+    speed: "slow and steady"
+    ease: "ease-in and ease-out"
+    secondary: "none"
+    keep: "subject stays the visual anchor while the world opens up around it"
+    avoid: "zooming, sudden speed changes"
+  track_lateral:
+    label: "Lateral tracking (slider)"
+    path: "camera slides sideways parallel to the subject"
+    start: "subject on one third"
+    end: "subject held on the same third"
+    speed: "slow, matched to the subject's walking pace"
+    ease: "smooth acceleration and deceleration"
+    secondary: "none"
+    keep: "foreground passes faster than the background; constant subject scale"
+    avoid: "sliding through objects, inconsistent parallax"
+  low_heroic_reveal:
+    label: "Low-angle heroic reveal"
+    path: "camera starts near ground level behind a foreground silhouette and cranes up while tilting up"
+    start: "partly obscured view of feet, cloth or dust"
+    end: "full figure from below against the sky"
+    speed: "slow, deliberate"
+    ease: "ease-in, long ease-out"
+    secondary: "slight forward drift"
+    keep: "believable horizon and perspective; foreground layers for depth"
+    avoid: "confusing a tilt for a crane; warped horizon"
+  crane_up:
+    label: "Crane / jib rise"
+    path: "camera rises vertically from behind a foreground element"
+    start: "close to the ground"
+    end: "elevated, stable view over the landscape"
+    speed: "slow and even"
+    ease: "ease-in and ease-out"
+    secondary: "optional gentle forward drift"
+    keep: "new environmental layers appear as the camera rises"
+    avoid: "implausible trajectories"
+  orbit_subtle:
+    label: "Subtle orbit (15-25 degrees)"
+    path: "camera arcs around the subject on a shallow curve"
+    start: "three-quarter view"
+    end: "about 20 degrees further round"
+    speed: "slow"
+    ease: "smooth"
+    secondary: "none"
+    keep: "subject anchored, light direction and anatomy constant, background shifts naturally"
+    avoid: "full 360 spins"
+  locked_off:
+    label: "Locked-off"
+    path: "camera holds completely still on a tripod"
+    start: "the composed frame"
+    end: "the same frame"
+    speed: "static"
+    ease: "none"
+    secondary: "none"
+    keep: "only the world moves: wind, smoke, dust, cloth, water, breathing"
+    avoid: "camera drift, horizon tilt"
+  ground_track:
+    label: "Ground-level tracking"
+    path: "camera skims just above the ground, tracking parallel to feet, hooves or wheels"
+    start: "subject entering from one side"
+    end: "subject passing through frame"
+    speed: "matched to the subject"
+    ease: "smooth"
+    secondary: "none"
+    keep: "solid foot and ground contact; foreground stones and dust give depth; natural motion blur"
+    avoid: "floating camera, sliding feet"
+  handheld_stabilized:
+    label: "Stabilised handheld (rare)"
+    path: "skilled operator on a stabilised rig drifting with the subject"
+    start: "medium shot"
+    end: "medium shot"
+    speed: "slow"
+    ease: "organic"
+    secondary: "very subtle natural sway, no rotational wobble"
+    keep: "subject always readable"
+    avoid: "jitter, shake"
+  rack_focus:
+    label: "Rack focus (locked camera)"
+    path: "camera holds still while focus pulls from a foreground element to the subject"
+    start: "foreground sharp, subject soft"
+    end: "subject sharp, foreground soft"
+    speed: "smooth pull over about a second"
+    ease: "ease-in and ease-out"
+    secondary: "none"
+    keep: "focus change motivated by the story"
+    avoid: "focus hunting"
+
+lighting:
+  golden_backlight:
+    label: "Golden-hour backlight"
+    key: "low golden sun just above the horizon behind and slightly to the side of the subject"
+    quality: "warm amber light, long shadows, bright rim highlights on hair, armour, cloth and edges, gradual falloff"
+    fill: "soft warm bounce from the ground keeps the shadow side readable"
+    atmosphere: "fine dust and haze catching the light"
+  golden_side:
+    label: "Golden side light"
+    key: "low warm sun from the side, raking across faces and surfaces"
+    quality: "sculpted half-lit faces, texture-revealing grazing light, rich shadow gradient"
+    fill: "minimal; negative fill on the shadow side"
+    atmosphere: "light haze"
+  volumetric_rays:
+    label: "Volumetric sun rays"
+    key: "sunbeams cutting through smoke, dust or architectural openings"
+    quality: "visible shafts of warm light, subject partly in the beam"
+    fill: "dim ambient"
+    atmosphere: "drifting smoke and dust motes; subtle, never hiding the image"
+  dawn_haze:
+    label: "Dawn haze"
+    key: "soft rising sun diffused by mist"
+    quality: "low contrast, pale gold and rose highlights, gentle shadows"
+    fill: "cool sky fill"
+    atmosphere: "layered mist that fades distant silhouettes"
+  divine_glow:
+    label: "Divine radiance (use with restraint)"
+    key: "warm natural sunlight, with a soft inner radiance around the divine figure motivated by the sun behind"
+    quality: "luminous but physically plausible; no neon halos or glowing outlines"
+    fill: "warm"
+    atmosphere: "light haze, floating petals or dust in the light"
+  firelight:
+    label: "Firelight / lamps"
+    key: "flickering oil lamps or torches close to the subject"
+    quality: "warm orange key with deep falloff into darkness, gentle natural flicker"
+    fill: "almost none"
+    atmosphere: "faint smoke"
+
+focus:
+  eyes: "focus locked on the nearest eye"
+  rack_to_subject: "slow rack focus from the foreground element to the subject"
+  rack_to_background: "slow rack focus from the subject to the distant structure"
+  follow: "focus follows the moving subject smoothly"
+  deep: "deep focus: foreground to horizon readable"
+  foreground_frame: "soft out-of-focus foreground framing a sharp subject"
+
+grades:
+  reference_warm:
+    label: "Reference warm (measured)"
+    # ffmpeg filter chain applied to every conformed shot; restrained on purpose
+    filter: "curves=all='0/0 0.06/0.04 0.5/0.47 0.85/0.88 1/0.97',eq=contrast=1.04:saturation=0.95,colorbalance=rs=0.02:bs=-0.02:rh=0.03:bh=-0.03"
+    grain: 3
+  neutral:
+    label: "Neutral (only unify shots)"
+    filter: "eq=contrast=1.02:saturation=1.0"
+    grain: 2
+  dawn_soft:
+    label: "Dawn soft"
+    filter: "curves=all='0/0.03 0.5/0.5 1/0.96',eq=saturation=0.9,colorbalance=rh=0.02:bh=0.01"
+    grain: 3
+
+quality:
+  positive: >-
+    photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust;
+    physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground
+    contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry;
+    consistent light direction from first to last frame
+  negative:
+    always: >-
+      cartoon, illustration, anime, video-game render, plastic or waxy skin, artificial smoothness, excessive
+      sharpening, overprocessed HDR halos, oversaturated orange-and-teal, glowing outlines, excessive
+      artificial bloom, temporal flicker, warped architecture, unstable background, inconsistent shadows,
+      random camera shake, abrupt zoom, extreme lens distortion, compression artifacts, text, watermark, logo,
+      gore, blood
+    people: >-
+      distorted face, asymmetrical eyes, morphing face, malformed hands, extra fingers, extra limbs, broken
+      joints, floating feet, sliding feet, changing clothing, inconsistent jewellery
+    animals: "extra legs, sliding hooves or paws, mechanical repetitive gait, melting fur"

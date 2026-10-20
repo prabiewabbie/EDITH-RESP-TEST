@@ -1,17 +1,22 @@
-"""Footage: character sheets, a hidden keyframe per shot, image-to-video, and visual QC with retries.
+"""Footage: character sheets, then one *take* per call: hidden keyframe -> QC -> image-to-video -> QC.
 
-Keyframes are inputs to the video model only; they never appear in the edit.
+Keyframes are inputs to the video model only; they never appear in the edit. Each take lives in its own
+folder (shots/NN/tKK/) with a take.json, so regenerating a shot never touches earlier or approved takes.
 """
 from __future__ import annotations
 
+import json
 import logging
 import subprocess
+from datetime import datetime
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .fal import BudgetExceeded, Fal, data_uri
+from .cinema import keyframe_prompt, negative, video_prompt
+from .fal import BudgetExceeded, Fal
+from .providers import Animatic, VideoRequest
 from .settings import Settings
-from .writer import Claude, ReelPlan, Shot, qc_passes
+from .writer import Claude, Shot, qc_passes
 
 log = logging.getLogger(__name__)
 
@@ -32,7 +37,8 @@ class ShotResult:
 
 
 def refs_dir(s: Settings) -> Path:
-    return Path(s.paths.style) / "refs"
+    """Character sheets are shared across reels; a concept project with its own cast keeps its own."""
+    return Path(s.paths.characters).parent / "refs" if s.paths.characters else Path(s.paths.style) / "refs"
 
 
 def ensure_refs(s: Settings, fal: Fal, ids: set[str]) -> dict[str, Path]:
@@ -54,7 +60,7 @@ def ensure_refs(s: Settings, fal: Fal, ids: set[str]) -> dict[str, Path]:
     return out
 
 
-def frames_of(clip: Path, folder: Path, n: int = 3) -> list[Path]:
+def frames_of(clip: Path, folder: Path, n: int = 4) -> list[Path]:
     dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
                                 str(clip)], capture_output=True, text=True, check=True).stdout)
     folder.mkdir(parents=True, exist_ok=True)
@@ -68,71 +74,121 @@ def frames_of(clip: Path, folder: Path, n: int = 3) -> list[Path]:
     return paths
 
 
-class Producer:
-    def __init__(self, s: Settings, fal: Fal, claude: Claude):
-        self.s, self.fal, self.claude = s, fal, claude
+def motion_metrics(clip: Path, samples: int = 12) -> dict:
+    """Cheap temporal checks on a clip: does it actually move, and does brightness flicker?
 
-    def estimate(self, plan: ReelPlan, retry_factor: float = 1.3) -> float:
-        vm = self.s.fal.video_models[0]
-        video = sum(vm.pick_duration(sh.on_screen_seconds + 0.8) for sh in plan.shots) * vm.price_per_second
-        return round((len(plan.shots) * self.s.fal.keyframe_price + video) * retry_factor, 2)
+    motion: mean absolute frame difference (0-255) between evenly spaced frames
+    flicker: largest jump in mean brightness between neighbouring samples, relative to the median jump
+    """
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", str(clip), "-vf", "scale=96:-2,format=gray",
+                          "-f", "rawvideo", "-"], capture_output=True, check=True).stdout
+    w = 96
+    probe = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
+                            "-of", "csv=p=0", str(clip)], capture_output=True, text=True, check=True).stdout
+    sw, sh = (int(x) for x in probe.strip().split(",")[:2])
+    h = int(round(sh * w / sw / 2) * 2)
+    frames = np.frombuffer(raw, np.uint8)[: (len(raw) // (w * h)) * w * h].reshape(-1, h, w).astype(np.float32)
+    if len(frames) < 3:
+        return {"frames": int(len(frames)), "motion": 0.0, "flicker": 0.0, "notes": ["clip too short to measure"]}
+    idx = np.linspace(0, len(frames) - 1, min(samples, len(frames))).astype(int)
+    pick = frames[idx]
+    diffs = np.abs(np.diff(pick, axis=0)).mean(axis=(1, 2))
+    means = pick.mean(axis=(1, 2))
+    jumps = np.abs(np.diff(means))
+    flicker = float(jumps.max() / (np.median(jumps) + 0.5))
+    notes = []
+    if diffs.mean() < 0.6:
+        notes.append("almost no movement: the model may have returned a near-still")
+    if flicker > 6 and jumps.max() > 6:
+        notes.append("sudden brightness jump: possible flicker or lighting pop")
+    return {"frames": int(len(frames)), "motion": round(float(diffs.mean()), 2), "flicker": round(flicker, 2),
+            "notes": notes}
 
-    def produce(self, plan: ReelPlan, folder: Path) -> list[ShotResult]:
-        self.fal.start_reel()
-        refs = ensure_refs(self.s, self.fal, {c for sh in plan.shots for c in sh.characters})
-        return [self._shot(i, sh, refs, folder) for i, sh in enumerate(plan.shots)]
 
-    def _shot(self, i: int, shot: Shot, refs: dict[str, Path], folder: Path) -> ShotResult:
-        bible, chars = self.s.style_bible(), self.s.characters()
+def _now() -> str:
+    return datetime.now().isoformat(timespec="seconds")
+
+
+class TakeMaker:
+    """Makes one take of one shot. No retries here: the caller decides whether another take is worth it."""
+
+    def __init__(self, s: Settings, keyframer, claude: Claude | None):
+        self.s, self.keyframer, self.claude = s, keyframer, claude
+
+    def make(self, index: int, shot: Shot, folder: Path, providers: list, refs: dict[str, Path],
+             hint: str = "", overrides: dict | None = None, seed: int | None = None) -> dict:
+        overrides = overrides or {}
+        folder.mkdir(parents=True, exist_ok=True)
+        r = self.s.reel
+        aspect = "16:9" if shot.framing == "rotated_wide" else (
+            "9:16" if r.height > r.width else "1:1" if r.height == r.width else "16:9")
         shot_refs = [refs[c] for c in shot.characters if c in refs]
-        aspect = "16:9" if shot.framing == "rotated_wide" else "9:16"
-        described = "; ".join(f"{c}: {chars[c]}" for c in shot.characters if c in chars)
-        hint, qc_log = "", []
-        for attempt in range(1, self.s.fal.max_retries_per_shot + 2):
+        primary = providers[0]
+        take = {"id": folder.name, "shot": index, "created": _now(), "status": "generating", "hint": hint,
+                "provider": primary.name, "placeholder": bool(getattr(primary.caps, "placeholder", False)),
+                "prompts": {"keyframe": overrides.get("keyframe") or keyframe_prompt(shot, self.s, hint),
+                            "negative": overrides.get("negative") or negative(shot, self.s)},
+                "spec": shot.model_dump(), "qc": [], "cost_usd": 0.0}
+        save_take(folder, take)
+        try:
             # 1. hidden keyframe, checked before paying for video
-            kprompt = (f"{shot.keyframe_prompt}. {described}. Style: {bible['look']}. Camera framing: "
-                       f"{shot.purpose.replace('_', ' ')}. {hint} Avoid: {bible['negative_prompt']}")
-            body = {"prompt": kprompt, "num_images": 1, "aspect_ratio": aspect}
-            if shot_refs:
-                body[self.s.fal.keyframe_refs_field] = [data_uri(p) for p in shot_refs]
-            model = self.s.fal.keyframe_model if shot_refs else self.s.fal.refs_model
-            kres = self.fal.run(model, body, self.s.fal.keyframe_price)
-            kurl = kres["images"][0]["url"]
-            keyframe = self.fal.download(kurl, folder / "keyframes" / f"shot_{i + 1:02d}_try{attempt}.png")
-            q = self.claude.qc([keyframe], shot_refs, shot)
-            qc_log.append({"stage": "keyframe", "attempt": attempt, **q.model_dump()})
-            if not qc_passes(q, self.s.claude.min_qc_score):
-                hint = q.retry_hint
-                continue
-            # 2. motion, trying each configured video model in turn
-            clip, used, gen = self._video(i, shot, kurl, aspect, folder, attempt, hint)
-            q = self.claude.qc(frames_of(clip, folder / "qc"), shot_refs, shot)
-            qc_log.append({"stage": "clip", "attempt": attempt, **q.model_dump()})
-            if qc_passes(q, self.s.claude.min_qc_score):
-                return ShotResult(i, clip, keyframe, used, gen, attempt, qc_log)
-            hint = q.retry_hint
-        raise ShotFailed(f"shot {i + 1} failed QC after {attempt} attempts: {qc_log[-1]['problems']}")
+            kpath, kurl, cost = self.keyframer.generate(take["prompts"]["keyframe"], aspect, shot_refs,
+                                                        folder / "keyframe.png")
+            take.update(keyframe=kpath.name, cost_usd=take["cost_usd"] + cost)
+            if self.claude and not self.keyframer.placeholder:
+                q = self.claude.qc([kpath], shot_refs, shot)
+                take["qc"].append({"stage": "keyframe", **q.model_dump()})
+                if not qc_passes(q, self.s.claude.min_qc_score):
+                    take.update(status="failed_qc", retry_hint=q.retry_hint, ended=_now())
+                    return save_take(folder, take)
+            # 2. motion, trying each provider in turn if one errors
+            errors, result = [], None
+            for p in providers:
+                vprompt = overrides.get("video") or video_prompt(shot, self.s, style=p.style, hint=hint,
+                                                                 max_chars=p.caps.max_prompt_chars)
+                if isinstance(p, Animatic):
+                    p.move = shot.move
+                req = VideoRequest(prompt=vprompt, negative=take["prompts"]["negative"],
+                                   seconds=shot.on_screen_seconds + 0.8, aspect=aspect, out=folder / "clip.mp4",
+                                   image_url=kurl, image_path=kpath, seed=seed)
+                try:
+                    result = p.generate(req)
+                    take["prompts"]["video"] = vprompt
+                    break
+                except BudgetExceeded:
+                    raise
+                except Exception as e:  # model down or rejected input: fall back to the next provider
+                    log.warning("video provider %s failed for shot %s: %s", p.name, index + 1, e)
+                    errors.append(f"{p.name}: {e}")
+            if result is None:
+                take.update(status="failed", error="every video provider failed: " + " | ".join(errors), ended=_now())
+                return save_take(folder, take)
+            take.update(clip=result.path.name, provider=result.provider, model=result.model,
+                        gen_seconds=result.gen_seconds, request=result.body, placeholder=result.placeholder,
+                        cost_usd=round(take["cost_usd"] + result.cost_usd, 4), fallback_errors=errors)
+            take["metrics"] = motion_metrics(result.path)
+            # 3. visual QC on frames from across the whole clip
+            if self.claude and not result.placeholder:
+                q = self.claude.qc(frames_of(result.path, folder / "qc"), shot_refs, shot)
+                take["qc"].append({"stage": "clip", **q.model_dump()})
+                if not qc_passes(q, self.s.claude.min_qc_score):
+                    take.update(status="failed_qc", retry_hint=q.retry_hint, ended=_now())
+                    return save_take(folder, take)
+            take.update(status="ready", ended=_now(), reviewed=bool(self.claude and not result.placeholder))
+            return save_take(folder, take)
+        except BudgetExceeded as e:
+            take.update(status="failed", error=str(e), ended=_now())
+            save_take(folder, take)
+            raise
+        except Exception as e:
+            take.update(status="failed", error=f"{type(e).__name__}: {e}", ended=_now())
+            save_take(folder, take)
+            raise
 
-    def _video(self, i: int, shot: Shot, image_url: str, aspect: str, folder: Path, attempt: int,
-               hint: str) -> tuple[Path, str, int]:
-        bible = self.s.style_bible()
-        errors = []
-        for vm in self.s.fal.video_models:
-            gen = vm.pick_duration(shot.on_screen_seconds + 0.8)
-            body = {"prompt": f"{shot.motion_prompt}. Camera: {shot.camera}. {bible['motion']}. {hint}",
-                    "image_url": image_url, "duration": vm.duration_format.format(n=gen),
-                    "resolution": vm.resolution, "aspect_ratio": aspect,
-                    "negative_prompt": bible["negative_prompt"]}
-            if vm.native_audio:
-                body["generate_audio"] = True
-            try:
-                res = self.fal.run(vm.id, body, gen * vm.price_per_second)
-            except BudgetExceeded:
-                raise
-            except Exception as e:  # model down or rejected input: fall back to the next model
-                log.warning("video model %s failed for shot %s: %s", vm.id, i + 1, e)
-                errors.append(f"{vm.id}: {e}")
-                continue
-            clip = self.fal.download(res["video"]["url"], folder / "clips_raw" / f"shot_{i + 1:02d}_try{attempt}.mp4")
-            return clip, vm.id, gen
-        raise ShotFailed(f"shot {i + 1}: every video model failed: {errors}")
+
+def save_take(folder: Path, take: dict) -> dict:
+    tmp = folder / "take.json.tmp"
+    tmp.write_text(json.dumps(take, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    tmp.replace(folder / "take.json")
+    return take

@@ -20,16 +20,35 @@ GUARDRAILS = """\
 
 
 class Shot(BaseModel):
+    """One production unit. Preset ids come from style/cinematography.yaml; cinema.py expands them."""
     purpose: Literal["hero_closeup", "wide", "macro_insert", "low_angle_detail", "prop_detail",
                      "establishing", "reveal"]
     characters: list[str] = Field(description="Character ids from the character list that appear; [] for none")
-    keyframe_prompt: str = Field(description="The opening frame: subject, pose, setting, light, lens. No text")
-    motion_prompt: str = Field(description="What moves during the shot, starting with a strong motion verb")
-    camera: str = Field(description="One smooth camera move, e.g. 'slow push-in', 'slow tracking left'")
+    subject: str = Field(description="Who or what is in frame and their exact pose, expression and wardrobe "
+                                     "details for this moment (identity comes from the character list)")
+    environment: str = Field(description="Where we are: setting, era, time of day, what surrounds the subject")
+    composition: str = Field(description="Exact framing and screen position, plus the foreground, middle-ground "
+                                         "and background layers and any negative space")
+    camera_height: Literal["ground", "low", "eye", "high", "overhead"]
+    lens: str = Field(description="Lens preset id")
+    focus: str = Field(description="Focus preset id")
+    move: str = Field(description="Camera move preset id")
+    move_detail: str = Field(description="What the camera does in this shot: start framing -> end framing, "
+                                         "direction, speed. One move only")
+    subject_motion: str = Field(description="What moves in the world during the shot, starting with a strong "
+                                            "motion verb; plausible weight and contact")
+    lighting: str = Field(description="Lighting preset id")
+    atmosphere: str = Field(description="Haze, dust, smoke, petals, wind; or 'clear'")
+    materials: str = Field(description="Key surface textures to render: silk, gold, bronze, skin, fur, stone")
+    end_frame: str = Field(description="The final frame the shot settles on and how it hands over to the next")
+    screen_direction: Literal["left_to_right", "right_to_left", "toward_camera", "away", "none"] = Field(
+        description="Main direction of movement or gaze; keep it consistent between neighbouring shots")
     on_screen_seconds: float = Field(description="How long the shot stays on screen, 1.2-4.0 s")
     framing: Literal["vertical", "rotated_wide"] = Field(
         description="rotated_wide = widescreen shot laid sideways in the vertical frame, at most once per reel")
-    transition_in: Literal["cut", "flash"] = Field(description="flash = quick dip from white, for a big reveal")
+    transition_in: Literal["cut", "match_cut", "flash"] = Field(
+        description="match_cut = cut on matching shape, gaze or motion; flash = quick dip from white, big reveal")
+    sfx: str = Field(description="Sound cues synced to visible action, e.g. 'hooves on dirt, wind'; or empty")
     narration: str = Field(description="Voice-over line for this shot, or empty")
 
 
@@ -52,6 +71,8 @@ class Issue(BaseModel):
 class PlanReview(BaseModel):
     fidelity_score: int = Field(description="0-10 faithfulness to the episode synopsis and the verse")
     respect_score: int = Field(description="0-10 reverence of every shot description")
+    craft_score: int = Field(description="0-10 cinematography: varied deliberate shots, exact camera moves, "
+                                         "depth layering, continuity")
     issues: list[Issue]
     verdict: Literal["approve", "revise", "reject"]
 
@@ -62,7 +83,11 @@ class VisualQC(BaseModel):
     artifacts: int = Field(description="0-10 free of warping, flicker, melted objects, stray text or logos")
     respect: int = Field(description="0-10 dignified, traditional depiction; nothing disrespectful")
     prompt_match: int = Field(description="0-10 matches the shot description and style")
-    problems: list[str]
+    camera_motion: int = Field(description="0-10 the camera move reads as the specified physical move (not a "
+                                           "digital zoom), smooth, with believable parallax (10 for a keyframe)")
+    lighting_continuity: int = Field(description="0-10 light direction, colour and shadows stay consistent")
+    problems: list[str] = Field(description="Actionable notes, e.g. 'the face changes shape midway', "
+                                            "'feet slide across the ground', 'reads as a digital zoom'")
     retry_hint: str = Field(description="One sentence to add to the prompt to fix the problems, or empty")
 
 
@@ -101,22 +126,49 @@ class Claude:
         return (self.usage["input_tokens"] * 4 + self.usage["output_tokens"] * 20) / 1_000_000
 
     # --- planning -----------------------------------------------------------------------
-    def plan(self, episode: dict, verse: dict | None, feedback: PlanReview | None = None) -> ReelPlan:
+    def plan(self, episode: dict, verse: dict | None, feedback: PlanReview | None = None,
+             direction: str = "") -> ReelPlan:
+        system, prompt = self.plan_request(episode, verse, feedback, direction)
+        return self.ask(system, prompt, ReelPlan, self.s.claude.effort_write)
+
+    def plan_request(self, episode: dict, verse: dict | None, feedback: PlanReview | None = None,
+                     direction: str = "") -> tuple[str, str]:
+        """The planner's system prompt and request, also exported by `gita-reels brief` for planning in a
+        Claude chat without an API key."""
+        from .cinema import presets_menu
         bible, chars, r = self.s.style_bible(), self.s.characters(), self.s.reel
+        concept = episode.get("kind") == "concept"
+        subject = ("an original cinematic sequence from the brief below" if concept else
+                   "the Bhagavad Gita in order, one moment per reel")
         system = (
-            f"You are the director of '{self.s.channel.name}', a channel of fully animated, photoreal "
-            f"cinematic reels that tell the Bhagavad Gita in order, one moment per reel.\n"
-            f"Match this measured reference style exactly:\n{json.dumps(bible, indent=1)}\n"
+            f"You are the director and cinematographer of '{self.s.channel.name}', a channel of fully animated, "
+            f"photoreal cinematic reels that tell {subject}. Every frame should feel lifted from a high-budget "
+            f"live-action historical epic, not a generic AI video.\n"
+            f"Match this measured reference style:\n{json.dumps(bible, indent=1)}\n"
+            f"Cinematography presets (use these ids for lens, move, lighting and focus):\n{presets_menu(self.s)}\n"
             f"Rules: {r.min_seconds:.0f}-{r.max_seconds:.0f} seconds total; 6-12 shots; shot lengths close to "
-            f"avg_shot_seconds; vary shot scale following shot_scale_pattern; open on motion within the first "
-            f"second; hard cuts on the beat; at most one flash transition"
-            + ("; at most one rotated_wide shot" if r.rotated_wide_shots else "; never use rotated_wide")
+            f"avg_shot_seconds, holding close-ups long enough to register and keeping details brief; alternate "
+            f"intimate detail and expansive spectacle following shot_scale_pattern; never repeat the same lens, "
+            f"move and distance on neighbouring shots; ultrawide_21 at most once; open on motion within the first "
+            f"second; one camera move per shot, described exactly (start and end framing, direction, speed) and "
+            f"kept slow and deliberate; give every shot foreground, middle-ground and background layers where the "
+            f"setting allows; keep screen direction, eyelines and light direction continuous between shots unless a "
+            f"reversal is the point; hard or match cuts on the beat; at most one flash transition; end on a "
+            f"composed final image that is allowed to breathe"
+            + ("; at most one rotated_wide shot" if r.rotated_wide_shots and r.height > r.width
+               else "; never use rotated_wide")
             + ("; write a short narration line for some shots" if r.narration else "; leave narration empty")
-            + ".\nEvery keyframe_prompt must stand alone: describe characters fully using the character list, "
-            f"because each shot is generated separately.\n{GUARDRAILS}")
-        prompt = (f"Episode {episode['id']} (chapter {episode['chapter']}): {episode['title']}\n"
-                  f"Synopsis: {episode['story']}\nSet pieces to draw on: {'; '.join(episode['set_pieces'])}\n"
-                  f"Characters: {json.dumps(chars, indent=1)}\n")
+            + ".\nEach shot is generated separately, so every subject field must describe the characters fully "
+              f"using the character list.\n{GUARDRAILS}")
+        if concept:
+            prompt = (f"Brief: {episode['story']}\nMain character: {episode.get('character') or 'from the brief'}\n"
+                      f"Environment: {episode.get('environment') or 'from the brief'}\n")
+        else:
+            prompt = (f"Episode {episode['id']} (chapter {episode['chapter']}): {episode['title']}\n"
+                      f"Synopsis: {episode['story']}\nSet pieces to draw on: {'; '.join(episode['set_pieces'])}\n")
+        prompt += f"Characters: {json.dumps(chars, indent=1)}\n"
+        if direction:
+            prompt += f"Director's notes from the user (follow them): {direction}\n"
         if verse and r.verse_line:
             prompt += (f"Verse BG {verse['chapter']}.{verse['verse']} translation (excerpt it exactly, max 14 words):\n"
                        f"{verse['translation']}\n")
@@ -125,12 +177,16 @@ class Claude:
         if feedback:
             prompt += "\nThe reviewer asked for changes. Fix every issue:\n" + "\n".join(
                 f"- [{i.severity}] {i.problem} -> {i.fix}" for i in feedback.issues)
-        return self.ask(system, prompt, ReelPlan, self.s.claude.effort_write)
+        return system, prompt
 
     def review(self, plan: ReelPlan, episode: dict, verse: dict | None) -> PlanReview:
-        system = ("You are a strict reviewer for scripture fidelity and respectful depiction. You did not write "
-                  "this plan. Approve only with no blocker or major issues.\n" + GUARDRAILS)
-        prompt = (f"Episode synopsis (ground truth): {episode['story']}\n"
+        system = ("You are a strict reviewer for scripture fidelity and respectful depiction, and a demanding "
+                  "director of photography. You did not write this plan. Flag invented events or dialogue, anything "
+                  "irreverent, and cinematography that would read as generic AI video (same framing every shot, "
+                  "vague camera moves, broken screen direction). Approve only with no blocker or major issues.\n"
+                  + GUARDRAILS)
+        prompt = (f"{'Brief' if episode.get('kind') == 'concept' else 'Episode synopsis'} (ground truth): "
+                  f"{episode['story']}\n"
                   + (f"Verse translation: {verse['translation']}\n" if verse else "No verse text.\n")
                   + f"Plan:\n{plan.model_dump_json(indent=1)}")
         return self.ask(system, prompt, PlanReview, self.s.claude.effort_review)
@@ -152,7 +208,8 @@ class Claude:
 
 
 def qc_passes(q: VisualQC, minimum: int) -> bool:
-    return min(q.identity, q.anatomy, q.artifacts, q.respect, q.prompt_match) >= minimum
+    return min(q.identity, q.anatomy, q.artifacts, q.respect, q.prompt_match, q.camera_motion,
+               q.lighting_continuity) >= minimum
 
 
 def _image_block(path: Path) -> dict:

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gita Studio</title>
+<style>
+:root{--bg:#121110;--panel:#1b1917;--panel2:#24211e;--line:#36312c;--text:#ece6dc;--muted:#a59a8c;--accent:#e0a35a;
+--ok:#7fbf7a;--bad:#e2725b;--warn:#e6c35c;--r:10px;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-size:14px}
+a{color:var(--accent)}button,select,input,textarea{font:inherit;color:inherit}
+header{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line);background:#0d0c0b;position:sticky;top:0;z-index:5}
+header h1{font-size:16px;margin:0;letter-spacing:.04em}header .pill{margin-left:auto}
+.wrap{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 50px)}
+aside{border-right:1px solid var(--line);padding:14px;overflow:auto;max-height:calc(100vh - 50px);position:sticky;top:50px}
+main{padding:16px 20px;min-width:0}
+h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:18px 0 8px}
+h2:first-child{margin-top:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:12px}
+label{display:block;font-size:12px;color:var(--muted);margin:8px 0 3px}
+input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:7px 8px}
+textarea{min-height:58px;resize:vertical}
+.row{display:flex;gap:8px}.row>*{flex:1}
+button{background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:7px 11px;cursor:pointer}
+button:hover{border-color:var(--accent)}button.primary{background:var(--accent);color:#1a1209;border-color:var(--accent);font-weight:600}
+button.small{padding:4px 8px;font-size:12px}button:disabled{opacity:.5;cursor:default}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:2px 9px;font-size:12px;color:var(--muted)}
+.pill.ok{color:var(--ok);border-color:#3e5a3b}.pill.bad{color:var(--bad);border-color:#6a3a30}.pill.warn{color:var(--warn);border-color:#6a5a2a}
+.plist div{padding:7px 8px;border-radius:7px;cursor:pointer;display:flex;justify-content:space-between;gap:6px}
+.plist div:hover,.plist div.on{background:var(--panel2)}.plist small{color:var(--muted)}
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:14px}
+.shot h3{margin:0 0 6px;font-size:14px;display:flex;gap:8px;align-items:center}
+.shot .thumb{width:100%;aspect-ratio:9/16;max-height:340px;object-fit:contain;background:#000;border-radius:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+details{margin-top:8px}summary{cursor:pointer;color:var(--muted);font-size:12px}
+.takes{display:flex;gap:8px;overflow-x:auto;padding:6px 0}
+.take{min-width:150px;max-width:150px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px;font-size:12px}
+.take.sel{border-color:var(--ok)}.take.rej{opacity:.45}
+.take video,.take img{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:6px}
+.muted{color:var(--muted)}.notes{font-size:12px;color:var(--warn);margin:4px 0}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.final{display:flex;gap:16px;flex-wrap:wrap}.final video{max-height:520px;border-radius:8px;background:#000}
+.checks div{font-size:12px}.jobs{font-size:12px;white-space:pre-wrap;max-height:180px;overflow:auto;background:#0d0c0b;border-radius:7px;padding:8px}
+.empty{color:var(--muted);padding:40px;text-align:center}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}aside{position:static;max-height:none;border-right:0}.shots{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>GITA STUDIO</h1><span class="muted" id="keys"></span><span class="pill" id="jobcount">no jobs</span></header>
+<div class="wrap">
+<aside>
+  <h2>New reel</h2>
+  <div class="card">
+    <div class="row"><button id="m-ep" class="primary small">Episode</button><button id="m-con" class="small">Concept</button></div>
+    <div id="ep-fields"><label>Episode</label><select id="f-episode"></select></div>
+    <div id="con-fields" hidden>
+      <label>Concept</label><textarea id="f-concept" placeholder="e.g. Arjuna lowers his bow as dawn breaks over Kurukshetra"></textarea>
+      <label>Main character</label><input id="f-character" placeholder="appearance, wardrobe, age">
+      <label>Environment</label><input id="f-environment" placeholder="place, era, time of day">
+    </div>
+    <label>Style and direction</label><textarea id="f-direction" placeholder="mood, pacing, anything the director should know"></textarea>
+    <div class="row"><div><label>Aspect</label><select id="f-aspect"></select></div>
+      <div><label>Resolution</label><select id="f-res"><option>1080p</option><option>720p</option></select></div></div>
+    <div class="row"><div><label>Min s</label><input id="f-min" type="number" step="1"></div>
+      <div><label>Max s</label><input id="f-max" type="number" step="1"></div></div>
+    <details><summary>Camera, lens and lighting preferences</summary>
+      <label>Preferred lens</label><select id="f-lens"><option value="">Planner decides</option></select>
+      <label>Preferred camera move</label><select id="f-move"><option value="">Planner decides</option></select>
+      <label>Preferred lighting</label><select id="f-lighting"><option value="">Planner decides</option></select>
+      <label>Degree of motion</label><select id="f-motion"><option value="">As reference</option><option>subtle</option><option>moderate</option><option>bold</option></select>
+      <label>Grade</label><select id="f-grade"></select>
+    </details>
+    <label>Video provider</label><select id="f-provider"></select>
+    <label>Planner</label><select id="f-planner"><option value="auto">Claude if a key is set, else template</option><option value="claude">Claude</option><option value="template">Template (offline, never publishable)</option></select>
+    <div class="toolbar"><button class="primary" id="create">Plan shots</button></div>
+  </div>
+  <h2>Projects</h2><div class="plist" id="plist"></div>
+  <h2>Reference video</h2>
+  <div class="card">
+    <input type="file" id="ref-file" accept="video/*">
+    <label><input type="checkbox" id="ref-apply" style="width:auto"> Update the style bible with the measurements</label>
+    <div class="toolbar"><button id="ref-go">Analyse</button></div>
+    <div id="analyses"></div>
+  </div>
+</aside>
+<main id="main"><div class="empty">Plan a new reel or open a project.</div></main>
+</div>
+<script>
+const $=s=>document.querySelector(s), H={"X-Studio":"1"};
+let O=null, cur=null, mode="episode", poll=null;
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+async function api(path,opt={}){const r=await fetch(path,{...opt,headers:{...H,...(opt.headers||{})}});const j=await r.json();if(!r.ok)throw new Error(j.error||r.status);return j}
+const post=(p,d)=>api(p,{method:"POST",body:JSON.stringify(d||{}),headers:{"Content-Type":"application/json"}});
+const opt=(sel,obj,keep)=>{const el=$(sel);if(!keep)el.innerHTML="";for(const[k,v]of Object.entries(obj))el.insertAdjacentHTML("beforeend",`<option value="${esc(k)}">${esc(v)}</option>`)};
+const pill=(s)=>{const c={ready:"ok",planned:"ok",published:"ok",animatic:"warn",failed_qc:"bad",failed:"bad",failed_production:"bad",failed_validation:"bad",rejected_by_review:"bad",generating:"warn",in_production:"warn"}[s]||"";return `<span class="pill ${c}">${esc(s)}</span>`};
+
+async function boot(){
+  O=await api("/api/overview");
+  opt("#f-episode",Object.fromEntries(O.episodes.map(e=>[e.id,`${e.id} · ch${e.chapter} · ${e.title}`])));
+  opt("#f-aspect",Object.fromEntries(O.aspects.map(a=>[a,a])));
+  opt("#f-lens",O.lenses,1);opt("#f-move",O.moves,1);opt("#f-lighting",O.lighting,1);opt("#f-grade",O.grades);
+  $("#f-grade").value=O.reel.grade;
+  opt("#f-provider",Object.fromEntries(Object.entries(O.providers).map(([n,c])=>[n,n+(c.placeholder?" (placeholder)":c.issues.length?" (not ready)":"")])));
+  $("#f-min").value=O.reel.min_seconds;$("#f-max").value=O.reel.max_seconds;
+  $("#keys").textContent=`Claude ${O.has_claude?"ready":"no key"} · fal ${O.has_fal?"ready":"no key"}`;
+  await projects();await analyses();tick();setInterval(tick,3000);
+}
+$("#m-ep").onclick=()=>{mode="episode";$("#m-ep").classList.add("primary");$("#m-con").classList.remove("primary");$("#ep-fields").hidden=false;$("#con-fields").hidden=true};
+$("#m-con").onclick=()=>{mode="concept";$("#m-con").classList.add("primary");$("#m-ep").classList.remove("primary");$("#ep-fields").hidden=true;$("#con-fields").hidden=false};
+$("#create").onclick=async()=>{
+  const o={aspect:$("#f-aspect").value,resolution:$("#f-res").value,min_seconds:+$("#f-min").value,max_seconds:+$("#f-max").value,
+    lens:$("#f-lens").value,move:$("#f-move").value,lighting:$("#f-lighting").value,motion:$("#f-motion").value,grade:$("#f-grade").value,provider:$("#f-provider").value};
+  const d={options:o,planner:$("#f-planner").value,direction:$("#f-direction").value};
+  if(mode==="concept"){d.concept=$("#f-concept").value.trim();d.character=$("#f-character").value;d.environment=$("#f-environment").value;if(!d.concept)return alert("Write a concept first")}
+  else d.episode=$("#f-episode").value;
+  try{await post("/api/projects",d);flash("Planning… the project appears in the list when the shot plan is ready.")}catch(e){alert(e.message)}
+};
+$("#ref-go").onclick=async()=>{const f=$("#ref-file").files[0];if(!f)return alert("Choose a video");
+  await api("/api/reference",{method:"POST",body:f,headers:{"X-Filename":f.name,"X-Apply":$("#ref-apply").checked?"1":"0"}});flash("Analysing the reference…")};
+function flash(t){$("#jobcount").textContent=t}
+async function projects(){const ps=await api("/api/projects");$("#plist").innerHTML=ps.map(p=>`<div data-id="${esc(p.id)}" class="${cur===p.id?"on":""}"><span>${esc(p.title||p.id)}<br><small>${esc(p.id)}</small></span>${pill(p.status)}</div>`).join("")||'<div class="muted">None yet</div>';
+  document.querySelectorAll("#plist>div[data-id]").forEach(el=>el.onclick=()=>open_(el.dataset.id))}
+async function analyses(){const as=await api("/api/analyses");$("#analyses").innerHTML=as.map(a=>`<details><summary>${esc(a.source)} · ${a.shots} shots · ${a.duration.toFixed(1)}s</summary><img src="/files/analysis/${esc(a.id)}/contact_sheet.jpg" style="width:100%;border-radius:6px;margin-top:6px"><div class="jobs">${esc(a.md)}</div></details>`).join("")}
+let jobsSeen=0;
+async function tick(){const js=await api("/api/jobs");const run=js.filter(j=>j.status==="running");
+  $("#jobcount").textContent=run.length?`${run.length} job${run.length>1?"s":""} running`:"idle";
+  const done=js.filter(j=>j.status!=="running").length;if(done!==jobsSeen){jobsSeen=done;await projects();await analyses();if(cur)render(await api("/api/projects/"+cur))}}
+async function open_(id){cur=id;await projects();render(await api("/api/projects/"+id))}
+
+const F=(id,label,val,kind="input",opts=null)=>{if(opts)return `<div><label>${label}</label><select data-f="${id}">${Object.entries(opts).map(([k,v])=>`<option value="${esc(k)}" ${k===val?"selected":""}>${esc(v)}</option>`).join("")}</select></div>`;
+  return kind==="ta"?`<div><label>${label}</label><textarea data-f="${id}">${esc(val)}</textarea></div>`:`<div><label>${label}</label><input data-f="${id}" value="${esc(val)}"></div>`};
+function render(v){
+  const m=v.meta, prov=Object.keys(O.providers), base=`/files/projects/${encodeURIComponent(m.id)}`;
+  const rv=m.review?`fidelity ${m.review.fidelity_score} · respect ${m.review.respect_score} · craft ${m.review.craft_score??"-"} · ${m.review.verdict}`:`not reviewed (${esc(m.planner)} plan)`;
+  const val=m.validation?`<div class="checks">${m.validation.checks.map(c=>`<div>${c.ok?(c.warning?"⚠️":"✅"):"❌"} ${esc(c.name)}: ${esc(c.detail)}</div>`).join("")}</div>`:"";
+  const jobs=v.jobs.slice(0,4).map(j=>`[${j.status}] ${j.kind}${j.shot!=null?" shot "+(j.shot+1):""}\n${(j.tail||"").split("\n").slice(-6).join("\n")}`).join("\n\n");
+  $("#main").innerHTML=`
+  <div class="card"><div class="toolbar"><h2 style="margin:0;color:var(--text);font-size:16px;text-transform:none;letter-spacing:0">${esc(m.plan?.title||m.id)}</h2>${pill(m.status)}
+    <span class="pill">${esc(m.kind)}</span><span class="pill">est. fal $${m.estimate_usd?.fal??"-"}</span><span class="pill">${esc(rv)}</span></div>
+    ${(m.plan_notes||[]).map(n=>`<div class="notes">• ${esc(n)}</div>`).join("")}
+    ${m.error?`<div class="notes" style="color:var(--bad)">${esc(m.error)}</div>`:""}
+    <div class="toolbar"><button class="primary" id="assemble">Assemble and export</button><span class="muted">Uses the approved take of every shot.</span></div>
+    ${m.edit?`<div class="final"><video controls src="${base}/final.mp4?${Date.now()}"></video><div><b>${m.edit.seconds}s</b> · ${esc(m.validation?.summary?.width)}x${esc(m.validation?.summary?.height)} · ${esc(m.validation?.summary?.fps)} fps
+      <p class="muted">Editable project: <a href="${base}/timeline.xml" download>timeline.xml</a> · <a href="${base}/timeline.otio" download>timeline.otio</a> · <a href="${base}/captions.srt" download>captions.srt</a> · <a href="${base}/final.mp4" download>final.mp4</a></p>${val}
+      ${m.status==="animatic"?'<p class="notes">Animatic: built from placeholders, so it can be reviewed but never published.</p>':""}</div></div>`:""}
+    ${jobs?`<details ${v.jobs.some(j=>j.status==="running")?"open":""}><summary>Jobs</summary><div class="jobs">${esc(jobs)}</div></details>`:""}
+  </div>
+  <div class="shots">${v.shots.map((s,i)=>shotCard(s,i,base,prov,v.default_provider)).join("")}</div>`;
+  $("#assemble").onclick=()=>post(`/api/projects/${m.id}/assemble`).then(()=>flash("Assembling…")).catch(e=>alert(e.message));
+  document.querySelectorAll(".shot").forEach(el=>wire(el,m.id));
+}
+function shotCard(s,i,base,prov,defp){
+  const sp=s.spec, sel=s.takes.find(t=>t.id===s.selected);
+  const thumb=sel?`<video class="thumb" muted loop controls preload="metadata" poster="${base}/shots/${String(i+1).padStart(2,"0")}/${sel.id}/${esc(sel.keyframe)}" src="${base}/shots/${String(i+1).padStart(2,"0")}/${sel.id}/${esc(sel.clip)}"></video>`:"";
+  const takes=s.takes.slice().reverse().map(t=>{const d=`${base}/shots/${String(i+1).padStart(2,"0")}/${t.id}`;
+    const q=(t.qc||[]).slice(-1)[0];const probs=[...(q?.problems||[]),...(t.metrics?.notes||[])];
+    return `<div class="take ${t.id===s.selected?"sel":""} ${s.rejected.includes(t.id)?"rej":""}">
+      ${t.clip?`<video muted loop preload="metadata" ${t.keyframe?`poster="${d}/${esc(t.keyframe)}"`:""} src="${d}/${esc(t.clip)}" onmouseenter="this.play()" onmouseleave="this.pause()"></video>`:t.keyframe?`<img src="${d}/${esc(t.keyframe)}">`:""}
+      <div><b>${t.id}</b> ${pill(t.status)}</div><div class="muted">${esc(t.model||t.provider)} · $${(t.cost_usd||0).toFixed(2)}</div>
+      ${q?`<div class="muted">QC id ${q.identity} an ${q.anatomy} cam ${q.camera_motion??"-"} light ${q.lighting_continuity??"-"}</div>`:t.placeholder?'<div class="muted">placeholder</div>':t.status==="ready"?'<div class="muted">not reviewed</div>':""}
+      ${probs.length?`<div class="notes">${probs.map(esc).join("; ")}</div>`:""}${t.error?`<div class="notes" style="color:var(--bad)">${esc(t.error)}</div>`:""}
+      <div class="toolbar">${["ready","failed_qc"].includes(t.status)?`<button class="small" data-sel="${t.id}" data-force="${t.status==="failed_qc"?1:0}">${t.status==="failed_qc"?"Use anyway":"Approve"}</button>`:""}<button class="small" data-rej="${t.id}">Reject</button></div></div>`}).join("");
+  return `<div class="card shot" data-i="${i}">
+    <h3>Shot ${i+1} <span class="pill">${esc(sp.purpose.replace(/_/g," "))}</span><span class="pill">${sp.on_screen_seconds}s</span>${sel?'<span class="pill ok">approved '+sel.id+"</span>":'<span class="pill warn">needs a take</span>'}</h3>
+    ${thumb}
+    <div class="grid2">${F("lens","Lens",sp.lens,"",O.lenses)}${F("move","Camera move",sp.move,"",O.moves)}${F("lighting","Lighting",sp.lighting,"",O.lighting)}${F("focus","Focus",sp.focus,"",O.focus)}
+      ${F("camera_height","Camera height",sp.camera_height,"",{ground:"ground",low:"low",eye:"eye",high:"high",overhead:"overhead"})}${F("on_screen_seconds","Seconds",sp.on_screen_seconds)}
+      ${F("transition_in","Cut in",sp.transition_in,"",{cut:"cut",match_cut:"match cut",flash:"flash"})}${F("screen_direction","Screen direction",sp.screen_direction,"",{left_to_right:"left to right",right_to_left:"right to left",toward_camera:"toward camera",away:"away",none:"none"})}</div>
+    ${F("subject","Subject",sp.subject,"ta")}${F("move_detail","Camera move detail",sp.move_detail)}${F("subject_motion","Subject motion",sp.subject_motion)}
+    <details><summary>Environment, composition, materials, ending, sound</summary>${F("environment","Environment",sp.environment,"ta")}${F("composition","Composition and depth layers",sp.composition,"ta")}${F("atmosphere","Atmosphere",sp.atmosphere)}${F("materials","Materials",sp.materials)}${F("end_frame","Final frame",sp.end_frame)}${F("sfx","Sound cues",sp.sfx)}</details>
+    <details><summary>Prompts (edit to override; empty = composed from the spec)</summary>
+      <label>Keyframe</label><textarea data-o="keyframe" placeholder="${esc(s.composed.keyframe)}">${esc(s.overrides.keyframe||"")}</textarea>
+      <label>Video</label><textarea data-o="video" placeholder="${esc(s.composed.video)}">${esc(s.overrides.video||"")}</textarea>
+      <label>Negative</label><textarea data-o="negative" placeholder="${esc(s.composed.negative)}">${esc(s.overrides.negative||"")}</textarea></details>
+    <div class="toolbar"><button class="small" data-save>Save shot</button>
+      <select data-prov style="width:auto">${prov.map(p=>`<option ${p===defp?"selected":""}>${esc(p)}</option>`).join("")}</select>
+      <input data-hint placeholder="note for this take" style="width:150px"><button class="small primary" data-gen>Generate take</button></div>
+    <div class="toolbar"><label style="margin:0" class="muted">Your clip <input type="file" accept="video/*" data-up style="width:170px"></label>
+      <label style="margin:0" class="muted">Your keyframe ${s.user_keyframe?'(set) <button class="small" data-clearkf>clear</button>':""} <input type="file" accept="image/*" data-kf style="width:170px"></label></div>
+    <div class="takes">${takes||'<span class="muted">No takes yet</span>'}</div></div>`;
+}
+function wire(el,pid){const i=+el.dataset.i,u=`/api/projects/${pid}/shots/${i}`;
+  el.querySelector("[data-save]").onclick=async()=>{const fields={},ov={};
+    el.querySelectorAll("[data-f]").forEach(x=>fields[x.dataset.f]=x.dataset.f==="on_screen_seconds"?+x.value:x.value);
+    el.querySelectorAll("[data-o]").forEach(x=>ov[x.dataset.o]=x.value.trim());
+    try{render(await post(u+"/spec",{fields,overrides:ov}))}catch(e){alert(e.message)}};
+  el.querySelector("[data-gen]").onclick=async()=>{try{await post(u+"/take",{provider:el.querySelector("[data-prov]").value,hint:el.querySelector("[data-hint]").value});flash("Generating…");render(await api("/api/projects/"+pid))}catch(e){alert(e.message)}};
+  el.querySelector("[data-up]").onchange=async e=>{const f=e.target.files[0];if(f){await api(u+"/import",{method:"POST",body:f,headers:{"X-Filename":f.name}});flash("Importing clip…")}};
+  el.querySelector("[data-kf]").onchange=async e=>{const f=e.target.files[0];if(f)render(await api(u+"/keyframe",{method:"POST",body:f,headers:{"X-Filename":f.name}}))};
+  el.querySelector("[data-clearkf]")?.addEventListener("click",async()=>render(await post(u+"/clearkeyframe")));
+  el.querySelectorAll("[data-sel]").forEach(b=>b.onclick=async()=>{try{render(await post(u+"/select",{take:b.dataset.sel,force:b.dataset.force==="1"}))}catch(e){alert(e.message)}});
+  el.querySelectorAll("[data-rej]").forEach(b=>b.onclick=async()=>render(await post(u+"/reject",{take:b.dataset.rej})));
+}
+boot();
+</script>
+</body>
+</html>
