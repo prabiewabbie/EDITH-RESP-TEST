@@ -153,6 +153,11 @@ def build() -> tuple[list[dict], list[str]]:
         missing = [v for v in range(1, max(parsed, default=0) + 1) if v not in parsed]
         if missing:
             notes.append(f"chapter {ch}: missing {missing}")
+            for v in missing:  # show where the text went, to fix the parser rather than guess
+                nxt = parsed.get(v + 1, {}).get("translation", "")
+                i = html.find("({})".format(v))
+                notes.append(f"  {ch}.{v + 1} text: {nxt[:300]!r}")
+                notes.append(f"  html near '({v})': {html[max(0, i - 600):i + 200]!r}" if i >= 0 else f"  no '({v})'")
         if max(parsed, default=0) != expected:
             notes.append(f"chapter {ch}: {max(parsed, default=0)} verses (gita/gita numbering has {expected})")
         for v in sorted(parsed):
