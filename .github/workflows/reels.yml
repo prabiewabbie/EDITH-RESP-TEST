@@ -5,6 +5,9 @@ on:
     - cron: "41 0 * * *"      # daily, 06:26 Nepal time: next episode -> reel -> YouTube
   workflow_dispatch:
     inputs:
+      privacy:
+        description: "override publish.privacy for this run: public | unlisted | private (blank = reels.yaml)"
+        default: ""
       command:
         description: "autopilot | plan | make (need ANTHROPIC_API_KEY) | produce | finish (scheduled Claude Code task, no API key)"
         default: "autopilot"
@@ -62,6 +65,7 @@ jobs:
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
           IN_CMD: ${{ inputs.command }}
           REELS_MODE: ${{ vars.REELS_MODE }}
+          REELS_PRIVACY: ${{ inputs.privacy }}
           IN_EPISODE: ${{ inputs.episode }}
         run: |
           set -o pipefail

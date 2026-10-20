@@ -359,13 +359,20 @@ class Studio:
         result = {"status": meta["status"], "folder": str(project.folder)}
         if meta["status"] == "ready" and self.s.publish.auto_publish and self.review_ok(meta.get("review")):
             try:
-                result["url"] = upload(project.folder, self.s.publish.privacy)
+                result["url"] = upload(project.folder, self.privacy())
                 result["status"] = "published"
             except Exception as e:
                 result["publish_error"] = str(e)
         if result["status"] in ("published", "ready", "failed_validation"):
             self.advance(ep, result)
         return result
+
+    def privacy(self) -> str:
+        """REELS_PRIVACY (a workflow input) overrides publish.privacy for one run, e.g. a private test reel."""
+        p = os.environ.get("REELS_PRIVACY", "").strip() or self.s.publish.privacy
+        if p not in ("public", "unlisted", "private"):
+            raise ValueError(f"bad privacy {p!r}")
+        return p
 
     def advance(self, episode_id: str, result: dict) -> dict:
         """Record a finished (or abandoned) episode and move the storyline on; used by the scheduled task."""
