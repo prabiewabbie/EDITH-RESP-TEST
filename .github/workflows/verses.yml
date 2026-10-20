@@ -16,16 +16,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - name: Discover source layout
+      - name: Build data/verses.json
         run: |
-          curl -sS "https://en.wikisource.org/w/api.php?action=parse&page=Bhagavad-Gita_(Besant_4th)/Discourse_2&prop=text&format=json&formatversion=2" -o d2.json
-          python3 - <<'PY'
-          import json, re, html
-          t = json.load(open("d2.json"))["parse"]["text"]
-          i = t.find("action alone")
-          if i < 0: i = t.find("fruit")
-          print("HTML around:", t[max(0, i - 3000):i + 1500])
-          txt = html.unescape(re.sub(r"<[^>]+>", "", t))
-          j = txt.find("action alone")
-          print("TEXT around:", txt[max(0, j - 1500):j + 800])
+          python -m gita_reels.verses_import data/verses.json
+          python - <<'PY'
+          import json
+          v = {(x["chapter"], x["verse"]): x for x in json.load(open("data/verses.json"))}
+          for k in [(1, 1), (2, 47), (11, 32), (13, 1), (18, 66), (18, 78)]:
+              print(k, json.dumps(v.get(k), ensure_ascii=False))
           PY
+      - name: Commit
+        run: |
+          git add data/verses.json
+          git diff --cached --quiet && exit 0
+          git -c user.name="gita-reels-bot" -c user.email="actions@users.noreply.github.com" \
+            commit -q -m "Import public-domain verses (Besant 1922, Wikisource; transliteration from gita/gita)"
+          git push -q origin "HEAD:${GITHUB_REF_NAME}"

@@ -161,14 +161,16 @@ def music_credit(track: Path | None) -> str:
     return ""
 
 
-def build_music(track: Path | None, total: float, path: Path) -> None:
+def build_music(track: Path | None, total: float, path: Path, mood: str = "calm") -> None:
     fade = f"afade=t=in:d=0.3,afade=t=out:st={max(total - 1.5, 0):.2f}:d=1.5"
     if track:
         ff("-stream_loop", "-1", "-i", str(track), "-t", f"{total:.3f}", "-af", fade, "-ac", "2", "-ar", "48000",
            str(path))
-    else:  # fallback bed: low drone with a slow swell. Add licensed tracks to music/ for real releases.
-        ff("-f", "lavfi", "-i", f"aevalsrc=0.5*sin(2*PI*55*t)*(0.6+0.4*sin(2*PI*0.25*t))+0.2*sin(2*PI*82.5*t)"
-                                f":s=48000:d={total:.3f}", "-af", f"lowpass=f=320,{fade}", "-ac", "2", str(path))
+    else:  # no tracks in music/: an original tanpura-drone score for the mood (gita_reels/score.py)
+        from .score import write
+        raw = write(mood, total, path.with_name("score_raw.wav"))
+        ff("-i", str(raw), "-af", f"lowpass=f=6000,{fade}", "-ac", "2", "-ar", "48000", str(path))
+        raw.unlink()
 
 
 async def _tts(text: str, voice: str, path: Path) -> None:
@@ -341,7 +343,7 @@ def edit(plan: ReelPlan, results: list[ShotResult], verse: dict | None, s: Setti
     ff("-f", "concat", "-safe", "0", "-i", str(alist), "-c", "copy", str(ambience))
     track = pick_music(s, plan.music_mood)
     music = audio / "music.wav"
-    build_music(track, total, music)
+    build_music(track, total, music, plan.music_mood)
     voice = build_voice(plan, starts, total, s, folder)
     sfx = build_sfx(plan, starts, total, s, audio / "sfx.wav")
     mixed = audio / "mix.wav"
