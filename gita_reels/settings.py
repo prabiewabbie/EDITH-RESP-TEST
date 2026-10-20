@@ -24,6 +24,9 @@ class ReelSettings(BaseModel):
     verse_line: bool = True
     rotated_wide_shots: bool = True
     preset: str = "slow"           # x264 preset for the master; "ultrafast" for quick drafts and tests
+    codec: Literal["h264", "h265"] = "h264"
+    grade: str = "reference_warm"  # grade preset id from style/cinematography.yaml
+    match_shots: bool = True       # nudge each shot's colour balance toward the reel median before grading
 
 
 class ClaudeSettings(BaseModel):
@@ -37,14 +40,27 @@ class ClaudeSettings(BaseModel):
 
 class VideoModel(BaseModel):
     id: str
-    price_per_second: float
+    price_per_second: float = 0.0
+    price_per_video: float = 0.0   # for models billed per clip; used instead of price_per_second when set
     durations: list[int] = [4, 6, 8]
     duration_format: str = "{n}s"
     resolution: str = "720p"
     native_audio: bool = False
+    # How this model wants its prompt (cinema.video_prompt): "veo" prose, "kling" short, "generic" labelled lines.
+    style: Literal["veo", "kling", "generic"] = "veo"
+    negative_prompt: bool = False  # send negative_prompt only to models whose schema has it (check-models)
+    seed_field: str = ""           # e.g. "seed" when the model accepts one
+    aspect_ratios: list[str] = ["9:16", "16:9"]
+    max_prompt_chars: int = 0      # 0 = no limit
+    extra: dict = {}               # any other documented input fields, passed through as-is
+    omit: list[str] = []           # standard fields this model does not take, e.g. ["duration", "resolution"]
+    note: str = ""
 
     def pick_duration(self, wanted: float) -> int:
         return next((d for d in sorted(self.durations) if d >= wanted), max(self.durations))
+
+    def cost(self, wanted: float) -> float:
+        return self.price_per_video or self.pick_duration(wanted) * self.price_per_second
 
 
 class FalSettings(BaseModel):
@@ -58,6 +74,15 @@ class FalSettings(BaseModel):
     max_retries_per_shot: int = 2
     poll_seconds: float = 5
     timeout_seconds: float = 900
+
+
+class LocalSettings(BaseModel):
+    """Free generation on your own machine; see providers.LocalCommand for the placeholders."""
+    video_command: str = ""
+    image_command: str = ""        # optional; without it, local video takes start from an animatic keyframe
+    durations: list[int] = [3, 4, 5]
+    max_prompt_chars: int = 0
+    timeout_seconds: float = 3600
 
 
 class PublishSettings(BaseModel):
@@ -74,6 +99,8 @@ class Paths(BaseModel):
     out: str = "reels"
     cache: str = ".cache/fal"
     state: str = "reels_state.json"
+    queue: str = "queue"         # reviewed plans written by the scheduled Claude Code task, one per episode
+    characters: str = ""         # a project's own character list (concept mode); default style/characters.json
 
 
 class Settings(BaseModel):
@@ -82,13 +109,15 @@ class Settings(BaseModel):
     claude: ClaudeSettings = ClaudeSettings()
     fal: FalSettings
     publish: PublishSettings = PublishSettings()
+    local: LocalSettings = LocalSettings()
     paths: Paths = Paths()
 
     def style_bible(self) -> dict:
         return json.loads((Path(self.paths.style) / "style_bible.json").read_text(encoding="utf-8"))
 
     def characters(self) -> dict[str, str]:
-        return json.loads((Path(self.paths.style) / "characters.json").read_text(encoding="utf-8"))
+        p = Path(self.paths.characters) if self.paths.characters else Path(self.paths.style) / "characters.json"
+        return json.loads(p.read_text(encoding="utf-8"))
 
     def episodes(self) -> list[dict]:
         return json.loads((Path(self.paths.style) / "episodes.json").read_text(encoding="utf-8"))

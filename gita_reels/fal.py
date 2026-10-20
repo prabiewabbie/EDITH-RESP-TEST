@@ -108,8 +108,9 @@ def check_models(settings: Settings) -> list[str]:
     wanted = {settings.fal.keyframe_model: ["prompt", settings.fal.keyframe_refs_field, "aspect_ratio"],
               settings.fal.refs_model: ["prompt", "aspect_ratio"]}
     for vm in settings.fal.video_models:
-        wanted[vm.id] = ["prompt", "image_url", "duration", "resolution", "aspect_ratio"] + (
-            ["generate_audio"] if vm.native_audio else [])
+        wanted[vm.id] = [f for f in ["prompt", "image_url", "duration", "resolution", "aspect_ratio"]
+                         if f not in vm.omit] + (["generate_audio"] if vm.native_audio else []) + (
+            ["negative_prompt"] if vm.negative_prompt else []) + ([vm.seed_field] if vm.seed_field else [])
     report = []
     with httpx.Client(timeout=30, follow_redirects=True) as c:
         for model, fields in wanted.items():

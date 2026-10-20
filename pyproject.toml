@@ -12,7 +12,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
-reels = ["pillow>=10", "edge-tts>=6", "opentimelineio>=0.17", "otio-fcp-adapter",
+reels = ["pillow>=10", "numpy>=1.24", "edge-tts>=6", "opentimelineio>=0.17", "otio-fcp-adapter",
          "google-api-python-client>=2", "google-auth-oauthlib>=1"]
 
 [project.scripts]
@@ -25,6 +25,9 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 include = ["gita_studio*", "gita_reels*"]
+
+[tool.setuptools.package-data]
+gita_reels = ["ui_static/*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

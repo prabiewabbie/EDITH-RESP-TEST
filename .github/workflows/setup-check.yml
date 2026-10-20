@@ -1,0 +1,41 @@
+# No-spend readiness check: which secrets are present (never their values), provider config, and whether
+# the configured fal model fields match fal's live API schema. Runs by hand, or when this file changes.
+name: setup check
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths: [".github/workflows/setup-check.yml"]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -q -e ".[reels]"
+      - name: Secrets present
+        env:
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          for n in FAL_KEY YOUTUBE_TOKEN_JSON ANTHROPIC_API_KEY; do
+            if [ -n "${!n}" ]; then echo "$n: set"; else echo "$n: missing"; fi
+          done
+          python - <<'PY'
+          import json, os
+          t = os.environ.get("YOUTUBE_TOKEN_JSON", "")
+          if t:
+              try:
+                  d = json.loads(t)
+                  print("YOUTUBE_TOKEN_JSON: valid JSON with", sorted(k for k in d if k in ("refresh_token", "client_id", "scopes", "token_uri")))
+              except Exception as e:
+                  print("YOUTUBE_TOKEN_JSON: not valid JSON", type(e).__name__)
+          PY
+      - name: Providers and fal model fields
+        env:
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+        run: |
+          gita-reels providers
+          gita-reels check-models

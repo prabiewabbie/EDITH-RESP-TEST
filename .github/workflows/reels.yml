@@ -5,8 +5,11 @@ on:
     - cron: "41 0 * * *"      # daily, 06:26 Nepal time: next episode -> reel -> YouTube
   workflow_dispatch:
     inputs:
+      privacy:
+        description: "override publish.privacy for this run: public | unlisted | private (blank = reels.yaml)"
+        default: ""
       command:
-        description: "autopilot | plan | make"
+        description: "autopilot | plan | make (need ANTHROPIC_API_KEY) | produce | finish (scheduled Claude Code task, no API key)"
         default: "autopilot"
       episode:
         description: "Episode id for plan/make, e.g. e07 (blank = next in the storyline)"
@@ -38,7 +41,15 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu fonts-liberation
           pip install -q -e ".[reels]"
 
-      # Storyline position, spend ledger, character sheets and the fal result cache survive between runs.
+      # Clips of reels still in review survive between produce and finish runs (Actions cache, 10 days).
+      - name: Restore media
+        uses: actions/cache/restore@v4
+        with:
+          path: reels
+          key: reels-media-${{ github.run_id }}
+          restore-keys: reels-media-
+
+      # Storyline position, spend ledger, character sheets, fal result cache, queued plans and review state.
       - name: Restore state
         run: |
           if git fetch -q origin "$STATE_BRANCH" 2>/dev/null; then
@@ -53,20 +64,31 @@ jobs:
           FAL_KEY: ${{ secrets.FAL_KEY }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
           IN_CMD: ${{ inputs.command }}
+          REELS_MODE: ${{ vars.REELS_MODE }}
+          REELS_PRIVACY: ${{ inputs.privacy }}
           IN_EPISODE: ${{ inputs.episode }}
         run: |
           set -o pipefail
-          if [ -z "$ANTHROPIC_API_KEY" ] || [ -z "$FAL_KEY" ]; then
-            echo "::notice::ANTHROPIC_API_KEY or FAL_KEY not set; skipping."; exit 0
-          fi
           CMD="${IN_CMD:-autopilot}"
-          case "$CMD" in autopilot|plan|make) ;; *) echo "unknown command $CMD"; exit 1 ;; esac
+          # The daily schedule only runs the all-in-one autopilot when the repo variable REELS_MODE is "api"
+          # (paid Anthropic API). In split mode the scheduled Claude Code task dispatches produce/finish itself.
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$REELS_MODE" != "api" ]; then
+            echo "::notice::Split mode: the scheduled Claude Code task drives this workflow (docs/ROUTINE.md)."; exit 0
+          fi
+          case "$CMD" in autopilot|plan|make|produce|finish) ;; *) echo "unknown command $CMD"; exit 1 ;; esac
+          if [ -z "$FAL_KEY" ]; then echo "::notice::FAL_KEY not set; skipping."; exit 0; fi
+          case "$CMD" in autopilot|plan|make)
+            if [ -z "$ANTHROPIC_API_KEY" ]; then
+              echo "::notice::No ANTHROPIC_API_KEY: planning and review run in the scheduled Claude Code task instead (docs/ROUTINE.md)."; exit 0
+            fi ;;
+          esac
           ARGS=""
-          if [ -n "$IN_EPISODE" ] && [ "$CMD" != "autopilot" ]; then
+          if [ -n "$IN_EPISODE" ] && { [ "$CMD" = "plan" ] || [ "$CMD" = "make" ]; }; then
             case "$IN_EPISODE" in e[0-9][0-9]) ARGS="--episode $IN_EPISODE" ;; *) echo "bad episode id"; exit 1 ;; esac
           fi
           gita-reels -v $CMD $ARGS | tee -a "$GITHUB_STEP_SUMMARY"
-          echo "folder=$(ls -td reels/*/ 2>/dev/null | head -1)" >> "$GITHUB_OUTPUT"
+          F=$(ls -td reels/*/ 2>/dev/null | head -1)
+          if [ -n "$F" ] && [ -f "$F/final.mp4" ]; then echo "folder=$F" >> "$GITHUB_OUTPUT"; fi
 
       # The whole editable project: raw + conformed clips, stems, titles, captions, timelines, final.mp4.
       - name: Upload editable project
@@ -77,17 +99,27 @@ jobs:
           path: ${{ steps.run.outputs.folder }}
           retention-days: 30
 
+      - name: Save media
+        if: always()
+        run: find reels -mindepth 1 -maxdepth 1 -type d -mtime +10 -exec rm -rf {} + 2>/dev/null || true
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: reels
+          key: reels-media-${{ github.run_id }}
+
       - name: Save state
         if: always()
         run: |
           mkdir -p "$RUNNER_TEMP/state" && cd "$RUNNER_TEMP/state"
           git init -q && git checkout -q -b "$STATE_BRANCH"
           cd "$GITHUB_WORKSPACE"
-          for p in reels_state.json reels/spend.json style/refs .cache/fal; do
+          for p in reels_state.json reels/spend.json style/refs .cache/fal queue; do
             [ -e "$p" ] && mkdir -p "$RUNNER_TEMP/state/$(dirname "$p")" && cp -r "$p" "$RUNNER_TEMP/state/$p"
           done
-          # keep each reel's project.json (plan, review, QC, cost) but not its media
-          for f in reels/*/project.json; do
+          # keep each reel's project.json (plan, review, QC, cost) and each take's record, keyframe and review
+          # sheet (what the scheduled task looks at), but not the video media
+          for f in reels/*/project.json reels/*/shots/*/t*/take.json reels/*/shots/*/t*/review.jpg; do
             [ -e "$f" ] && mkdir -p "$RUNNER_TEMP/state/$(dirname "$f")" && cp "$f" "$RUNNER_TEMP/state/$f"
           done
           cd "$RUNNER_TEMP/state"

@@ -1,0 +1,34 @@
+# Builds data/verses.json from public-domain sources (Sanskrit text and transliteration from the Unlicense
+# gita/gita dataset; English from Annie Besant's translation on Wikisource). Run by hand from the Actions tab,
+# or automatically when the importer changes on a claude/ branch. Commits the result to the branch it ran on.
+name: import verses
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths: ["gita_reels/verses_import.py", ".github/workflows/verses.yml"]
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Build data/verses.json
+        run: |
+          python -m gita_reels.verses_import data/verses.json
+          python - <<'PY'
+          import json
+          v = {(x["chapter"], x["verse"]): x for x in json.load(open("data/verses.json"))}
+          for k in [(1, 1), (2, 47), (11, 32), (13, 1), (18, 66), (18, 78)]:
+              print(k, json.dumps(v.get(k), ensure_ascii=False))
+          PY
+      - name: Commit
+        run: |
+          git add data/verses.json
+          git diff --cached --quiet && exit 0
+          git -c user.name="gita-reels-bot" -c user.email="actions@users.noreply.github.com" \
+            commit -q -m "Import public-domain verses (Besant 1922, Wikisource; transliteration from gita/gita)"
+          git push -q origin "HEAD:${GITHUB_REF_NAME}"

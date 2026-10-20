@@ -15,6 +15,9 @@ reel:
   voice: "en-IN-PrabhatNeural"
   verse_line: true            # show one exact verse line from verses.json when the episode's verse is there
   rotated_wide_shots: true    # allow the reference's sideways widescreen shot, at most one per reel
+  codec: "h264"               # h264 (most compatible) | h265
+  grade: "reference_warm"     # grade preset in style/cinematography.yaml
+  match_shots: true           # even out colour between shots before grading
 
 claude:
   model: "claude-opus-5-5"
@@ -30,19 +33,51 @@ fal:
   keyframe_model: "fal-ai/nano-banana-2/edit"   # image model that takes character reference images
   keyframe_refs_field: "image_urls"
   refs_model: "fal-ai/nano-banana-2"             # text-to-image, used once to make character sheets
-  video_models:                                  # tried in order; the next is used if one fails
+  # Video models, tried in order: the next is used only if one errors. Cheapest acceptable first.
+  # Prices are from fal's published pages (October 2026); the budget caps use them. Field names for the
+  # first two are not yet confirmed against fal's live schema: run `gita-reels check-models` once.
+  video_models:
+    - id: "fal-ai/bytedance/seedance/v1.5/pro/image-to-video"
+      note: "about $0.10 per 4 s clip at 720p without audio (token-billed)"
+      price_per_second: 0.025
+      durations: [4, 5, 6]
+      duration_format: "{n}"
+      resolution: "720p"
+      native_audio: false
+      style: "veo"
+      aspect_ratios: ["9:16", "16:9", "1:1"]
+    - id: "fal-ai/wan-pro/image-to-video"
+      note: "$0.16 per clip, 1080p, up to 6 s"
+      price_per_video: 0.16
+      durations: [5]
+      omit: ["duration", "resolution", "aspect_ratio"]
+      style: "kling"
     - id: "fal-ai/veo3.1/fast/image-to-video"
+      note: "premium fallback: $0.10/s without audio, $0.15/s with audio"
       price_per_second: 0.10
       durations: [4, 6, 8]
       duration_format: "{n}s"
       resolution: "720p"
-      native_audio: true                         # keep the model's ambient sound as an SFX stem
+      native_audio: false                        # true adds ambient sound as a stem but costs $0.15/s
+      style: "veo"
+      negative_prompt: false                     # set true only if check-models lists negative_prompt
+      aspect_ratios: ["9:16", "16:9"]
+    # Other options seen on fal: fal-ai/kling-video/v2.5-turbo/pro/image-to-video ($0.07/s, 5 or 10 s),
+    # fal-ai/ltx-2-19b/distilled/image-to-video ($0.0018 per megapixel of output).
   keyframe_price: 0.08
   daily_budget_usd: 15
   reel_budget_usd: 8
   max_retries_per_shot: 2
   poll_seconds: 5
   timeout_seconds: 900
+
+local:
+  # Free alternative to fal: your own command per shot (e.g. an open-weight video model on your GPU).
+  # Placeholders: {image} {prompt_file} {negative_file} {seconds} {aspect} {width} {height} {fps} {out}
+  video_command: ""
+  # Optional keyframe command. Placeholders: {prompt_file} {refs} {aspect} {width} {height} {out}
+  image_command: ""
+  durations: [3, 4, 5]
 
 publish:
   auto_publish: true           # autopilot uploads every reel that passes all automated checks
@@ -57,3 +92,4 @@ paths:
   out: "reels"
   cache: ".cache/fal"
   state: "reels_state.json"
+  queue: "queue"               # reviewed plans from the scheduled Claude Code task (docs/ROUTINE.md)

@@ -34,8 +34,13 @@ def media(tmp_path_factory):
 
 
 def plan(**over) -> ReelPlan:
-    shots = [Shot(purpose=p, characters=c, keyframe_prompt=f"frame {i}", motion_prompt="Wind moves the banners",
-                  camera="slow push-in", on_screen_seconds=2.5, framing=f, transition_in=t, narration="")
+    shots = [Shot(purpose=p, characters=c, subject=f"frame {i}", environment="Kurukshetra at dawn",
+                  composition="subject on the left third, banners in the foreground", camera_height="low",
+                  lens=["portrait_85", "wide_32", "macro_100", "tele_120"][i % 4], focus="eyes",
+                  move=["push_in", "track_lateral", "locked_off", "crane_up"][i % 4], move_detail="slow",
+                  subject_motion="Wind moves the banners", lighting="golden_backlight", atmosphere="dust",
+                  materials="silk and bronze", end_frame="a held wide frame", screen_direction="left_to_right",
+                  on_screen_seconds=2.5, framing=f, transition_in=t, sfx="", narration="")
              for i, (p, c, f, t) in enumerate([
                  ("hero_closeup", ["arjuna"], "vertical", "cut"), ("wide", [], "rotated_wide", "cut"),
                  ("macro_insert", [], "vertical", "cut"), ("low_angle_detail", ["krishna"], "vertical", "flash"),
@@ -54,16 +59,17 @@ class FakeClaude:
         self.usage = {"calls": 0, "input_tokens": 0, "output_tokens": 0}
         self.qc_calls = 0
 
-    def plan(self, episode, verse, feedback=None):
+    def plan(self, episode, verse, feedback=None, direction=""):
         return self.plan_obj.model_copy(deep=True)
 
     def review(self, plan, episode, verse):
-        return PlanReview(fidelity_score=9, respect_score=10, issues=[], verdict="approve")
+        return PlanReview(fidelity_score=9, respect_score=10, craft_score=8, issues=[], verdict="approve")
 
     def qc(self, frames, refs, shot):
         self.qc_calls += 1
         score = self.qc_scores.pop(0) if self.qc_scores else 9
         return VisualQC(identity=score, anatomy=score, artifacts=score, respect=10, prompt_match=score,
+                        camera_motion=score, lighting_continuity=score,
                         problems=[] if score >= 7 else ["face drift"], retry_hint="" if score >= 7 else "keep face")
 
     def cost_usd(self):
@@ -182,7 +188,7 @@ def test_reel_budget_cap_stops_spending(cfg, media):
 def test_guards_on_verse_length_and_framing(cfg, media):
     bad = plan(verse_line="Krishna says hustle harder", shots=plan().shots * 3)
     st, _ = studio(cfg, media, claude=FakeClaude(plan_obj=bad))
-    p, _, _ = st.plan(st.episode("e07"))
+    p, _, _, _ = st.plan(st.episode("e07"))
     assert p.verse_line == "" and p.verse_shot_index == -1                 # not a verbatim excerpt: dropped
     assert sum(s.on_screen_seconds for s in p.shots) <= cfg.reel.max_seconds + 0.01
     assert sum(s.framing == "rotated_wide" for s in p.shots) <= 1
@@ -191,7 +197,7 @@ def test_guards_on_verse_length_and_framing(cfg, media):
 def test_review_rejection_spends_nothing(cfg, media):
     class Rejecting(FakeClaude):
         def review(self, plan, episode, verse):
-            return PlanReview(fidelity_score=4, respect_score=9, verdict="reject",
+            return PlanReview(fidelity_score=4, respect_score=9, craft_score=7, verdict="reject",
                               issues=[Issue(severity="blocker", problem="invented dialogue", fix="remove")])
     st, fake = studio(cfg, media, claude=Rejecting())
     meta = json.loads((st.make("e07") / "project.json").read_text())
@@ -206,3 +212,40 @@ def test_autopilot_walks_the_storyline_and_publishes(cfg, media, monkeypatch):
     r = st.autopilot()
     assert r["episode"] == "e01" and r["status"] == "published" and uploaded[0][1] == "public"
     assert st.state()["next"] == 1
+
+
+def test_split_mode_scheduled_task_reviews_and_actions_produces(cfg, media, monkeypatch):
+    """No Claude key in Actions: the scheduled task queues a reviewed plan and records visual QC; Actions makes
+    takes, retakes the shot the reviewer failed with its notes, then assembles."""
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    cfg.paths.queue = str(Path(cfg.paths.out).parent / "queue")
+    cfg.publish.auto_publish = False
+    fake = FakeFal(media)
+    fal = Fal(cfg, client=httpx.Client(transport=httpx.MockTransport(fake)), sleep=lambda s: None,
+              today=lambda: "2026-10-19")
+    st = Studio(cfg, fal=fal)
+    ep = st.episode(None)["id"]
+    assert st.produce()["status"] == "skipped"                  # nothing queued yet
+
+    q = Path(cfg.paths.queue)
+    q.mkdir(parents=True)
+    review = FakeClaude().review(None, None, None)
+    (q / f"{ep}.json").write_text(json.dumps({"plan": plan().model_dump(), "review": review.model_dump()}))
+    r = st.produce()
+    assert r["status"] == "awaiting_qc"
+    project = st.pending()
+    n = len(project.plan().shots)
+    assert all((project.shot_dir(i) / "t01" / "review.jpg").exists() for i in range(n))
+    assert st.produce()["status"] == "skipped"                  # one reel in review at a time
+
+    assert st.finish_pending()["status"] == "awaiting_qc"       # nothing reviewed yet
+    for i in range(n):
+        project.record_qc(i, "t01", passed=i != 2, notes=[] if i != 2 else ["hands melt into the bow"])
+    r = st.finish_pending()
+    assert r["retaken"] == [3]
+    t02 = project.take(2, "t02")
+    assert "hands melt into the bow" in json.dumps(t02)         # the reviewer's note reached the new prompt
+    project.record_qc(2, "t02", passed=True, notes=[])
+    r = st.finish_pending()
+    assert r["status"] == "ready", r
+    assert json.loads(Path(cfg.paths.state).read_text())["history"][-1]["episode"] == ep
