@@ -195,8 +195,9 @@ does every Claude step on your plan; GitHub Actions does the media. The task fol
 
 A plan without an approving review is never produced, and an animatic is never published.
 
-**Autopilot (with `ANTHROPIC_API_KEY`).** `reels.yml` runs `autopilot` daily and does
-everything in one job.
+**Autopilot (paid Anthropic API).** Set the repository variable `REELS_MODE` to `api` and
+`reels.yml` runs `autopilot` daily, doing everything in one job. Otherwise the daily schedule
+leaves the work to the scheduled task.
 
 Either way the workflow uploads the editable project as an artifact (kept 30 days) and keeps
 the storyline position, spend ledger, character sheets, queue and fal cache on `reels-state`.

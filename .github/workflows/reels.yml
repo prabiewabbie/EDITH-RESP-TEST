@@ -61,10 +61,16 @@ jobs:
           FAL_KEY: ${{ secrets.FAL_KEY }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
           IN_CMD: ${{ inputs.command }}
+          REELS_MODE: ${{ vars.REELS_MODE }}
           IN_EPISODE: ${{ inputs.episode }}
         run: |
           set -o pipefail
           CMD="${IN_CMD:-autopilot}"
+          # The daily schedule only runs the all-in-one autopilot when the repo variable REELS_MODE is "api"
+          # (paid Anthropic API). In split mode the scheduled Claude Code task dispatches produce/finish itself.
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$REELS_MODE" != "api" ]; then
+            echo "::notice::Split mode: the scheduled Claude Code task drives this workflow (docs/ROUTINE.md)."; exit 0
+          fi
           case "$CMD" in autopilot|plan|make|produce|finish) ;; *) echo "unknown command $CMD"; exit 1 ;; esac
           if [ -z "$FAL_KEY" ]; then echo "::notice::FAL_KEY not set; skipping."; exit 0; fi
           case "$CMD" in autopilot|plan|make)
