@@ -41,6 +41,7 @@ jobs:
           gita-reels check-models
           # Is the key accepted? Asks the status of a request that doesn't exist: 401/403 means the key is wrong,
           # anything else means fal accepted it. Costs nothing.
-          code=$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Key $FAL_KEY" \
+          code=$(curl -s -o fal_resp.txt -w '%{http_code}' -H "Authorization: Key $FAL_KEY" \
             "https://queue.fal.run/fal-ai/nano-banana-2/requests/00000000-0000-0000-0000-000000000000/status")
-          case "$code" in 401|403) echo "FAL_KEY: REJECTED by fal (HTTP $code)"; exit 1 ;; *) echo "FAL_KEY: accepted (HTTP $code)" ;; esac
+          echo "fal says (HTTP $code): $(head -c 300 fal_resp.txt)"
+          case "$code" in 401|403) echo "FAL_KEY: REJECTED"; exit 1 ;; *) echo "FAL_KEY: accepted" ;; esac
