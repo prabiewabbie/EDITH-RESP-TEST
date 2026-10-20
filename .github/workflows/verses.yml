@@ -18,6 +18,14 @@ jobs:
         with: {python-version: "3.12"}
       - name: Discover source layout
         run: |
-          curl -sS "https://en.wikisource.org/w/api.php?action=query&list=allpages&apprefix=Bhagavad-Gita%20(Besant%204th)&apnamespace=0&aplimit=100&format=json" | head -c 4000; echo
-          curl -sS "https://en.wikisource.org/w/index.php?title=Bhagavad-Gita_(Besant_4th)&action=raw" | head -c 3000; echo
-          curl -sS "https://en.wikisource.org/w/index.php?title=Bhagavad-Gita_(Besant_4th)/Discourse_2&action=raw" | head -c 6000; echo
+          curl -sS "https://en.wikisource.org/w/api.php?action=parse&page=Bhagavad-Gita_(Besant_4th)/Discourse_2&prop=text&format=json&formatversion=2" -o d2.json
+          python3 - <<'PY'
+          import json, re, html
+          t = json.load(open("d2.json"))["parse"]["text"]
+          i = t.find("action alone")
+          if i < 0: i = t.find("fruit")
+          print("HTML around:", t[max(0, i - 3000):i + 1500])
+          txt = html.unescape(re.sub(r"<[^>]+>", "", t))
+          j = txt.find("action alone")
+          print("TEXT around:", txt[max(0, j - 1500):j + 800])
+          PY
