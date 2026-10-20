@@ -29,11 +29,10 @@ Realistic AI content about a sacred text can go wrong in two ways: **misquoting 
 pip install -e ".[dev]"
 cp .env.example .env               # add ANTHROPIC_API_KEY (or run `ant auth login`)
 
-# 1. Load a translation you have the rights to use (CSV or JSON)
-#    CSV columns: chapter,verse,sanskrit,transliteration,translation[,source]
+# 1. data/verses.json already holds Annie Besant's public-domain translation (1922), all chapters,
+#    rebuilt by the "import verses" workflow (gita_reels/verses_import.py). To use another translation
+#    you have the rights to (CSV columns: chapter,verse,sanskrit,transliteration,translation[,source]):
 gita import-verses my_gita.csv --source "Translator name, edition, licence"
-#    Or try it out with the 2-verse sample:
-cp data/verses.sample.json data/verses.json
 
 # 2. Make content
 gita create -n 3                    # ideas → scripts → review → visuals → captions
