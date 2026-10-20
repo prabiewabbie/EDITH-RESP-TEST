@@ -41,6 +41,14 @@ jobs:
           gita-reels check-models
           # Is the key accepted? Asks the status of a request that doesn't exist: 401/403 means the key is wrong,
           # anything else means fal accepted it. Costs nothing.
+          python - <<'PY'
+          import os, re
+          k = os.environ.get("FAL_KEY", "")
+          # shape only, never the value
+          print("FAL_KEY shape: length", len(k), "| colons", k.count(":"), "| whitespace at ends", k != k.strip(),
+                "| quotes", k[:1] in "\"'" and bool(k), "| has '='", "=" in k, "| newlines", k.count("\n"),
+                "| looks like id:secret", bool(re.fullmatch(r"[A-Za-z0-9-]{8,}:[A-Za-z0-9]{16,}", k.strip())))
+          PY
           code=$(curl -s -o fal_resp.txt -w '%{http_code}' -H "Authorization: Key $FAL_KEY" \
             "https://queue.fal.run/fal-ai/nano-banana-2/requests/00000000-0000-0000-0000-000000000000/status")
           echo "fal says (HTTP $code): $(head -c 300 fal_resp.txt)"
