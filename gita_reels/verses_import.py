@@ -12,6 +12,8 @@ from __future__ import annotations
 import json
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
 from html import unescape
 from html.parser import HTMLParser
@@ -122,10 +124,20 @@ def parse_discourse(html: str) -> dict[int, dict]:
     return out
 
 
-def _get(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "gita-studio-verse-import/1.0 (public-domain text)"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return r.read()
+def _get(url: str, tries: int = 6) -> bytes:
+    """Polite fetch: a descriptive User-Agent, a pause between requests, and backoff on 429/5xx."""
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "gita-studio-verse-import/1.0 (https://github.com/prabiewabbie/EDITH-RESP-TEST)"})
+    for k in range(tries):
+        time.sleep(2)
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return r.read()
+        except urllib.error.HTTPError as e:
+            if e.code != 429 and e.code < 500 or k == tries - 1:
+                raise
+            time.sleep(int(e.headers.get("Retry-After") or 0) or 10 * 2 ** k)
+    raise RuntimeError("unreachable")
 
 
 def build() -> tuple[list[dict], list[str]]:
