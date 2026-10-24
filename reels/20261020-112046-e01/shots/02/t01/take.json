@@ -1,0 +1,66 @@
+{
+  "id": "t01",
+  "shot": 1,
+  "created": "2026-10-20T11:23:16",
+  "status": "ready",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photoreal cinematic film still. the flame of a small bronze oil lamp with a curl of incense smoke rising beside it. Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke. macro insert composed for a vertical 9:16 frame: flame in the lower centre third; foreground blurred bronze rim of the lamp; background dark pillars as soft bokeh. This is the first frame of the shot, framed as a foreground sharp, subject soft. camera at eye level. 100 mm macro lens: extreme magnification with a razor-thin focal plane and luminous backlit bokeh. depth of field around f/4, slow rack focus from the foreground element to the subject; a deliberate focal hierarchy, not blur everywhere. flickering oil lamps or torches close to the subject; warm orange key with deep falloff into darkness, gentle natural flicker; almost none. incense smoke ribbons, faint smoke. richly detailed polished bronze, ghee oil, flame. grade: photoreal cinematic CGI of an Indian epic, golden-hour backlight, sun low in frame, volumetric haze and dust, warm rim light on skin and metal, shallow depth of field, anamorphic flare, heroic scale; exposure deep crushed blacks (5th-percentile luma ~11/255), bright creamy highlights (95th ~222), mid-tones low (~82); warm amber highlights, earthy midtones, controlled deep shadows, natural skin, never uniformly orange. the image character of a modern large-format digital cinema camera: filmic highlight roll-off, wide dynamic range, natural colour separation, smooth skin tones, rich shadow detail, fine organic texture and natural 180-degree-shutter motion blur.",
+    "negative": "cartoon, illustration, anime, video-game render, plastic or waxy skin, artificial smoothness, excessive sharpening, overprocessed HDR halos, oversaturated orange-and-teal, glowing outlines, excessive artificial bloom, temporal flicker, warped architecture, unstable background, inconsistent shadows, random camera shake, abrupt zoom, extreme lens distortion, compression artifacts, text, watermark, logo, gore, blood",
+    "video": "Rack focus (locked camera): camera holds still while focus pulls from a foreground element to the subject, from foreground sharp, subject soft to subject sharp, foreground soft, smooth pull over about a second, ease-in and ease-out; camera locked; focus pulls from the bronze rim in the foreground to the flame tip over the shot. Keep focus change motivated by the story. No focus hunting. The flame sways and flares in a draft; smoke ribbons curl upward. incense smoke ribbons, faint smoke. lighting and shadows stay consistent with the first frame: flickering oil lamps or torches close to the subject; warm orange key with deep falloff into darkness, gentle natural flicker; almost none. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: the flame flares bright, almost filling the frame, as a hand-over to the vision."
+  },
+  "spec": {
+    "purpose": "macro_insert",
+    "characters": [],
+    "subject": "the flame of a small bronze oil lamp with a curl of incense smoke rising beside it",
+    "environment": "Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke",
+    "composition": "flame in the lower centre third; foreground blurred bronze rim of the lamp; background dark pillars as soft bokeh",
+    "camera_height": "eye",
+    "lens": "macro_100",
+    "focus": "rack_to_subject",
+    "move": "rack_focus",
+    "move_detail": "camera locked; focus pulls from the bronze rim in the foreground to the flame tip over the shot",
+    "subject_motion": "The flame sways and flares in a draft; smoke ribbons curl upward",
+    "lighting": "firelight",
+    "atmosphere": "incense smoke ribbons",
+    "materials": "polished bronze, ghee oil, flame",
+    "end_frame": "the flame flares bright, almost filling the frame, as a hand-over to the vision",
+    "screen_direction": "none",
+    "on_screen_seconds": 1.8,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "flame flare",
+    "narration": ""
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.18,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "Rack focus (locked camera): camera holds still while focus pulls from a foreground element to the subject, from foreground sharp, subject soft to subject sharp, foreground soft, smooth pull over about a second, ease-in and ease-out; camera locked; focus pulls from the bronze rim in the foreground to the flame tip over the shot. Keep focus change motivated by the story. No focus hunting. The flame sways and flares in a draft; smoke ribbons curl upward. incense smoke ribbons, faint smoke. lighting and shadows stay consistent with the first frame: flickering oil lamps or torches close to the subject; warm orange key with deep falloff into darkness, gentle natural flicker; almost none. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: the flame flares bright, almost filling the frame, as a hand-over to the vision.",
+    "image_url": "https://v3b.fal.media/files/b/0aaf2183/Hd30q-RugTOmo9ZpZqqNE_0UHK3gYE.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 7.58,
+    "flicker": 4.88,
+    "notes": []
+  },
+  "ended": "2026-10-20T11:24:36",
+  "reviewed": true
+}
