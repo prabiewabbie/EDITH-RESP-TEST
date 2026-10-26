@@ -15,6 +15,7 @@ from __future__ import annotations
 import asyncio
 import json
 import random
+import re
 import subprocess
 import textwrap
 from pathlib import Path
@@ -326,10 +327,22 @@ def mix_scored(music: Path, ambience: Path, path: Path, plan: ReelPlan, sfx: Pat
                           "loudnorm=I=-12.8:TP=-1.5:LRA=20:print_format=json", "-f", "null", "-"],
                          capture_output=True, text=True).stderr
     m = json.loads(log[log.rindex("{"):log.rindex("}") + 1])
+    # Push the level up linearly, soft-limit the hits (oversampled, so peaks between samples are caught), then
+    # band-limit: AAC rings on flat-topped transients with full-band content and overshoots by several dB.
+    limited = path.with_name("mix_limited.wav")
     ff("-i", str(pre), "-af", f"loudnorm=I=-12.8:TP=-1.5:LRA=20:linear=true:measured_I={m['input_i']}:"
        f"measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
-       f"offset={m['target_offset']},aresample=192000,alimiter=limit=0.75:attack=5:release=60:level=false,aresample=48000,lowpass=f=15000", "-ar", "48000", "-ac", "2", str(path))
+       f"offset={m['target_offset']},aresample=192000,alimiter=limit=0.75:attack=5:release=60:level=false,"
+       f"aresample=48000,lowpass=f=15000", "-ar", "48000", "-ac", "2", str(limited))
+    # How much the limiter took depends on the material: one gain step to -14 LUFS, never past -1.5 dBTP.
+    log = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(limited), "-af", "ebur128=peak=true",
+                          "-f", "null", "-"], capture_output=True, text=True).stderr
+    lufs = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", log)[-1])
+    peak = float(re.findall(r"Peak:\s+(-?[\d.]+) dBFS", log)[-1])
+    ff("-i", str(limited), "-af", f"volume={min(-14 - lufs, -1.5 - peak):.2f}dB", "-ar", "48000", "-ac", "2",
+       str(path))
     pre.unlink()
+    limited.unlink()
 
 
 def mix(music: Path, ambience: Path, voice: Path | None, path: Path, sfx: Path | None = None) -> None:
