@@ -137,7 +137,7 @@ def test_theme_reel_is_scored_held_and_released_private(cfg, media, monkeypatch,
     rv = meta["final_review"]
     assert (project.folder / "review" / "contact_sheet.jpg").exists()
     assert (project.folder / "review" / "loudness.png").exists()
-    assert abs(rv["integrated_lufs"] + 14) <= 1.0 and rv["true_peak_dbtp"] <= -0.9, rv
+    assert abs(rv["integrated_lufs"] + 14) <= 1.0 and rv["true_peak_dbtp"] <= -1.0, rv
     assert rv["silence"]["drop_db"] >= 10, rv["silence"]
     assert "Translation: Annie Besant" in meta["youtube"]["description"]
     assert meta["youtube"]["description"].startswith("POV: the arrow is already drawn.")

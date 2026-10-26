@@ -323,12 +323,12 @@ def mix_scored(music: Path, ambience: Path, path: Path, plan: ReelPlan, sfx: Pat
     ff(*inputs, "-filter_complex", graph + f"{beds}amix=inputs={2 + bool(sfx)}:normalize=0[a]", "-map", "[a]",
        "-ar", "48000", "-ac", "2", str(pre))
     log = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(pre), "-af",
-                          "loudnorm=I=-14:TP=-1.0:LRA=20:print_format=json", "-f", "null", "-"],
+                          "loudnorm=I=-12.8:TP=-1.5:LRA=20:print_format=json", "-f", "null", "-"],
                          capture_output=True, text=True).stderr
     m = json.loads(log[log.rindex("{"):log.rindex("}") + 1])
-    ff("-i", str(pre), "-af", f"loudnorm=I=-14:TP=-1.0:LRA=20:linear=true:measured_I={m['input_i']}:"
+    ff("-i", str(pre), "-af", f"loudnorm=I=-12.8:TP=-1.5:LRA=20:linear=true:measured_I={m['input_i']}:"
        f"measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
-       f"offset={m['target_offset']},alimiter=limit=0.891:level=false", "-ar", "48000", "-ac", "2", str(path))
+       f"offset={m['target_offset']},aresample=192000,alimiter=limit=0.75:attack=5:release=60:level=false,aresample=48000,lowpass=f=15000", "-ar", "48000", "-ac", "2", str(path))
     pre.unlink()
 
 

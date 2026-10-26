@@ -155,7 +155,8 @@ def _impact(rng: np.random.Generator) -> np.ndarray:
     body = np.sin(2 * np.pi * (95 * t - 22 * t * t)) * np.exp(-t * 3.2)        # taiko: pitch falls as it rings
     sub = np.sin(2 * np.pi * 42 * t) * np.exp(-t * 2.2) * 0.8
     crack = rng.uniform(-1, 1, len(t)) * np.exp(-t * 55) * 0.6                   # stick and skin transient
-    return np.tanh(1.6 * (body + sub + crack))
+    attack = np.clip(t / 0.003, 0, 1)        # 3 ms: a step from silence makes the AAC encoder overshoot
+    return np.tanh(1.6 * (body + sub + crack)) * attack
 
 
 def _riser(seconds: float, rng: np.random.Generator) -> np.ndarray:
@@ -164,6 +165,7 @@ def _riser(seconds: float, rng: np.random.Generator) -> np.ndarray:
     env = (t / seconds) ** 2.2
     noise = np.convolve(rng.uniform(-1, 1, n), np.ones(6) / 6, mode="same")      # soft high noise
     sweep = np.sin(2 * np.pi * np.cumsum(180 + 900 * (t / seconds) ** 2) / SR)
+    env *= np.clip((seconds - t) / 0.005, 0, 1)                                   # 5 ms tail, no step
     return (0.55 * noise + 0.45 * sweep) * env
 
 
@@ -182,7 +184,7 @@ def _keep(kind: str, seconds: float, rng: np.random.Generator) -> np.ndarray:
         k = 40 if kind == "breath" else 160
         noise = np.convolve(rng.uniform(-1, 1, n + k), np.ones(k) / k, mode="valid")[:n] * (8 if kind == "breath" else 14)
         t = np.arange(n) / SR
-        env = (np.sin(np.pi * np.clip(t / min(seconds, 1.4), 0, 1)) if kind == "breath"
+        env = (np.sin(np.pi * np.clip((t - 0.4) / min(seconds, 1.6), 0, 1)) if kind == "breath"
                else 0.6 + 0.4 * np.sin(2 * np.pi * t / 2.3))
         out = noise * env * 0.5
     return out
@@ -230,9 +232,14 @@ def scored(cue, total: float, path: Path, bed: Path | None = None, mood: str = "
         m = min(len(z), n - i)
         if m > 0:
             x[i:i + m] += z[:m, None] * 0.9
+    if cue.silence:   # nothing rings into the silence: impact tails and risers are cut with the bed
+        s = cue.silence
+        t = np.arange(n) / SR
+        x *= np.clip(np.maximum((s.start - t) / 0.03, (t - s.end) / 0.02), 0, 1)[:, None]
     if cue.silence and cue.silence.keep != "none":
         s = cue.silence
-        z = _keep(s.keep, s.end - s.start, rng) * 0.5
+        z = _keep(s.keep, s.end - s.start, rng)
+        z *= 0.0125 / max(float(np.sqrt((z ** 2).mean())), 1e-6)   # about -38 dBFS: a breath, not a beat
         i = int(s.start * SR)
         m = min(len(z), n - i)
         x[i:i + m] += z[:m, None]
