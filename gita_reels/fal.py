@@ -77,7 +77,8 @@ class Fal:
             self.sleep(self.s.poll_seconds)
             waited += self.s.poll_seconds
         out = self.client.get(job["response_url"])
-        out.raise_for_status()
+        if out.is_error:   # fal's reason (validation, content policy) is in the body; keep it
+            raise RuntimeError(f"{model}: HTTP {out.status_code}: {out.text[:600]}")
         return out.json()
 
     def download(self, url: str, path: Path) -> Path:

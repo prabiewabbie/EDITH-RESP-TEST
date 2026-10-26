@@ -8,7 +8,7 @@ from datetime import datetime
 from pathlib import Path
 
 from .cinema import PURPOSE_DEFAULTS, lint, normalize
-from .fal import Fal
+from .fal import BudgetExceeded, Fal
 from .produce import ensure_refs
 from .project import Project, slug
 from .providers import AnimaticImage, FalImage, LocalImageCommand, UserKeyframe, video_providers
@@ -362,11 +362,20 @@ class Studio:
         refs = ensure_refs(s, self.fal, {c for i in own for c in project.plan().shots[i].characters},
                            look=project.meta().get("look", ""))
         project.update(lambda m: m.update(status="in_production"))
+        errors = []
         try:
             for i in own:
                 if project.selected(i) or i not in hints and project.takes(i):
                     continue
-                t = project.make_take(i, self.providers(), self.keyframer(False), None, refs, hint=hints.get(i, ""))
+                try:
+                    t = project.make_take(i, self.providers(), self.keyframer(False), None, refs,
+                                          hint=hints.get(i, ""))
+                except BudgetExceeded:
+                    raise
+                except Exception as e:   # the take is recorded as failed; the other shots still get made
+                    log.warning("shot %s failed: %s", i + 1, e)
+                    errors.append(f"shot {i + 1}: {e}")
+                    continue
                 if t.get("clip"):
                     project.review_sheet(i, t["id"])     # what the scheduled task looks at
         except Exception as e:
@@ -374,7 +383,7 @@ class Studio:
             project.update(lambda m: m.update(status="failed_production", error=str(e), fal_spent_usd=spent))
             raise
         spent = round(self.fal.reel_spent, 2)
-        project.update(lambda m: m.update(status="awaiting_qc", fal_spent_usd=spent))
+        project.update(lambda m: m.update(status="awaiting_qc", fal_spent_usd=spent, take_errors=errors))
 
     def score_bed(self, project: Project) -> Path | None:
         """A scored reel's music bed, written to its cue sheet's sections by fal.music_model (once; cached)."""
