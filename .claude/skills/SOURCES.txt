@@ -1,0 +1,2 @@
+Source: https://github.com/fal-ai-community/skills @ 9ca850412943251fc9a466c4c29fdaf7a303a3d8
+Installed: 2026-10-27. Audited: markdown only, no scripts/hooks/allowed-tools, no install or network commands beyond the genmedia CLI mentions.
