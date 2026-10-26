@@ -21,7 +21,7 @@ from pathlib import Path
 
 from .produce import ShotResult
 from .settings import Settings
-from .writer import ReelPlan
+from .writer import ReelPlan, Shot
 
 FLASH_FRAMES = 4
 
@@ -107,6 +107,24 @@ def verse_title(text: str, ref: str, w: int, h: int, path: Path) -> Path:
     return path
 
 
+def card_title(text: str, w: int, h: int, path: Path, y: float, size: int, serif: bool = False) -> Path:
+    """Hook or closing question: large, centred, readable muted in about a second."""
+    from PIL import Image, ImageDraw, ImageFilter
+    layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    ds, d = ImageDraw.Draw(shadow), ImageDraw.Draw(layer)
+    f = font(size, serif=serif)
+    top = int(h * y)
+    for line in textwrap.wrap(text, width=20):
+        tw = d.textlength(line, font=f)
+        for draw, fill in ((ds, (0, 0, 0, 230)), (d, (255, 250, 240, 255))):
+            draw.text(((w - tw) / 2, top), line, font=f, fill=fill)
+        top += int(size * 1.25)
+    layer = Image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(7)), layer)
+    layer.save(path)
+    return path
+
+
 def brand_layer(handle: str, w: int, h: int, path: Path) -> Path:
     from PIL import Image, ImageDraw
     layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
@@ -121,30 +139,80 @@ def brand_layer(handle: str, w: int, h: int, path: Path) -> Path:
 
 
 # --- conform --------------------------------------------------------------------------------
-def conform(result: ShotResult, secs: float, framing: str, flash: bool, s: Settings, folder: Path,
-            match: str = "") -> tuple[Path, Path]:
+WHIP_FRAMES = 3                 # motion-blurred frames on each side of a whip-pan cut
+LEAD_FRAMES = 3                 # on a hard cut the next shot's sound starts this many frames early (J-cut)
+TAIL_SECONDS = 0.5              # an L-cut carries the previous shot's sound this far into the next shot
+HARD_CUTS = ("cut", "cut_on_action", "smash_cut", "j_cut", "whip_pan")
+
+
+def source_offset(shot: Shot, clip_seconds: float, fps: int = 24) -> float:
+    """Where in the generated clip the shot starts: the planned/trimmed in-point, else skip the keyframe-still
+    first instant. Never past the point where the shot would run out of clip."""
+    need = shot.on_screen_seconds - (shot.ramp_frames / fps * (1 - shot.ramp_speed) if shot.ramp_at >= 0 else 0)
+    auto = max(0.0, min(0.5, clip_seconds - need))
+    return auto if shot.source_in < 0 else max(0.0, min(shot.source_in, clip_seconds - need))
+
+
+def _ramp_graph(shot: Shot, fps: int, rest: str) -> str:
+    """Real time -> ramp_speed for ramp_frames at ramp_at (interpolated, not duplicated frames) -> real time."""
+    secs, a = shot.on_screen_seconds, max(0.0, shot.ramp_at)
+    slow_screen = min(shot.ramp_frames / fps, max(secs - a, 0.05))
+    slow_src = slow_screen * shot.ramp_speed
+    b = a + slow_src
+    tail = max(secs - a - slow_screen, 0.0)
+    up = 1 / shot.ramp_speed
+    return (f"[0:v]split=3[r0][r1][r2];"
+            f"[r0]trim=start=0:end={a:.4f},setpts=PTS-STARTPTS[ra];"
+            f"[r1]trim=start={a:.4f}:end={b:.4f},setpts=PTS-STARTPTS,"
+            f"minterpolate=fps={fps * up:.0f}:mi_mode=mci:mc_mode=aobmc,setpts={up:.4f}*PTS[rb];"
+            f"[r2]trim=start={b:.4f}:end={b + tail + 0.2:.4f},setpts=PTS-STARTPTS[rc];"
+            f"[ra][rb][rc]concat=n=3:v=1:a=0,{rest}[v]")
+
+
+def conform(result: ShotResult, shot: Shot, s: Settings, folder: Path, match: str = "",
+            whip_out: bool = False, carry_out: bool = False) -> tuple[Path, Path, float]:
+    """One shot on the timeline: trimmed, ramped, framed, graded. Returns the video, its sound (with lead-in for
+    a J-cut and tail for an L-cut, see LEAD_FRAMES / TAIL_SECONDS) and where that sound starts relative to the
+    shot's first frame."""
     r = s.reel
-    src = result.clip
-    offset = max(0.0, min(0.5, duration(src) - secs))      # skip the keyframe-still first instant
-    vf = (["transpose=1"] if framing == "rotated_wide" else []) + [
+    src, secs = result.clip, shot.on_screen_seconds
+    clip_seconds = duration(src)
+    offset = source_offset(shot, clip_seconds, r.fps)
+    vf = (["transpose=1"] if shot.framing == "rotated_wide" else []) + [
         f"scale={r.width}:{r.height}:force_original_aspect_ratio=increase", f"crop={r.width}:{r.height}",
         "setsar=1", f"fps={r.fps}", f"tpad=stop_mode=clone:stop_duration={secs:.2f}"] + (
         [match] if match else []) + [grade_chain(s)]
-    if flash:
+    if shot.transition_in == "flash":
         vf.append(f"fade=t=in:st=0:d={FLASH_FRAMES / r.fps:.3f}:color=white")
+    whip = WHIP_FRAMES / r.fps
+    if shot.transition_in == "whip_pan":
+        vf.append(f"dblur=angle=0:radius=60:enable='lt(t,{whip:.3f})'")
+    if whip_out:
+        vf.append(f"dblur=angle=0:radius=60:enable='gte(t,{secs - whip:.3f})'")
+    if shot.black_after > 0:
+        vf.append(f"drawbox=c=black:t=fill:enable='gte(t,{secs - shot.black_after:.3f})'")
     vf.append("format=yuv420p")
     video = folder / "clips" / f"shot_{result.index + 1:02d}.mp4"
     audio = folder / "audio" / "parts" / f"shot_{result.index + 1:02d}.wav"
     video.parent.mkdir(parents=True, exist_ok=True)
     audio.parent.mkdir(parents=True, exist_ok=True)
-    ff("-ss", f"{offset:.3f}", "-i", str(src), "-t", f"{secs:.3f}", "-vf", ",".join(vf), "-an",
-       "-c:v", "libx264", "-preset", s.reel.preset, "-crf", "16", str(video))
-    if has_audio(src):
-        ff("-ss", f"{offset:.3f}", "-i", str(src), "-t", f"{secs:.3f}", "-vn", "-af", "apad",
-           "-ac", "2", "-ar", "48000", "-t", f"{secs:.3f}", str(audio))
+    if shot.ramp_at >= 0:
+        ff("-ss", f"{offset:.3f}", "-i", str(src), "-filter_complex", _ramp_graph(shot, r.fps, ",".join(vf)),
+           "-map", "[v]", "-t", f"{secs:.3f}", "-an", "-c:v", "libx264", "-preset", s.reel.preset, "-crf", "16",
+           str(video))
     else:
-        ff("-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo", "-t", f"{secs:.3f}", str(audio))
-    return video, audio
+        ff("-ss", f"{offset:.3f}", "-i", str(src), "-t", f"{secs:.3f}", "-vf", ",".join(vf), "-an",
+           "-c:v", "libx264", "-preset", s.reel.preset, "-crf", "16", str(video))
+    lead = min(LEAD_FRAMES / r.fps, offset) if shot.transition_in in HARD_CUTS else 0.0
+    tail = TAIL_SECONDS if carry_out else 0.0
+    length = lead + secs + tail - (shot.black_after if shot.black_after > 0 else 0)
+    if has_audio(src):
+        ff("-ss", f"{offset - lead:.3f}", "-i", str(src), "-t", f"{length:.3f}", "-vn",
+           "-af", f"apad,afade=t=in:d=0.01,afade=t=out:st={max(length - 0.03, 0):.3f}:d=0.03",
+           "-ac", "2", "-ar", "48000", "-t", f"{length:.3f}", str(audio))
+    else:
+        ff("-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo", "-t", f"{length:.3f}", str(audio))
+    return video, audio, -lead
 
 
 # --- audio ----------------------------------------------------------------------------------
@@ -222,6 +290,46 @@ def build_sfx(plan: ReelPlan, starts: list[float], total: float, s: Settings, pa
     ff(*inputs, "-filter_complex", ";".join(chain) + f";{labels}amix=inputs={len(placed)}:normalize=0,apad[a]",
        "-map", "[a]", "-t", f"{total:.3f}", "-ac", "2", "-ar", "48000", str(path))
     return path
+
+
+def build_ambience(parts: list[tuple[Path, float]], total: float, path: Path) -> None:
+    """Every shot's own sound placed at its start (minus its J-cut lead), overlapping where cuts carry sound."""
+    inputs, chain = [], []
+    for k, (p, start) in enumerate(parts):
+        inputs += ["-i", str(p)]
+        ms = max(0, int(round(start * 1000)))
+        chain.append(f"[{k}:a]adelay={ms}|{ms}[p{k}]")
+    labels = "".join(f"[p{k}]" for k in range(len(parts)))
+    ff(*inputs, "-filter_complex", ";".join(chain) + f";{labels}amix=inputs={len(parts)}:normalize=0,apad[a]",
+       "-map", "[a]", "-t", f"{total:.3f}", "-ac", "2", "-ar", "48000", str(path))
+
+
+def mix_scored(music: Path, ambience: Path, path: Path, plan: ReelPlan, sfx: Path | None = None) -> None:
+    """Scored reels: the music stem is already shaped to the cue sheet, so the mix keeps its dynamics. The shots'
+    own sound sits under it, drops with it in the planned silence, and the master is normalised linearly
+    (two passes) to -14 LUFS / -1 dBTP instead of compressed toward a flat level."""
+    cue = plan.cue_sheet
+    gate = ""
+    if cue and cue.silence:
+        a, b = cue.silence.start, cue.silence.end
+        gate = f",volume=0.12:enable='between(t,{a:.3f},{b:.3f})'"
+    inputs = ["-i", str(music), "-i", str(ambience)] + (["-i", str(sfx)] if sfx else [])
+    graph = f"[0:a]volume=0.9[m];[1:a]volume=0.75{gate}[amb];"
+    beds = "[m][amb]"
+    if sfx:
+        graph += f"[2:a]volume=0.6{gate}[fx];"
+        beds += "[fx]"
+    pre = path.with_name("mix_pre.wav")
+    ff(*inputs, "-filter_complex", graph + f"{beds}amix=inputs={2 + bool(sfx)}:normalize=0[a]", "-map", "[a]",
+       "-ar", "48000", "-ac", "2", str(pre))
+    log = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(pre), "-af",
+                          "loudnorm=I=-14:TP=-1.0:LRA=20:print_format=json", "-f", "null", "-"],
+                         capture_output=True, text=True).stderr
+    m = json.loads(log[log.rindex("{"):log.rindex("}") + 1])
+    ff("-i", str(pre), "-af", f"loudnorm=I=-14:TP=-1.0:LRA=20:linear=true:measured_I={m['input_i']}:"
+       f"measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
+       f"offset={m['target_offset']},alimiter=limit=0.891:level=false", "-ar", "48000", "-ac", "2", str(path))
+    pre.unlink()
 
 
 def mix(music: Path, ambience: Path, voice: Path | None, path: Path, sfx: Path | None = None) -> None:
@@ -319,46 +427,71 @@ def _set_sequence_format(xml_path: Path, fps: int, w: int, h: int) -> None:
 
 
 # --- the whole edit -------------------------------------------------------------------------
+def bed_file(folder: Path) -> Path | None:
+    """A music bed generated for this reel's cue sheet (pipeline.score_bed), if there is one."""
+    return next(iter(sorted((folder / "audio").glob("bed.*"))), None)
+
+
 def edit(plan: ReelPlan, results: list[ShotResult], verse: dict | None, s: Settings, folder: Path) -> dict:
     r = s.reel
     gains = match_gains([mean_rgb(res.clip) for res in results]) if r.match_shots and len(results) > 1 else []
     conformed, starts, t = [], [], 0.0
+    shots = plan.shots
     for k, res in enumerate(results):
-        shot = plan.shots[res.index]
+        shot = shots[res.index]
+        nxt = shots[res.index + 1] if res.index + 1 < len(shots) else None
         starts.append(t)
-        conformed.append(conform(res, shot.on_screen_seconds, shot.framing, shot.transition_in == "flash", s, folder,
-                                 gains[k] if gains else ""))
+        conformed.append(conform(res, shot, s, folder, gains[k] if gains else "",
+                                 whip_out=bool(nxt and nxt.transition_in == "whip_pan"),
+                                 carry_out=bool(nxt and nxt.transition_in == "l_cut")))
         t += shot.on_screen_seconds
     total = t
 
     listing = folder / "clips" / "list.txt"
-    listing.write_text("".join(f"file '{v.resolve().as_posix()}'\n" for v, _ in conformed))
+    listing.write_text("".join(f"file '{v.resolve().as_posix()}'\n" for v, _, _ in conformed))
     picture = folder / "clips" / "_picture.mp4"
     ff("-f", "concat", "-safe", "0", "-i", str(listing), "-c", "copy", str(picture))
 
     audio = folder / "audio"
-    alist = audio / "parts" / "list.txt"
-    alist.write_text("".join(f"file '{a.resolve().as_posix()}'\n" for _, a in conformed))
     ambience = audio / "ambience.wav"
-    ff("-f", "concat", "-safe", "0", "-i", str(alist), "-c", "copy", str(ambience))
-    track = pick_music(s, plan.music_mood)
+    build_ambience([(a, starts[k] + lead) for k, (_, a, lead) in enumerate(conformed)], total, ambience)
     music = audio / "music.wav"
-    build_music(track, total, music, plan.music_mood)
     voice = build_voice(plan, starts, total, s, folder)
     sfx = build_sfx(plan, starts, total, s, audio / "sfx.wav")
     mixed = audio / "mix.wav"
-    mix(music, ambience, voice, mixed, sfx)
+    if plan.cue_sheet:
+        from .score import scored
+        bed = bed_file(folder)
+        track = bed
+        scored(plan.cue_sheet, total, music, bed=bed, mood=plan.music_mood)
+        mix_scored(music, ambience, mixed, plan, sfx)
+    else:
+        track = pick_music(s, plan.music_mood)
+        build_music(track, total, music, plan.music_mood)
+        mix(music, ambience, voice, mixed, sfx)
 
     titles_dir = folder / "titles"
     titles_dir.mkdir(exist_ok=True)
     brand = brand_layer(s.channel.handle, r.width, r.height, titles_dir / "brand.png")
     titles, srt = [], []
+    if plan.hook_text:
+        b = min(plan.hook_end, total)
+        titles.append((card_title(plan.hook_text, r.width, r.height, titles_dir / "hook.png", y=0.16, size=72), 0.0, b))
+        srt.append((0.0, b, plan.hook_text))
     if verse and plan.verse_line and 0 <= plan.verse_shot_index < len(plan.shots):
         i = plan.verse_shot_index
-        a, b = starts[i], min(total, starts[i] + max(plan.shots[i].on_screen_seconds, 2.5))
+        a = plan.verse_start if plan.verse_start >= 0 else starts[i]
+        b = plan.verse_end if plan.verse_end > a else min(total, a + max(plan.shots[i].on_screen_seconds, 2.5))
+        if plan.question_text:                   # the verse clears before the closing question comes in
+            b = min(b, max(a + 1.0, total - plan.question_seconds))
         ref = f"{verse['chapter']}.{verse['verse']}"
         titles.append((verse_title(plan.verse_line, ref, r.width, r.height, titles_dir / "verse.png"), a, b))
         srt.append((a, b, f"“{plan.verse_line}” — Bhagavad Gita {ref}"))
+    if plan.question_text:
+        a = max(0.0, total - plan.question_seconds)
+        titles.append((card_title(plan.question_text, r.width, r.height, titles_dir / "question.png", y=0.42,
+                                  size=66, serif=True), a, total))
+        srt.append((a, total, plan.question_text))
     for i, sh in enumerate(plan.shots):
         if r.narration and sh.narration.strip():
             srt.append((starts[i], starts[i] + sh.on_screen_seconds, sh.narration))
@@ -386,7 +519,7 @@ def edit(plan: ReelPlan, results: list[ShotResult], verse: dict | None, s: Setti
         stems["A3 voice"] = voice
     if sfx:
         stems["A4 sfx"] = sfx
-    write_timeline(plan.title, r.fps, [(v, plan.shots[i].on_screen_seconds) for i, (v, _) in enumerate(conformed)],
+    write_timeline(plan.title, r.fps, [(v, plan.shots[i].on_screen_seconds) for i, (v, _, _) in enumerate(conformed)],
                    titles, brand, stems, total, folder)
     return {"final": str(final), "seconds": round(total, 2), "music_track": str(track) if track else None,
             "music_credit": music_credit(track)}

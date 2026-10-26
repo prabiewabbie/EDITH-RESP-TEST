@@ -77,7 +77,7 @@ def _elide(body: dict) -> dict:
 class FalVideo:
     def __init__(self, vm: VideoModel, fal: Callable[[], Fal]):
         self.vm, self._fal = vm, fal
-        self.name = vm.id
+        self.name, self.chain = vm.id, vm.chain
         self.caps = Capabilities(image_to_video=True, negative_prompt=vm.negative_prompt, seed=bool(vm.seed_field),
                                  durations=vm.durations, aspect_ratios=vm.aspect_ratios,
                                  native_audio=vm.native_audio, max_prompt_chars=vm.max_prompt_chars,

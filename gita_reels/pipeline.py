@@ -105,7 +105,11 @@ class Studio:
         s = s or self.s
         r, notes = s.reel, []
         for i, sh in enumerate(plan.shots):
-            sh.on_screen_seconds = min(4.0, max(1.2, sh.on_screen_seconds))
+            sh.on_screen_seconds = min(4.0, max(0.4, sh.on_screen_seconds))
+            if sh.source_of >= 0 and not (sh.source_of < len(plan.shots) and sh.source_of != i
+                                          and plan.shots[sh.source_of].source_of < 0):
+                notes.append(f"shot {i + 1}: source_of {sh.source_of + 1} is not a shot with its own takes; ignored")
+                sh.source_of = -1
             if not r.narration:
                 sh.narration = ""
             notes += [f"shot {i + 1}: {n}" for n in normalize(sh, s)]
@@ -135,24 +139,33 @@ class Studio:
 
     # --- projects -----------------------------------------------------------------------
     def create(self, episode_id: str | None = None, brief: dict | None = None, options: dict | None = None,
-               direction: str = "", planner: str = "auto", plan_file: Path | None = None) -> Project:
+               direction: str = "", planner: str = "auto", plan_file: Path | None = None,
+               theme: dict | None = None) -> Project:
         """New project from a storyline episode, or from a free concept brief
         ({concept, character, environment}). planner: auto | claude | template; plan_file imports a plan
         written elsewhere (e.g. in a Claude chat from `gita-reels brief`)."""
         options = options or {}
-        if brief:
+        if theme:
+            ep = {"kind": "theme", "id": theme["id"], "chapter": int(theme["verse"].split(".")[0]),
+                  "title": theme["title"], "story": theme["brief"], "set_pieces": [], "verses": [theme["verse"]],
+                  "series": theme.get("series", ""), "format": theme.get("format", "")}
+        elif brief:
             ep = {"kind": "concept", "id": "concept", "chapter": 0, "title": brief["concept"][:60],
                   "story": brief["concept"], "character": brief.get("character", ""),
                   "environment": brief.get("environment", ""), "set_pieces": [], "verses": []}
         else:
             ep = {"kind": "episode", **self.episode(episode_id)}
-        name = f"{datetime.now():%Y%m%d-%H%M%S}-{ep['id'] if ep['kind'] == 'episode' else slug(ep['title'])}"
+        name = f"{datetime.now():%Y%m%d-%H%M%S}-{ep['id'] if ep['kind'] in ('episode', 'theme') else slug(ep['title'])}"
         p = Project.create(Path(self.s.paths.out), name, {"kind": ep["kind"], "episode": ep, "options": options,
                                                           "direction": direction, "status": "planning",
                                                           "created": datetime.now().isoformat(timespec="seconds")},
                            self.s)
         if brief and brief.get("character"):
             chars = {**self.s.characters(), "lead": brief["character"]}
+            (p.folder / "characters.json").write_text(json.dumps(chars, indent=1), encoding="utf-8")
+        if theme and theme.get("characters"):
+            # the reel's own anchors (master prompt Part 5), copied word for word into every prompt and sheet
+            chars = {**self.s.characters(), **theme["characters"]}
             (p.folder / "characters.json").write_text(json.dumps(chars, indent=1), encoding="utf-8")
         s = p.settings()
         use_claude = planner == "claude" or (planner == "auto" and self.has_claude() and not plan_file)
@@ -164,6 +177,8 @@ class Studio:
             review = PlanReview.model_validate(raw["review"]) if raw.get("review") else None
             meta = {"plan": plan.model_dump(), "review": review.model_dump() if review else None,
                     "verse": self.verse_for(ep), "plan_notes": notes, "planner": raw.get("planner", "imported"),
+                    "prompt_overrides": {str(k): v for k, v in (raw.get("prompt_overrides") or {}).items()},
+                    "hold": bool(raw.get("hold", ep["kind"] != "episode")), "caption": raw.get("caption", ""),
                     "status": "planned" if review is None or self.review_ok(review) else "rejected_by_review"}
         elif use_claude:
             plan, review, verse, notes = self.plan(ep, direction, s)
@@ -179,9 +194,12 @@ class Studio:
         return p
 
     def estimate(self, plan: ReelPlan, retry_factor: float = 1.3) -> float:
-        vm = self.s.fal.video_models[0]
-        video = sum(vm.cost(sh.on_screen_seconds + 0.8) for sh in plan.shots)
-        return round((len(plan.shots) * self.s.fal.keyframe_price + video) * retry_factor, 2)
+        models = {vm.id: vm for vm in self.s.fal.video_models}
+        default = next((vm for vm in self.s.fal.video_models if vm.chain), self.s.fal.video_models[0])
+        own = [sh for sh in plan.shots if sh.source_of < 0]
+        video = sum(models.get(sh.model, default).cost(sh.on_screen_seconds + 0.8) for sh in own)
+        music = self.s.fal.music_price if plan.cue_sheet and self.s.fal.music_model else 0.0
+        return round((len(own) * self.s.fal.keyframe_price + video) * retry_factor + music, 2)
 
     def providers(self, name: str | None = None) -> list:
         """The provider chain for a take: one named provider, or every fal model in order (autopilot)."""
@@ -263,15 +281,16 @@ class Studio:
         if meta.get("edit"):
             plan = project.plan()
             meta = project.update(lambda m: m.update(
-                youtube=self._youtube_meta(plan, m["episode"], m.get("verse"), m["edit"].get("music_credit", ""))))
+                youtube=self._youtube_meta(plan, m["episode"], m.get("verse"), m["edit"].get("music_credit", ""),
+                                    m.get("caption", ""))))
         return meta
 
-    def _youtube_meta(self, plan: ReelPlan, ep: dict, verse: dict | None, credit: str) -> dict:
-        lines = [plan.description, ""]
-        if ep.get("kind") != "concept":
+    def _youtube_meta(self, plan: ReelPlan, ep: dict, verse: dict | None, credit: str, caption: str = "") -> dict:
+        lines = [caption or plan.description, ""]
+        if ep.get("kind") == "episode":
             lines.append(f"Bhagavad Gita, chapter {ep['chapter']}: {ep['title']}")
         if verse:
-            lines.append(f"Verse {verse['chapter']}.{verse['verse']} translation: {verse['source']}")
+            lines.append(f"Bhagavad Gita {verse['chapter']}.{verse['verse']}. Translation: {verse['source']}")
         lines.append("Visuals are AI-generated.")
         if credit:
             lines.append(f"Music: {credit}")
@@ -283,6 +302,10 @@ class Studio:
         p = Path(self.s.paths.queue) / f"{episode_id}.json"
         return p if p.exists() else None
 
+    def queued_theme(self) -> Path | None:
+        """A queued standalone reel (queue/theme-*.json): it goes before the storyline and never moves it."""
+        return next(iter(sorted(Path(self.s.paths.queue).glob("theme-*.json"))), None)
+
     def pending(self) -> Project | None:
         """The newest project still waiting for visual QC or more takes."""
         for pj in sorted(Path(self.s.paths.out).glob("*/project.json"), reverse=True):
@@ -291,43 +314,83 @@ class Studio:
                 return Project(pj.parent, self.s)
         return None
 
+    def held(self) -> Project | None:
+        """The newest finished reel held for a person's go-ahead before it is uploaded."""
+        for pj in sorted(Path(self.s.paths.out).glob("*/project.json"), reverse=True):
+            meta = json.loads(pj.read_text(encoding="utf-8"))
+            if meta.get("status") == "ready" and meta.get("hold") and not meta.get("published"):
+                return Project(pj.parent, self.s)
+        return None
+
     def produce(self) -> dict:
-        """GitHub Actions, no Claude key: take the queued, reviewed plan for the next episode and make one take
-        per shot. Leaves the project 'awaiting_qc' for the scheduled task to review."""
+        """GitHub Actions, no Claude key: take the queued, reviewed plan (a theme reel first, else the next
+        episode) and make one take per shot. Leaves the project 'awaiting_qc' for the scheduled task to review."""
         if (p := self.pending()) is not None:
             return {"status": "skipped", "reason": f"{p.folder.name} is still awaiting QC"}
-        ep = self.episode(None)
-        plan_file = self.queued_plan(ep["id"])
-        if not plan_file:
-            return {"status": "skipped", "reason": f"no queued plan for {ep['id']}"}
-        project = self.create(ep["id"], plan_file=plan_file, planner="template")
+        if theme_file := self.queued_theme():
+            raw = json.loads(theme_file.read_text(encoding="utf-8"))
+            theme = {"id": theme_file.stem, **raw["theme"]}
+            project = self.create(plan_file=theme_file, planner="template", theme=theme)
+            done = theme_file.parent / "done"
+            done.mkdir(exist_ok=True)
+            theme_file.replace(done / theme_file.name)
+        else:
+            ep = self.episode(None)
+            plan_file = self.queued_plan(ep["id"])
+            if not plan_file:
+                return {"status": "skipped", "reason": f"no queued plan for {ep['id']}"}
+            project = self.create(ep["id"], plan_file=plan_file, planner="template")
         if project.meta()["status"] != "planned" or not project.meta().get("review"):
             return {"status": "rejected", "folder": str(project.folder),
                     "reason": "plan has no approving review; it will not be produced"}
         self._takes_for_open_shots(project, hints={})
-        return {"status": project.meta()["status"], "folder": str(project.folder)}
+        return {"status": project.meta()["status"], "folder": str(project.folder),
+                "fal_spent_usd": project.meta().get("fal_spent_usd")}
 
     def _takes_for_open_shots(self, project: Project, hints: dict[int, str]) -> None:
         s = project.settings()
+        # the per-reel cap covers the whole reel across Actions runs, not one run
         self.fal.start_reel()
-        refs = ensure_refs(s, self.fal, {c for sh in project.plan().shots for c in sh.characters})
+        already = project.meta().get("fal_spent_usd", 0.0)
+        self.fal.reel_spent = already
+        own = [i for i in range(len(project.plan().shots)) if project.source(i) == i]
+        refs = ensure_refs(s, self.fal, {c for i in own for c in project.plan().shots[i].characters})
         project.update(lambda m: m.update(status="in_production"))
         try:
-            for i in range(len(project.plan().shots)):
+            for i in own:
                 if project.selected(i) or i not in hints and project.takes(i):
                     continue
                 t = project.make_take(i, self.providers(), self.keyframer(False), None, refs, hint=hints.get(i, ""))
                 if t.get("clip"):
                     project.review_sheet(i, t["id"])     # what the scheduled task looks at
         except Exception as e:
-            project.update(lambda m: m.update(status="failed_production", error=str(e)))
+            spent = round(self.fal.reel_spent, 2)
+            project.update(lambda m: m.update(status="failed_production", error=str(e), fal_spent_usd=spent))
             raise
         spent = round(self.fal.reel_spent, 2)
-        project.update(lambda m: m.update(status="awaiting_qc", fal_spent_usd=round(m.get("fal_spent_usd", 0) + spent, 2)))
+        project.update(lambda m: m.update(status="awaiting_qc", fal_spent_usd=spent))
+
+    def score_bed(self, project: Project) -> Path | None:
+        """A scored reel's music bed, written to its cue sheet's sections by fal.music_model (once; cached)."""
+        from .edit import bed_file
+        from .score import bed_request
+        plan = project.plan()
+        if not (plan.cue_sheet and self.s.fal.music_model) or bed_file(project.folder):
+            return bed_file(project.folder)
+        total = sum(sh.on_screen_seconds for sh in plan.shots)
+        self.fal.reel_spent = project.meta().get("fal_spent_usd", 0.0)
+        res = self.fal.run(self.s.fal.music_model, bed_request(plan.cue_sheet, total), self.s.fal.music_price)
+        url = res["audio"]["url"]
+        path = self.fal.download(url, project.folder / "audio" / ("bed" + (Path(url.split("?")[0]).suffix or ".mp3")))
+        spent = round(self.fal.reel_spent, 2)
+        project.update(lambda m: m.update(fal_spent_usd=spent, music_bed={"model": self.s.fal.music_model,
+                                                                            "request": bed_request(plan.cue_sheet, total)}))
+        return path
 
     def finish_pending(self) -> dict:
         """After the scheduled task recorded its visual QC (gita-reels qc / select): retake failed shots with
-        the reviewer's notes, or, when every shot has an approved take, assemble, validate and publish."""
+        the reviewer's notes, or, when every shot has an approved take, assemble, validate and publish.
+        A held reel (theme reels by default) stops at 'ready' until `release`."""
         from .publish import upload
         project = self.pending()
         if project is None:
@@ -335,7 +398,7 @@ class Studio:
         plan = project.plan()
         retakes = {}
         for i in range(len(plan.shots)):
-            if project.selected(i):
+            if project.source(i) != i or project.selected(i):
                 continue
             takes = project.takes(i)
             last = takes[-1] if takes else None
@@ -346,26 +409,46 @@ class Studio:
             elif len(takes) > self.s.fal.max_retries_per_shot:
                 project.update(lambda m: m.update(status="failed_production",
                                                   error=f"shot {i + 1} failed QC {len(takes)} times"))
-                ep = project.meta()["episode"]["id"]
-                self.advance(ep, {"status": "failed_production", "folder": str(project.folder)})
+                ep = project.meta()["episode"]
+                if ep.get("kind", "episode") == "episode":
+                    self.advance(ep["id"], {"status": "failed_production", "folder": str(project.folder)})
                 return {"status": "failed_production", "folder": str(project.folder)}
             else:
                 retakes[i] = (last or {}).get("retry_hint", "")
         if retakes:
             self._takes_for_open_shots(project, retakes)
-            return {"status": "awaiting_qc", "folder": str(project.folder), "retaken": [i + 1 for i in retakes]}
+            return {"status": "awaiting_qc", "folder": str(project.folder), "retaken": [i + 1 for i in retakes],
+                    "fal_spent_usd": project.meta().get("fal_spent_usd")}
+        self.score_bed(project)
         meta = self.finish(project)
-        ep = meta["episode"]["id"]
-        result = {"status": meta["status"], "folder": str(project.folder)}
-        if meta["status"] == "ready" and self.s.publish.auto_publish and self.review_ok(meta.get("review")):
+        ep = meta["episode"]
+        result = {"status": meta["status"], "folder": str(project.folder),
+                  "fal_spent_usd": meta.get("fal_spent_usd"), "final_review": meta.get("final_review")}
+        if meta.get("hold"):
+            result["held"] = "waiting for a person's go-ahead: dispatch reels.yml with command: release"
+        elif meta["status"] == "ready" and self.s.publish.auto_publish and self.review_ok(meta.get("review")):
             try:
                 result["url"] = upload(project.folder, self.privacy())
                 result["status"] = "published"
             except Exception as e:
                 result["publish_error"] = str(e)
-        if result["status"] in ("published", "ready", "failed_validation"):
-            self.advance(ep, result)
+        if result["status"] in ("published", "ready", "failed_validation") and ep.get("kind", "episode") == "episode":
+            self.advance(ep["id"], result)
         return result
+
+    def release(self) -> dict:
+        """Upload the held reel after a person approved it. Privacy comes from REELS_PRIVACY or publish.privacy."""
+        from .publish import upload
+        project = self.held()
+        if project is None:
+            return {"status": "skipped", "reason": "no held reel is ready"}
+        meta = project.meta()
+        if not self.review_ok(meta.get("review")):
+            return {"status": "refused", "reason": "the plan has no approving review"}
+        url = upload(project.folder, self.privacy())
+        project.update(lambda m: m.update(published={"url": url, "privacy": self.privacy(),
+                                                     "at": datetime.now().isoformat(timespec="seconds")}))
+        return {"status": "published", "url": url, "privacy": self.privacy(), "folder": str(project.folder)}
 
     def privacy(self) -> str:
         """REELS_PRIVACY (a workflow input) overrides publish.privacy for one run, e.g. a private test reel."""

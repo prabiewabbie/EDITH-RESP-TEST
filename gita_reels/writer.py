@@ -43,13 +43,57 @@ class Shot(BaseModel):
     end_frame: str = Field(description="The final frame the shot settles on and how it hands over to the next")
     screen_direction: Literal["left_to_right", "right_to_left", "toward_camera", "away", "none"] = Field(
         description="Main direction of movement or gaze; keep it consistent between neighbouring shots")
-    on_screen_seconds: float = Field(description="How long the shot stays on screen, 1.2-4.0 s")
+    on_screen_seconds: float = Field(description="How long the shot stays on screen: hold 2.5-4, walk 1.5-2.5, "
+                                                 "run 0.8-1.5, sprint 0.4-0.8 s")
     framing: Literal["vertical", "rotated_wide"] = Field(
         description="rotated_wide = widescreen shot laid sideways in the vertical frame, at most once per reel")
-    transition_in: Literal["cut", "match_cut", "flash"] = Field(
-        description="match_cut = cut on matching shape, gaze or motion; flash = quick dip from white, big reveal")
+    transition_in: Literal["cut", "match_cut", "flash", "cut_on_action", "whip_pan", "smash_cut", "j_cut",
+                           "l_cut"] = Field(
+        description="How the previous shot cuts into this one. match_cut = matching shape, gaze or motion; flash = "
+                    "quick dip from white; whip_pan = motion-blurred frames either side of the cut; j_cut = this "
+                    "shot's sound leads its picture; l_cut = the previous shot's sound carries over")
     sfx: str = Field(description="Sound cues synced to visible action, e.g. 'hooves on dirt, wind'; or empty")
     narration: str = Field(description="Voice-over line for this shot, or empty")
+    # Editing controls (all optional; the defaults reproduce a plain cut of the clip's opening seconds)
+    source_in: float = Field(-1, description="Second of the generated clip where this shot starts; -1 = auto. "
+                                             "Set after seeing the take so cuts land mid-action")
+    source_of: int = Field(-1, description="Index of another shot whose take this shot reuses (a second piece of "
+                                           "the same continuous clip, e.g. the closing wide of a battle burst); "
+                                           "-1 = this shot has its own takes")
+    ramp_at: float = Field(-1, description="Seconds into the shot where the impact lands: real time ramps to "
+                                           "ramp_speed for ramp_frames there, then snaps back; -1 = no ramp")
+    ramp_frames: int = Field(8, description="On-screen frames of slow motion at the impact (6-10)")
+    ramp_speed: float = Field(0.25, description="Playback speed inside the ramp")
+    black_after: float = Field(0, description="Seconds at the end of the shot that cut hard to black")
+    model: str = Field("", description="Preferred video model id for this shot (must be in fal.video_models); "
+                                       "empty = the configured order")
+
+
+class CueBeat(BaseModel):
+    name: str
+    start: float
+    end: float
+    intensity: int = Field(description="1-10; the score's level follows it")
+    instruments: str = Field(description="What plays, e.g. 'low strings ostinato, dhol on the downbeat'")
+    dynamics: str = Field("", description="e.g. 'crescendo from mp to ff'")
+    hits: list[float] = Field(default_factory=list, description="Reel seconds of designed impacts in this beat")
+
+
+class CueSilence(BaseModel):
+    start: float
+    end: float
+    keep: Literal["heartbeat", "breath", "wind", "none"] = "breath"
+
+
+class CueSheet(BaseModel):
+    """The score written to the picture: one key and tempo, per-beat level and instruments, exact hits."""
+    key: str = Field(description="e.g. 'D minor'")
+    tempo: float = Field(description="BPM, chosen so downbeats fall on the planned cuts")
+    styles: list[str] = Field(default_factory=list, description="Global styles for the whole score")
+    avoid: list[str] = Field(default_factory=list, description="Global styles to keep out")
+    beats: list[CueBeat]
+    risers: list[float] = Field(default_factory=list, description="Reel seconds a riser builds into (usually a hit)")
+    silence: CueSilence | None = None
 
 
 class ReelPlan(BaseModel):
@@ -60,6 +104,13 @@ class ReelPlan(BaseModel):
     shots: list[Shot]
     verse_shot_index: int = Field(description="Index of the shot that carries the verse line, or -1")
     verse_line: str = Field(description="A short exact excerpt of the verse translation, or empty")
+    verse_start: float = Field(-1, description="Reel second the verse appears; -1 = start of verse_shot_index")
+    verse_end: float = Field(-1, description="Reel second the verse leaves; -1 = automatic")
+    hook_text: str = Field("", description="On-screen hook, at most 9 words, shown from the first frame")
+    hook_end: float = Field(1.6, description="Reel second the hook text leaves")
+    question_text: str = Field("", description="The question, at most 10 words, shown over the final seconds")
+    question_seconds: float = Field(2.0, description="How long the question stays on screen at the end")
+    cue_sheet: CueSheet | None = None
 
 
 class Issue(BaseModel):

@@ -120,8 +120,15 @@ class Project:
     def take(self, i: int, tid: str) -> dict:
         return json.loads((self.shot_dir(i) / tid / "take.json").read_text(encoding="utf-8"))
 
+    def source(self, i: int, meta: dict | None = None) -> int:
+        """The shot whose takes shot i uses: itself, or the shot named in its source_of."""
+        j = (meta or self.meta())["plan"]["shots"][i].get("source_of", -1)
+        return j if j is not None and j >= 0 and j != i else i
+
     def selected(self, i: int, meta: dict | None = None) -> dict | None:
-        tid = (meta or self.meta())["selected"].get(str(i))
+        meta = meta or self.meta()
+        i = self.source(i, meta)
+        tid = meta["selected"].get(str(i))
         if not tid:
             return None
         t = self.take(i, tid)
@@ -248,7 +255,7 @@ class Project:
         """Autopilot: for each shot without a usable selected take, make takes until one passes QC."""
         plan = self.plan()
         for i in range(len(plan.shots)):
-            if self.selected(i):
+            if self.source(i) != i or self.selected(i):
                 continue
             hint, take = "", None
             for _ in range(max_retries + 1):
@@ -277,17 +284,25 @@ class Project:
         results, placeholder = [], False
         for i in range(len(plan.shots)):
             t = self.selected(i, meta)
-            d = self.shot_dir(i) / t["id"]
+            d = self.shot_dir(self.source(i, meta)) / t["id"]
             placeholder |= bool(t.get("placeholder"))
             results.append(ShotResult(i, d / t["clip"], d / t["keyframe"], t.get("model", ""),
                                       t.get("gen_seconds", 0), 1, t.get("qc", [])))
         out = edit(plan, results, meta.get("verse"), s, self.folder)
+        ends, t = [], 0.0
+        for sh in plan.shots:
+            t += sh.on_screen_seconds
+            ends.append(t)
+        black = [(e - sh.black_after, e) for sh, e in zip(plan.shots, ends) if sh.black_after > 0]
         report = validate_export(Path(out["final"]), s.reel.width, s.reel.height, s.reel.fps, out["seconds"],
-                                 expect_audio=True)
+                                 expect_audio=True, planned_black=black)
+        from .review import review_final
+        final_review = review_final(Path(out["final"]), self.folder / "review", plan)
 
         def fn(m):
             m["edit"] = out
             m["validation"] = report
-            m["takes_used"] = {str(i): m["selected"][str(i)] for i in range(len(plan.shots))}
+            m["final_review"] = final_review
+            m["takes_used"] = {str(i): m["selected"][str(self.source(i, m))] for i in range(len(plan.shots))}
             m["status"] = ("animatic" if placeholder else "ready") if report["ok"] else "failed_validation"
         return self.update(fn)

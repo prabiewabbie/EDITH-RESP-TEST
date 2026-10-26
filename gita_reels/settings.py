@@ -54,6 +54,7 @@ class VideoModel(BaseModel):
     max_prompt_chars: int = 0      # 0 = no limit
     extra: dict = {}               # any other documented input fields, passed through as-is
     omit: list[str] = []           # standard fields this model does not take, e.g. ["duration", "resolution"]
+    chain: bool = True             # false = used only for shots that name it in their `model` field
     note: str = ""
 
     def pick_duration(self, wanted: float) -> int:
@@ -69,6 +70,10 @@ class FalSettings(BaseModel):
     refs_model: str
     video_models: list[VideoModel]
     keyframe_price: float = 0.08
+    # Scored reels (a plan with a cue_sheet) get a music bed from this model, shaped to the cue sheet;
+    # empty = the synthesised score in score.py.
+    music_model: str = ""
+    music_price: float = 0.6
     daily_budget_usd: float = 15
     reel_budget_usd: float = 8
     max_retries_per_shot: int = 2

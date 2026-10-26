@@ -9,7 +9,7 @@ on:
         description: "override publish.privacy for this run: public | unlisted | private (blank = reels.yaml)"
         default: ""
       command:
-        description: "autopilot | plan | make (need ANTHROPIC_API_KEY) | produce | finish (scheduled Claude Code task, no API key)"
+        description: "autopilot | plan | make (need ANTHROPIC_API_KEY) | produce | finish | release (scheduled Claude Code task, no API key)"
         default: "autopilot"
       episode:
         description: "Episode id for plan/make, e.g. e07 (blank = next in the storyline)"
@@ -75,7 +75,7 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ] && [ "$REELS_MODE" != "api" ]; then
             echo "::notice::Split mode: the scheduled Claude Code task drives this workflow (docs/ROUTINE.md)."; exit 0
           fi
-          case "$CMD" in autopilot|plan|make|produce|finish) ;; *) echo "unknown command $CMD"; exit 1 ;; esac
+          case "$CMD" in autopilot|plan|make|produce|finish|release) ;; *) echo "unknown command $CMD"; exit 1 ;; esac
           if [ -z "$FAL_KEY" ]; then echo "::notice::FAL_KEY not set; skipping."; exit 0; fi
           case "$CMD" in autopilot|plan|make)
             if [ -z "$ANTHROPIC_API_KEY" ]; then
@@ -119,7 +119,7 @@ jobs:
           done
           # keep each reel's project.json (plan, review, QC, cost) and each take's record, keyframe and review
           # sheet (what the scheduled task looks at), but not the video media
-          for f in reels/*/project.json reels/*/shots/*/t*/take.json reels/*/shots/*/t*/review.jpg; do
+          for f in reels/*/project.json reels/*/shots/*/t*/take.json reels/*/shots/*/t*/review.jpg reels/*/review/*; do
             [ -e "$f" ] && mkdir -p "$RUNNER_TEMP/state/$(dirname "$f")" && cp "$f" "$RUNNER_TEMP/state/$f"
           done
           cd "$RUNNER_TEMP/state"

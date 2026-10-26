@@ -37,6 +37,29 @@ fal:
   # Prices are from fal's published pages (October 2026); the budget caps use them. Field names for the
   # first two are not yet confirmed against fal's live schema: run `gita-reels check-models` once.
   video_models:
+    # Seedance 2.0 (checked against fal's live schema, October 2026): 4-15 s, 480p/720p, no negative_prompt or
+    # seed field, synced sound at no extra cost. Shots pick one with their `model` field; otherwise the chain
+    # starts with v1.5 pro below.
+    - id: "bytedance/seedance-2.0/mini/image-to-video"
+      note: "$0.1547/s at 720p, audio included"
+      price_per_second: 0.1547
+      durations: [4, 5, 6, 7, 8, 9, 10, 11, 12]
+      duration_format: "{n}"
+      resolution: "720p"
+      native_audio: true
+      style: "veo"
+      aspect_ratios: ["9:16", "16:9", "1:1"]
+      chain: false                               # used only when a shot names it
+    - id: "bytedance/seedance-2.0/fast/image-to-video"
+      note: "$0.2419/s at 720p, audio included"
+      price_per_second: 0.2419
+      durations: [4, 5, 6, 7, 8, 9, 10, 11, 12]
+      duration_format: "{n}"
+      resolution: "720p"
+      native_audio: true
+      style: "veo"
+      aspect_ratios: ["9:16", "16:9", "1:1"]
+      chain: false
     - id: "fal-ai/bytedance/seedance/v1.5/pro/image-to-video"
       note: "about $0.10 per 4 s clip at 720p without audio (token-billed)"
       price_per_second: 0.025
@@ -65,6 +88,8 @@ fal:
     # Other options seen on fal: fal-ai/kling-video/v2.5-turbo/pro/image-to-video ($0.07/s, 5 or 10 s),
     # fal-ai/ltx-2-19b/distilled/image-to-video ($0.0018 per megapixel of output).
   keyframe_price: 0.08
+  music_model: "fal-ai/elevenlabs/music"         # composition plan per cue-sheet beat; $0.60 per started minute
+  music_price: 0.6
   daily_budget_usd: 15
   reel_budget_usd: 8
   max_retries_per_shot: 2

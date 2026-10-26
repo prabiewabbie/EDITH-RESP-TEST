@@ -71,6 +71,40 @@ Dispatch `reels.yml` with `command: finish`. If shots were retaken, the run ends
 retakes the episode is abandoned and the storyline moves on. When every shot passed, the run
 assembles, validates and (if `publish.auto_publish`) publishes, and advances the storyline.
 
+## Theme reels (standalone, outside the storyline)
+
+Plan by `style/master_prompt.md` and write `queue/theme-<slug>.json`:
+
+```json
+{"theme": {"verse": "2.47", "title": "...", "brief": "...", "series": "Battle POV", "format": "POV",
+           "characters": {"arjuna": "<the Part 5 anchor, word for word>"}},
+ "plan": {...}, "review": {...},
+ "prompt_overrides": {"0": {"keyframe": "...", "video": "...", "negative": "..."}},
+ "caption": "hook line\ncontext\n...", "hold": true}
+```
+
+`produce` takes a queued theme reel before the next episode and moves its file to `queue/done/`.
+A theme reel never moves the storyline, and it is held (`hold`, default true): `finish` assembles and
+stops at `ready`. Nothing uploads until a person says go; then dispatch `reels.yml` with
+`command: release` and `privacy: private` (or whatever they chose).
+
+Plan fields beyond the basics: per-shot `source_in` (where in the clip the shot starts), `source_of`
+(reuse another shot's take, e.g. the closing wide of a burst), `ramp_at` / `ramp_frames` /
+`ramp_speed` (speed ramp on the impact), `black_after`, `model` (e.g. Seedance 2.0, listed in
+`reels.yaml` with `chain: false`), cut types `cut_on_action`, `whip_pan`, `smash_cut`, `j_cut`,
+`l_cut`; reel-level `hook_text`, `question_text`, `verse_start` / `verse_end`, and `cue_sheet`. A cue
+sheet makes `finish` order a music bed written to its sections (`fal.music_model`), then shape it so
+the level follows each beat, the planned silence drops out, and designed hits and risers land on the
+exact seconds listed. Hand-written prompts in `prompt_overrides` are sent as written (put the anchor,
+the sound list and an "Avoid:" sentence in them yourself); retake notes are appended.
+
+After seeing takes, set cut points without new spend:
+`gita-reels trim reels/<folder> 5 --in 1.4 --ramp 0.3`, then push `project.json` to `reels-state`.
+
+Every assembled reel gets `review/contact_sheet.jpg` (a frame every 0.5 s), `review/loudness.png`
+(loudness against the beat map) and `review/audio.json` (LUFS, true peak, loudness per beat, silence
+depth). Look at all three before asking for the go-ahead.
+
 ## 6. Report
 
 End with one line: the episode, its status, the YouTube URL if published, and fal spend

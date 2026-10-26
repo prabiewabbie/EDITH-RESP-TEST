@@ -124,10 +124,14 @@ class TakeMaker:
         aspect = "16:9" if shot.framing == "rotated_wide" else (
             "9:16" if r.height > r.width else "1:1" if r.height == r.width else "16:9")
         shot_refs = [refs[c] for c in shot.characters if c in refs]
+        providers = route(providers, shot.model)
         primary = providers[0]
+        # A hand-written prompt (prompt_overrides) still gets the reviewer's retake note.
+        keyframe = (f"{overrides['keyframe']} {hint}".strip() if overrides.get("keyframe")
+                    else keyframe_prompt(shot, self.s, hint))
         take = {"id": folder.name, "shot": index, "created": _now(), "status": "generating", "hint": hint,
                 "provider": primary.name, "placeholder": bool(getattr(primary.caps, "placeholder", False)),
-                "prompts": {"keyframe": overrides.get("keyframe") or keyframe_prompt(shot, self.s, hint),
+                "prompts": {"keyframe": keyframe,
                             "negative": overrides.get("negative") or negative(shot, self.s)},
                 "spec": shot.model_dump(), "qc": [], "cost_usd": 0.0}
         save_take(folder, take)
@@ -145,8 +149,12 @@ class TakeMaker:
             # 2. motion, trying each provider in turn if one errors
             errors, result = [], None
             for p in providers:
-                vprompt = overrides.get("video") or video_prompt(shot, self.s, style=p.style, hint=hint,
-                                                                 max_chars=p.caps.max_prompt_chars)
+                if overrides.get("video"):      # hand-written: sent as written, plus the retake note
+                    vprompt = f"{overrides['video']} {hint}".strip()
+                else:
+                    vprompt = with_sound_and_avoid(
+                        video_prompt(shot, self.s, style=p.style, hint=hint, max_chars=p.caps.max_prompt_chars),
+                        shot, take["prompts"]["negative"], p.caps)
                 if isinstance(p, Animatic):
                     p.move = shot.move
                 req = VideoRequest(prompt=vprompt, negative=take["prompts"]["negative"],
@@ -185,6 +193,27 @@ class TakeMaker:
             take.update(status="failed", error=f"{type(e).__name__}: {e}", ended=_now())
             save_take(folder, take)
             raise
+
+
+def route(providers: list, model: str) -> list:
+    """The provider chain for one shot: the shot's named model first, then every model that is in the default
+    chain (models with chain: false only run for shots that name them)."""
+    named = [p for p in providers if model and p.name == model]
+    if model and not named:
+        raise ValueError(f"shot names model {model!r}, which is not configured in fal.video_models")
+    return named + [p for p in providers if getattr(p, "chain", True) and p not in named]
+
+
+def with_sound_and_avoid(prompt: str, shot: Shot, negative_text: str, caps) -> str:
+    """Models that make their own sound hear the shot's sound list (and no score: music is added in the edit).
+    Models without a negative_prompt field get the negative list as an 'Avoid' sentence."""
+    if caps.placeholder:
+        return prompt
+    if caps.native_audio:
+        prompt += f" Sound: {shot.sfx or 'natural ambience of the scene'}; no music, no speech, no singing."
+    if negative_text and not caps.negative_prompt and "Avoid:" not in prompt:
+        prompt += f" Avoid: {negative_text}."
+    return prompt
 
 
 def save_take(folder: Path, take: dict) -> dict:

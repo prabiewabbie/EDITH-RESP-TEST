@@ -24,6 +24,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("episodes", help="list the storyline and where the autopilot is")
     sub.add_parser("produce", help="(no Claude key) make takes for the queued, reviewed plan of the next episode")
     sub.add_parser("finish", help="(no Claude key) retake shots that failed review, or assemble and publish")
+    sub.add_parser("release", help="upload the reel held for approval (theme reels hold by default)")
 
     # shot by shot
     s = sub.add_parser("new", help="create a project (episode or free concept) with a shot plan")
@@ -74,6 +75,11 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("verdict", choices=["pass", "fail"])
     s.add_argument("--note", action="append", default=[])
     s.add_argument("--reviewer", default="claude-code")
+    s = sub.add_parser("trim", help="set where a shot starts in its clip and where its speed ramp lands")
+    s.add_argument("folder", type=Path)
+    s.add_argument("shot", type=int)
+    s.add_argument("--in", dest="source_in", type=float, help="second of the clip the shot starts at")
+    s.add_argument("--ramp", type=float, help="seconds into the shot of the impact (-1 removes the ramp)")
     s = sub.add_parser("advance", help="record an episode as done and move the storyline to the next one")
     s.add_argument("episode")
     s.add_argument("--status", default="published")
@@ -177,6 +183,8 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(studio.produce(), indent=2))
     elif args.cmd == "finish":
         print(json.dumps(studio.finish_pending(), indent=2))
+    elif args.cmd == "release":
+        print(json.dumps(studio.release(), indent=2))
     elif args.cmd == "new":
         brief = {"concept": args.concept, "character": args.character, "environment": args.environment} \
             if args.concept else None
@@ -227,6 +235,10 @@ def main(argv: list[str] | None = None) -> int:
                 for t in proj.takes(k):
                     if t.get("clip") and t["status"] in ("ready", "failed_qc"):
                         print(proj.review_sheet(k, t["id"]))
+        elif args.cmd == "trim":
+            fields = {k: v for k, v in (("source_in", args.source_in), ("ramp_at", args.ramp)) if v is not None}
+            sh = proj.edit_shot(i, fields)
+            print(f"shot {i + 1}: in {sh.source_in}, ramp {sh.ramp_at}")
         elif args.cmd == "qc":
             t = proj.record_qc(i, args.take, args.verdict == "pass", args.note, args.reviewer)
             print(t["status"])
@@ -242,6 +254,8 @@ def _show(proj) -> None:
     for i, sh in enumerate(meta["plan"]["shots"]):
         sel = meta["selected"].get(str(i))
         takes = ", ".join(f"{t['id']}:{t['status']}" + ("*" if t["id"] == sel else "") for t in proj.takes(i))
+        if sh.get("source_of", -1) >= 0:
+            takes = f"reuses shot {sh['source_of'] + 1}"
         print(f"  {i + 1:>2}. {sh['purpose']:<16} {sh['lens']:<12} {sh['move']:<18} {sh['lighting']:<17} "
               f"{sh['on_screen_seconds']:.1f}s  takes: {takes or '-'}")
 

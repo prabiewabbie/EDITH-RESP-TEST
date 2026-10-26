@@ -29,7 +29,8 @@ def _filter_log(path: Path, vf: str | None = None, af: str | None = None) -> str
 
 
 def validate_export(path: Path, width: int, height: int, fps: int, seconds: float, expect_audio: bool = True,
-                    tolerance: float = 0.15, freeze_seconds: float = 1.5) -> dict:
+                    tolerance: float = 0.15, freeze_seconds: float = 1.5,
+                    planned_black: list[tuple[float, float]] | None = None) -> dict:
     checks: list[dict] = []
 
     def add(name: str, ok: bool, detail: str, warn: bool = False) -> None:
@@ -61,6 +62,9 @@ def validate_export(path: Path, width: int, height: int, fps: int, seconds: floa
 
     black = re.findall(r"black_start:([\d.]+) black_end:([\d.]+) black_duration:([\d.]+)",
                        _filter_log(path, vf="blackdetect=d=0.1:pic_th=0.97:pix_th=0.06"))
+    # a planned cut to black (a shot's black_after) is not a defect
+    black = [(a, b, d) for a, b, d in black if not any(s - 0.1 <= float(a) and float(b) <= e + 0.1
+                                                         for s, e in planned_black or [])]
     add("black frames", not black, "none" if not black else
         "; ".join(f"{float(a):.2f}-{float(b):.2f}s" for a, b, _ in black))
     frozen = re.findall(r"freeze_start: ([\d.]+)[\s\S]*?freeze_duration: ([\d.]+)",
