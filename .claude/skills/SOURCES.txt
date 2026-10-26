@@ -1,2 +1,6 @@
-Source: https://github.com/fal-ai-community/skills @ 9ca850412943251fc9a466c4c29fdaf7a303a3d8
-Installed: 2026-10-27. Audited: markdown only, no scripts/hooks/allowed-tools, no install or network commands beyond the genmedia CLI mentions.
+Source: https://github.com/higgsfield-ai/skills @ f83af0bc1d937c8119099a11f8ebbf5e6fb99819 (v0.13.0, MIT)
+Installed: 2026-10-27 — higgsfield-generate, higgsfield-youtube-thumbnail.
+Audited: markdown only, no bundled scripts. Local hardening:
+  - removed `allowed-tools: Bash` so CLI commands go through normal permission prompts
+  - CLI bootstrap asks the user to install `higgsfield` instead of running curl | sh itself
+The repo's ./setup and scripts/update-check.sh were not installed or run.
