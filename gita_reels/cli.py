@@ -80,6 +80,7 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("shot", type=int)
     s.add_argument("--in", dest="source_in", type=float, help="second of the clip the shot starts at")
     s.add_argument("--ramp", type=float, help="seconds into the shot of the impact (-1 removes the ramp)")
+    s.add_argument("--flip", action=argparse.BooleanOptionalAction, help="mirror the take left-right")
     s = sub.add_parser("advance", help="record an episode as done and move the storyline to the next one")
     s.add_argument("episode")
     s.add_argument("--status", default="published")
@@ -236,7 +237,8 @@ def main(argv: list[str] | None = None) -> int:
                     if t.get("clip") and t["status"] in ("ready", "failed_qc"):
                         print(proj.review_sheet(k, t["id"]))
         elif args.cmd == "trim":
-            fields = {k: v for k, v in (("source_in", args.source_in), ("ramp_at", args.ramp)) if v is not None}
+            fields = {k: v for k, v in (("source_in", args.source_in), ("ramp_at", args.ramp), ("flip", args.flip))
+                      if v is not None}
             sh = proj.edit_shot(i, fields)
             print(f"shot {i + 1}: in {sh.source_in}, ramp {sh.ramp_at}")
         elif args.cmd == "qc":

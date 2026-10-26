@@ -65,6 +65,7 @@ class Shot(BaseModel):
     ramp_frames: int = Field(8, description="On-screen frames of slow motion at the impact (6-10)")
     ramp_speed: float = Field(0.25, description="Playback speed inside the ramp")
     black_after: float = Field(0, description="Seconds at the end of the shot that cut hard to black")
+    flip: bool = Field(False, description="Mirror the take left-right (fixes a take shot across the line)")
     model: str = Field("", description="Preferred video model id for this shot (must be in fal.video_models); "
                                        "empty = the configured order")
 

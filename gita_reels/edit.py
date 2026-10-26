@@ -178,7 +178,7 @@ def conform(result: ShotResult, shot: Shot, s: Settings, folder: Path, match: st
     src, secs = result.clip, shot.on_screen_seconds
     clip_seconds = duration(src)
     offset = source_offset(shot, clip_seconds, r.fps)
-    vf = (["transpose=1"] if shot.framing == "rotated_wide" else []) + [
+    vf = (["hflip"] if shot.flip else []) + (["transpose=1"] if shot.framing == "rotated_wide" else []) + [
         f"scale={r.width}:{r.height}:force_original_aspect_ratio=increase", f"crop={r.width}:{r.height}",
         "setsar=1", f"fps={r.fps}", f"tpad=stop_mode=clone:stop_duration={secs:.2f}"] + (
         [match] if match else []) + [grade_chain(s)]
