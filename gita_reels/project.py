@@ -164,9 +164,13 @@ class Project:
         meta = self.meta()
         shot = ReelPlan.model_validate(meta["plan"]).shots[i]
         overrides = meta["prompt_overrides"].get(str(i), {})
+        # long enough for every later shot that cuts a second piece out of this clip (source_of)
+        reuse = [sh["source_in"] + sh["on_screen_seconds"] + 0.3 for sh in meta["plan"]["shots"]
+                 if sh.get("source_of", -1) == i and sh.get("source_in", -1) >= 0]
         folder = self._next_take_dir(i)
         return TakeMaker(self.settings(), keyframer, claude).make(i, shot, folder, providers, refs, hint=hint,
-                                                                 overrides=overrides, seed=seed)
+                                                                 overrides=overrides, seed=seed,
+                                                                 seconds=max(reuse, default=0))
 
     def import_take(self, i: int, clip: Path, claude=None, note: str = "") -> dict:
         """Turn a clip made outside the pipeline into a take. Its first frame becomes the keyframe."""

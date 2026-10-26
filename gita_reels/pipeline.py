@@ -179,6 +179,7 @@ class Studio:
                     "verse": self.verse_for(ep), "plan_notes": notes, "planner": raw.get("planner", "imported"),
                     "prompt_overrides": {str(k): v for k, v in (raw.get("prompt_overrides") or {}).items()},
                     "hold": bool(raw.get("hold", ep["kind"] != "episode")), "caption": raw.get("caption", ""),
+                    "look": (theme or {}).get("look", ""),
                     "status": "planned" if review is None or self.review_ok(review) else "rejected_by_review"}
         elif use_claude:
             plan, review, verse, notes = self.plan(ep, direction, s)
@@ -196,8 +197,11 @@ class Studio:
     def estimate(self, plan: ReelPlan, retry_factor: float = 1.3) -> float:
         models = {vm.id: vm for vm in self.s.fal.video_models}
         default = next((vm for vm in self.s.fal.video_models if vm.chain), self.s.fal.video_models[0])
-        own = [sh for sh in plan.shots if sh.source_of < 0]
-        video = sum(models.get(sh.model, default).cost(sh.on_screen_seconds + 0.8) for sh in own)
+        def need(i, sh):
+            return max([sh.on_screen_seconds + 0.8] + [r.source_in + r.on_screen_seconds + 0.3 for r in plan.shots
+                                                       if r.source_of == i and r.source_in >= 0])
+        own = [(i, sh) for i, sh in enumerate(plan.shots) if sh.source_of < 0]
+        video = sum(models.get(sh.model, default).cost(need(i, sh)) for i, sh in own)
         music = self.s.fal.music_price if plan.cue_sheet and self.s.fal.music_model else 0.0
         return round((len(own) * self.s.fal.keyframe_price + video) * retry_factor + music, 2)
 
@@ -330,7 +334,8 @@ class Studio:
         if theme_file := self.queued_theme():
             raw = json.loads(theme_file.read_text(encoding="utf-8"))
             theme = {"id": theme_file.stem, **raw["theme"]}
-            project = self.create(plan_file=theme_file, planner="template", theme=theme)
+            project = self.create(plan_file=theme_file, planner="template", theme=theme,
+                                  options=raw.get("options") or {})
             done = theme_file.parent / "done"
             done.mkdir(exist_ok=True)
             theme_file.replace(done / theme_file.name)
@@ -354,7 +359,8 @@ class Studio:
         already = project.meta().get("fal_spent_usd", 0.0)
         self.fal.reel_spent = already
         own = [i for i in range(len(project.plan().shots)) if project.source(i) == i]
-        refs = ensure_refs(s, self.fal, {c for i in own for c in project.plan().shots[i].characters})
+        refs = ensure_refs(s, self.fal, {c for i in own for c in project.plan().shots[i].characters},
+                           look=project.meta().get("look", ""))
         project.update(lambda m: m.update(status="in_production"))
         try:
             for i in own:

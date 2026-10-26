@@ -41,10 +41,11 @@ def refs_dir(s: Settings) -> Path:
     return Path(s.paths.characters).parent / "refs" if s.paths.characters else Path(s.paths.style) / "refs"
 
 
-def ensure_refs(s: Settings, fal: Fal, ids: set[str]) -> dict[str, Path]:
-    """Create a character reference sheet once per character; reused by every reel after that."""
+def ensure_refs(s: Settings, fal: Fal, ids: set[str], look: str = "") -> dict[str, Path]:
+    """Create a character reference sheet once per character; reused by every reel after that. A reel with its
+    own cast (concept or theme) keeps its sheets in its own folder and may give its own look."""
     chars, out = s.characters(), {}
-    look = s.style_bible()["look"]
+    look = look or s.style_bible()["look"]
     for cid in sorted(ids):
         if cid not in chars:
             continue
@@ -117,7 +118,7 @@ class TakeMaker:
         self.s, self.keyframer, self.claude = s, keyframer, claude
 
     def make(self, index: int, shot: Shot, folder: Path, providers: list, refs: dict[str, Path],
-             hint: str = "", overrides: dict | None = None, seed: int | None = None) -> dict:
+             hint: str = "", overrides: dict | None = None, seed: int | None = None, seconds: float = 0) -> dict:
         overrides = overrides or {}
         folder.mkdir(parents=True, exist_ok=True)
         r = self.s.reel
@@ -158,7 +159,8 @@ class TakeMaker:
                 if isinstance(p, Animatic):
                     p.move = shot.move
                 req = VideoRequest(prompt=vprompt, negative=take["prompts"]["negative"],
-                                   seconds=shot.on_screen_seconds + 0.8, aspect=aspect, out=folder / "clip.mp4",
+                                   seconds=max(seconds, shot.on_screen_seconds + 0.8), aspect=aspect,
+                                   out=folder / "clip.mp4",
                                    image_url=kurl, image_path=kpath, seed=seed)
                 try:
                     result = p.generate(req)
