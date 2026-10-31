@@ -1,0 +1,75 @@
+{
+  "id": "t01",
+  "shot": 10,
+  "created": "2026-10-26T15:38:24",
+  "status": "ready",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. Arjuna's war chariot, gold and white, worn and dusty from use, four white horses, a banner bearing Hanuman, carved spoked wheels caked with dirt. Seen from very high above: the chariot is small near the centre of the frame, its four white horses and the Hanuman banner just readable, surrounded on the left by the Pandava army in white and on the right by the Kaurava army in dark red, the two lines pressed together, dust rolling between them; thousands of small figures, banners, chariots; nothing shows where the arrow went. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. Moments after the release. Lens: 120 mm at f/5.6 from a great height, near top-down, everything in focus, flattened scale. Camera: static first frame of the shot. Atmosphere: long shadows cast to screen right by every figure, dust clouds drifting left to right. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make",
+    "video": "Arjuna's war chariot, gold and white, worn and dusty from use, four white horses, a banner bearing Hanuman, carved spoked wheels caked with dirt. Seen from very high above: the chariot is small near the centre of the frame, its four white horses and the Hanuman banner just readable, surrounded on the left by the Pandava army in white and on the right by the Kaurava army in dark red, the two lines pressed together, dust rolling between them; thousands of small figures, banners, chariots; nothing shows where the arrow went. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. Moments after the release. Lens: 120 mm at f/5.6 from a great height, near top-down, everything in focus, flattened scale. Camera: a very slow rise straight up from a high crane, steady, no rotation. Atmosphere: long shadows cast to screen right by every figure, dust clouds drifting left to right. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 5 seconds. First frame: chariot small in the centre. Last frame: chariot a little smaller as the camera rises. Sun from screen left, the same as every shot. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make."
+  },
+  "spec": {
+    "purpose": "establishing",
+    "characters": [
+      "chariot"
+    ],
+    "subject": "from very high: the chariot small among the two armies, dust everywhere, no sign of the arrow",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "KRISHNA'S VIEW, very high and steady: scale",
+    "camera_height": "overhead",
+    "lens": "tele_120",
+    "focus": "deep",
+    "move": "crane_up",
+    "move_detail": "",
+    "subject_motion": "the armies move like water, dust rolls",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "the chariot small in the dust",
+    "screen_direction": "left_to_right",
+    "on_screen_seconds": 4.0,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "wind high above, the battle far below",
+    "narration": "",
+    "source_in": -1.0,
+    "source_of": -1,
+    "ramp_at": -1.0,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video"
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.205,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 5,
+  "request": {
+    "prompt": "Arjuna's war chariot, gold and white, worn and dusty from use, four white horses, a banner bearing Hanuman, carved spoked wheels caked with dirt. Seen from very high above: the chariot is small near the centre of the frame, its four white horses and the Hanuman banner just readable, surrounded on the left by the Pandava army in white and on the right by the Kaurava army in dark red, the two lines pressed together, dust rolling between them; thousands of small figures, banners, chariots; nothing shows where the arrow went. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. Moments after the release. Lens: 120 mm at f/5.6 from a great height, near top-down, everything in focus, flattened scale. Camera: a very slow rise straight up from a high crane, steady, no rotation. Atmosphere: long shadows cast to screen right by every figure, dust clouds drifting left to right. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 5 seconds. First frame: chariot small in the centre. Last frame: chariot a little smaller as the camera rises. Sun from screen left, the same as every shot. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "image_url": "https://v3b.fal.media/files/b/0aaff1fe/qcI-UW2p0xTTHHl1PoMbB_tLKPpsx4.png",
+    "duration": "5",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 121,
+    "motion": 31.14,
+    "flicker": 4.39,
+    "notes": []
+  },
+  "ended": "2026-10-26T15:40:16",
+  "reviewed": true
+}

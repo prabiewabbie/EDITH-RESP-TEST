@@ -1,0 +1,76 @@
+{
+  "id": "t02",
+  "shot": 2,
+  "created": "2026-10-26T15:59:57",
+  "status": "ready",
+  "hint": "Fix: three fingers hooked under the string at the first finger joint (Mediterranean draw), thumb relaxed and off the string, not a fist wrapped around the string; the string bent sharply at the fingertips under full tension; no water drop or bead on the skin, dust and dry sweat instead",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Macro of his right hand on the drawn string: three fingers hooked on the twisted gut string, thick pale calluses, a crease of sweat and dust in the knuckles, the leather arm guard at the wrist with a frayed edge; the string presses a white line into the skin. A bead of sweat runs down one knuckle; the fingers tighten. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The same moment as the previous shot, seen as he glances down at his own hand. Lens: 100 mm macro at f/4, the string and the fingertip pads sharp, the arm guard falling soft. Camera: static first frame of the shot. Atmosphere: a few dust motes drifting left to right through the sunlight. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: three fingers hooked under the string at the first finger joint (Mediterranean draw), thumb relaxed and off the string, not a fist wrapped around the string; the string bent sharply at the fingertips under full tension; no water drop or bead on the skin, dust and dry sweat instead",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make",
+    "video": "South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Macro of his right hand on the drawn string: three fingers hooked on the twisted gut string, thick pale calluses, a crease of sweat and dust in the knuckles, the leather arm guard at the wrist with a frayed edge; the string presses a white line into the skin. A bead of sweat runs down one knuckle; the fingers tighten. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The same moment as the previous shot, seen as he glances down at his own hand. Lens: 100 mm macro at f/4, the string and the fingertip pads sharp, the arm guard falling soft. Camera: slow push-in on a slider, about two centimetres over the shot, no other movement. Atmosphere: a few dust motes drifting left to right through the sunlight. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 4 seconds. First frame: fingers on the string. Last frame: fingers tightened, the string trembling. Continuity: sun from screen left, same hand and arm guard as shot 1. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: three fingers hooked under the string at the first finger joint (Mediterranean draw), thumb relaxed and off the string, not a fist wrapped around the string; the string bent sharply at the fingertips under full tension; no water drop or bead on the skin, dust and dry sweat instead"
+  },
+  "spec": {
+    "purpose": "macro_insert",
+    "characters": [
+      "arjuna"
+    ],
+    "subject": "macro of Arjuna's three fingers on the bowstring, calluses, sweat, the string biting the skin",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "SUBJECTIVE, his eyeline dropping to his own hand",
+    "camera_height": "eye",
+    "lens": "macro_100",
+    "focus": "rack_to_subject",
+    "move": "push_in",
+    "move_detail": "very slow push-in, 2 cm",
+    "subject_motion": "fingers tighten, a bead of sweat runs down a knuckle, the string vibrates slightly",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "fingers tight on the string, about to move",
+    "screen_direction": "none",
+    "on_screen_seconds": 1.8,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "string creak close, leather arm guard creak, his breath",
+    "narration": "",
+    "source_in": -1.0,
+    "source_of": -1,
+    "ramp_at": -1.0,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "flip": false,
+    "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video"
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.18,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Macro of his right hand on the drawn string: three fingers hooked on the twisted gut string, thick pale calluses, a crease of sweat and dust in the knuckles, the leather arm guard at the wrist with a frayed edge; the string presses a white line into the skin. A bead of sweat runs down one knuckle; the fingers tighten. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The same moment as the previous shot, seen as he glances down at his own hand. Lens: 100 mm macro at f/4, the string and the fingertip pads sharp, the arm guard falling soft. Camera: slow push-in on a slider, about two centimetres over the shot, no other movement. Atmosphere: a few dust motes drifting left to right through the sunlight. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 4 seconds. First frame: fingers on the string. Last frame: fingers tightened, the string trembling. Continuity: sun from screen left, same hand and arm guard as shot 1. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: three fingers hooked under the string at the first finger joint (Mediterranean draw), thumb relaxed and off the string, not a fist wrapped around the string; the string bent sharply at the fingertips under full tension; no water drop or bead on the skin, dust and dry sweat instead",
+    "image_url": "https://v3b.fal.media/files/b/0aaff27f/AvZsUHMsJQHOdNhbJdKS1_K2jdgmTD.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 16.16,
+    "flicker": 2.13,
+    "notes": []
+  },
+  "ended": "2026-10-26T16:01:27",
+  "reviewed": true
+}

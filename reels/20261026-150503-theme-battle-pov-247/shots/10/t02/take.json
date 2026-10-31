@@ -1,0 +1,77 @@
+{
+  "id": "t02",
+  "shot": 9,
+  "created": "2026-10-26T16:13:08",
+  "status": "ready",
+  "hint": "Fix: one continuous locked-off shot with no cut and no change of angle; he faces screen right at full draw, holds one second, then the fingers open, the string snaps forward and the arrow flies out of frame right; for the rest of the clip the same framing: his open hand relaxed near his cheek, string trembling, bow still raised",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Profile from screen left, facing screen right: his right hand at the jaw holds the drawn string, holds it for one second, then the fingers open; the string snaps forward and blurs, the recoil rocks his shoulder back, the arrow leaves the frame to the right and the camera does not follow it; the string keeps vibrating and his hand stays open and relaxed beside his cheek; he does not turn to watch where it goes. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The battle continues beyond the frame. Lens: 50 mm at f/2.8, medium close-up of hand, string and cheek, the bow limb crossing the frame, background soft. Camera: static first frame of the shot. Atmosphere: dust shaken off the string at the release, drifting left to right. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: one continuous locked-off shot with no cut and no change of angle; he faces screen right at full draw, holds one second, then the fingers open, the string snaps forward and the arrow flies out of frame right; for the rest of the clip the same framing: his open hand relaxed near his cheek, string trembling, bow still raised",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make",
+    "video": "South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Profile from screen left, facing screen right: his right hand at the jaw holds the drawn string, holds it for one second, then the fingers open; the string snaps forward and blurs, the recoil rocks his shoulder back, the arrow leaves the frame to the right and the camera does not follow it; the string keeps vibrating and his hand stays open and relaxed beside his cheek; he does not turn to watch where it goes. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The battle continues beyond the frame. Lens: 50 mm at f/2.8, medium close-up of hand, string and cheek, the bow limb crossing the frame, background soft. Camera: locked off on a tripod; only the release and recoil move; hold on the open hand and the trembling string after the arrow has gone. Atmosphere: dust shaken off the string at the release, drifting left to right. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 6 seconds. First frame: full draw, still. Then the release about one second in. Last frame: open hand at rest, string still trembling, no arrow. Same light, armour and scar as shot 9. Sound: the string releasing with a sharp crack, the arrow hissing away to the right, wood and leather creak of the recoil, then the string's hum dying away, wind; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: one continuous locked-off shot with no cut and no change of angle; he faces screen right at full draw, holds one second, then the fingers open, the string snaps forward and the arrow flies out of frame right; for the rest of the clip the same framing: his open hand relaxed near his cheek, string trembling, bow still raised"
+  },
+  "spec": {
+    "purpose": "prop_detail",
+    "characters": [
+      "arjuna"
+    ],
+    "subject": "his fingers open, the string snaps forward, the arrow leaves frame right and we do not follow",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "KRISHNA'S VIEW, steady: hand, string and cheek in profile",
+    "camera_height": "eye",
+    "lens": "normal_50",
+    "focus": "eyes",
+    "move": "locked_off",
+    "move_detail": "",
+    "subject_motion": "release, recoil, the string swings and blurs",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "string vibrating, the empty place where the arrow was",
+    "screen_direction": "left_to_right",
+    "on_screen_seconds": 1.6,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "string release crack, arrow hiss leaving, recoil creak",
+    "narration": "",
+    "source_in": -1.0,
+    "source_of": -1,
+    "ramp_at": 0.4,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "flip": false,
+    "model": "bytedance/seedance-2.0/mini/image-to-video"
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 1.0082,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "bytedance/seedance-2.0/mini/image-to-video",
+  "gen_seconds": 6,
+  "request": {
+    "prompt": "South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Profile from screen left, facing screen right: his right hand at the jaw holds the drawn string, holds it for one second, then the fingers open; the string snaps forward and blurs, the recoil rocks his shoulder back, the arrow leaves the frame to the right and the camera does not follow it; the string keeps vibrating and his hand stays open and relaxed beside his cheek; he does not turn to watch where it goes. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The battle continues beyond the frame. Lens: 50 mm at f/2.8, medium close-up of hand, string and cheek, the bow limb crossing the frame, background soft. Camera: locked off on a tripod; only the release and recoil move; hold on the open hand and the trembling string after the arrow has gone. Atmosphere: dust shaken off the string at the release, drifting left to right. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 6 seconds. First frame: full draw, still. Then the release about one second in. Last frame: open hand at rest, string still trembling, no arrow. Same light, armour and scar as shot 9. Sound: the string releasing with a sharp crack, the arrow hissing away to the right, wood and leather creak of the recoil, then the string's hum dying away, wind; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: one continuous locked-off shot with no cut and no change of angle; he faces screen right at full draw, holds one second, then the fingers open, the string snaps forward and the arrow flies out of frame right; for the rest of the clip the same framing: his open hand relaxed near his cheek, string trembling, bow still raised",
+    "image_url": "https://v3b.fal.media/files/b/0aaff2ce/royzL15e1skKA2RR-paPv_Ps5GabN8.png",
+    "duration": "6",
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 145,
+    "motion": 10.68,
+    "flicker": 2.15,
+    "notes": []
+  },
+  "ended": "2026-10-26T16:18:48",
+  "reviewed": true
+}
