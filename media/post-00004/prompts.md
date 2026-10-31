@@ -1,0 +1,66 @@
+# Post 4 — style guide
+
+Two harmonised visual worlds for a calm 51-second vertical-friendly short (master 4:5, safe-framed for a 9:16 crop with key subjects centered and the top and bottom 15% kept clear for captions).
+1) PRESENT-DAY BEDROOM: photorealistic, cinematic, 35-50mm lens look, shallow depth of field, gentle film grain, slow unhurried camera moves. The palette shifts from cool smartphone blue (#3A5A8C) and deep shadow in the opening to warm silver moonlight and the first peach pre-dawn light (#E8B98A) at the close. The protagonist is a generic, non-identifiable young adult (late teens) in a plain grey hoodie with dark shoulder-length hair, shown in the same room and the same clothes in every shot for continuity. No logos and no brand marks.
+2) SACRED AND REFLECTIVE: painterly, reverent, in the style of traditional Indian miniature and devotional oil painting. Use soft gouache textures, warm gold (#D4A23A), saffron, lotus pink, peacock blue and deep indigo (#1F1B4D), with diffused dawn light and still, balanced compositions.
+Overall mood: intimate, quiet, reassuring and never dramatic. All on-screen text, logos and verse lettering are added in editing, so every generated frame must be free of text, and blank negative space must be left wherever captions will sit.
+
+## Scene 1 · video · 4:5
+
+Cinematic photorealistic shot of a dim student bedroom at 2 a.m. A generic, non-identifiable young adult in a grey hoodie sits cross-legged on an unmade bed. Their face is softly lit from below only by the cool blue glow of a smartphone held in both hands, with a thumb hovering over the screen. In the soft-focus background are a desk with stacked textbooks, a switched-off desk lamp, and a window with dark curtains. Use a 50mm lens look at eye level with very shallow depth of field and deep shadows, in a cool blue and charcoal palette. The mood is quiet, tense and intimate, with a very slow subtle push-in. Keep the subject centered for a 9:16 crop and the upper third clear for a caption.
+
+Negative: text, letters, numbers, clock digits, readable screen content, logos, brand names, celebrity likeness, real identifiable person, political symbols, bright overhead lighting, cluttered mess, distorted hands, extra fingers, cartoon style
+
+## Scene 2 · video · 4:5
+
+Extreme close-up in slow motion of a thumb pulling down on a smartphone screen to refresh a blank, generic web page made only of abstract grey placeholder blocks, with a simple circular loading spinner turning. Faint translucent double-exposure overlays drift past and dissolve like passing thoughts: a stack of handwritten essay pages, an empty exam hall with rows of desks, and a sealed envelope sliding away. Use a macro lens look with shallow depth of field, a muted desaturated blue palette and soft bokeh. The mood is pensive and weightless.
+
+Negative: text, readable words, university names, real logos, crests, brand names, numbers, faces, celebrity likeness, political symbols, harsh flicker, glitch effects, distorted fingers
+
+## Scene 3 · video · 4:5
+
+Reverent painterly scene in traditional Indian devotional iconography, in the style of a classical miniature combined with soft oil painting. Lord Krishna, blue-complexioned with a serene gentle expression, wears a golden crown with a single peacock feather, flowing yellow pitambara garments and a garland of fresh flowers. He is seated calmly on the front of an ornate wooden chariot drawn by white horses standing at rest. Beside him sits Arjuna in dignified princely attire with a gold-trimmed crown and armour, listening attentively with folded hands, his bow resting unused. Behind them the plain of Kurukshetra stretches into soft dawn mist, where distant armies appear only as faint, peaceful silhouettes far away. Use warm golden sunrise light and a palette of gold, saffron, peacock blue and soft cream. Frame a symmetrical medium-wide composition with both figures centered for a 9:16 crop. Add very slow parallax drift and gently moving mist. The mood is serene, sacred and dignified.
+
+Negative: text, lettering, watermark, logos; sexualised depiction, revealing or immodest clothing, comedic or cartoonish style, meme style, caricature, exaggerated expressions, disrespectful poses; violence, gore, blood, injury, weapons in use, active battle, fighting, fire, corpses; modern clothing or objects; real living people, celebrity likeness, political symbols, flags; distorted anatomy, extra limbs, malformed hands, non-traditional iconography, dark or menacing mood
+
+## Scene 4 · video · 4:5
+
+Calm, still background plate for a verse overlay. Softly textured aged parchment fills the frame in warm cream and pale gold, with a faint, barely visible lotus watermark pattern in the center. Along the bottom edge a single small brass oil lamp (diya) burns with a gently flickering flame, casting warm light up the parchment with a soft vignette at the edges. Use a frontal flat composition with large empty clear space across the upper and middle two-thirds reserved for lettering added in editing. Movement is limited to the flame flicker and an extremely slow push-in. The mood is contemplative and sacred.
+
+Negative: text, letters, Devanagari, script, calligraphy, words, numbers, symbols, logos, watermark text, human figures, faces, divine figures, political symbols, clutter, harsh shadows
+
+## Scene 5 · video · 4:5
+
+Painterly split-composition landscape of one calm lake shown in two moods. The left half shows a warm golden sunrise over still water, with saffron and peach sky. The right half shows soft silver-blue rain falling gently on the same lake, with a misty grey sky. In the exact center a single pink lotus floats perfectly still, untouched by sun or rain, and its reflection below is mirror-smooth and steady. Use a soft gouache and watercolour texture with a balanced symmetrical frame, a centered lotus suited to a 9:16 crop, and the top area clear for a caption. Movement is limited to subtle rain ripples on the right side only, while the lotus and its reflection stay motionless. The mood is balanced, peaceful and timeless.
+
+Negative: text, letters, logos, people, faces, divine figures, animals, boats, political symbols, storm, lightning, turbulent water, oversaturated colors, harsh contrast
+
+## Scene 6 · video · 4:5
+
+Cinematic photorealistic shot in the same dim bedroom with the same generic, non-identifiable young adult in a grey hoodie. They slowly lower the smartphone to their lap, so its blue glow fades, and lift their gaze toward the window. Silver moonlight falls softly across their face through a gap in the curtains, and their expression eases from tension into quiet calm. Use a 50mm lens look with shallow depth of field and a gentle camera push-in. Warm moonlit silver and soft amber tones replace the harsh blue. The mood is tender and reassuring. Keep the subject centered for a 9:16 crop.
+
+Negative: text, readable screen, logos, brand names, celebrity likeness, real identifiable person, political symbols, crying, dramatic tears, harsh lighting, distorted face, extra fingers
+
+## Scene 7 · video · 4:5
+
+Cinematic photorealistic close-up of two hands slowly turning a smartphone face-down onto a warm wooden nightstand, so the screen glow disappears. Cut within the same shot as the focus racks to the generic young adult in a grey hoodie, who exhales and leans back softly against a pillow with eyes gently closing. A thin line of pale peach pre-dawn light begins to appear at the edge of the curtains. Use a 35mm lens look with shallow depth of field and a palette of warm wood, soft indigo shadows and peach dawn light. The pacing is slow, peaceful and unhurried.
+
+Negative: text, logos, brand names on phone, readable screen, celebrity likeness, real identifiable person, political symbols, harsh light, clutter, distorted hands, extra fingers
+
+## Scene 8 · video · 4:5
+
+Minimal end-card background plate. A single softly glowing brass diya with a calm steady flame sits low-center on a deep indigo (#1F1B4D) backdrop, with a gentle warm-gold halo of light around it and faint drifting particles of light. Clear empty space is left above the diya for a brand name and verse reference added in editing. Use symmetrical composition, centered for a 9:16 crop. The shot ends with a slow fade to black. The mood is peaceful and reverent.
+
+Negative: text, letters, logos, brand marks, numbers, people, faces, divine figures, political symbols, smoke clutter, multiple lamps, harsh glare
+
+## Scene 0 · voiceover · 4:5
+
+Warm, calm, gender-neutral adult narrator with a soft neutral English accent, intimate and reassuring like a trusted friend speaking quietly at night. Use a slow pace with gentle pauses between sentences, and speak the verse with quiet reverence and slightly slower delivery. Script: 'It's 2 a.m. and you've refreshed the admissions portal fourteen times. Pause for thirty seconds. [pause] Every refresh feels like doing something. But the essays are written. The exams are done. The answer is already out of your hands. [pause] In the Bhagavad Gita, Krishna describes the marks of true knowledge. Among them is this verse. [pause] Unattachment, absence of self-identification with son, wife or home, and constant balance of mind in wished-for and unwished-for events. Bhagavad Gita, thirteen point ten. [pause] Notice that the verse names both outcomes: the yes we hope for and the no we fear. Traditional commentators broadly read this balance not as indifference, but as freedom from being ruled by gain and loss. [pause] A reflection, not scripture: your worth was not decided in this inbox. The same steady you will open that email, whatever it says. [pause] Take one slow breath. Set the phone down. Morning will come either way, and so will you. [pause] Echoes of Gita.' Time the delivery to scene lengths of 5, 6, 6, 10, 7, 7, 6 and 4 seconds.
+
+Negative: dramatic movie-trailer voice, fast pacing, robotic tone, sing-song delivery, background noise, exaggerated emotion, celebrity voice imitation
+
+## Scene 0 · music · 4:5
+
+Gentle ambient underscore with Indian classical colour, around 60 BPM. It opens with a sparse, airy synth pad and a soft low drone suggesting late-night stillness. At the scripture section (around 11 seconds) it introduces a warm tanpura drone and a slow, tender bansuri flute melody in a calm raga-like mode such as Yaman. The texture grows slightly fuller and warmer through the lotus and moonlight sections, then thins out to a single held note and soft bell chime on the end card. There are no drums and no vocals. Mix low beneath the narration. The mood moves from quiet tension to peace, devotional, hopeful and dawn-like. The cue fades out cleanly at 51 seconds.
+
+Negative: vocals, lyrics, heavy percussion, EDM drops, dramatic orchestral swells, upbeat pop, abrupt endings, copyrighted melodies

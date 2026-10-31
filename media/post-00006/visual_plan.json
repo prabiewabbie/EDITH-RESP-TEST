@@ -1,0 +1,61 @@
+{
+  "style_guide": "Unified painterly-cinematic look across all seven slides: soft digital oil-painting texture with subtle film grain, gentle chiaroscuro, and calm, contemplative pacing. Core palette is warm amber and candle-gold against muted indigo and slate blue. Restless 'rajasic' slides lean into deep crimson and burnt orange. Clear 'sattvic' slides shift to soft white, ivory and pale gold. The closing slide resolves in golden-pink dawn tones. Lighting is always low-contrast and motivated by a lamp, a screen, a window or the sunrise, with no harsh highlights. Compositions are uncluttered, with a single clear focal subject placed in the lower or middle third. Generous negative space is kept in the upper third for text overlays added in editing. The master is framed at 4:5, with the subject centred so a 9:16 vertical crop works without losing the focal point. Lens feel is a 35–50mm natural perspective with shallow depth of field. Photoreal slides (2 and 5) use the same warm grade and grain so they sit naturally beside the painted slides. People appear only as anonymous, faceless figures. Divine figures (Krishna, Arjuna) follow traditional Indian miniature iconography and are always dignified and reverent. No text, letters, numerals, logos or watermarks are generated in any image.",
+  "assets": [
+    {
+      "kind": "image",
+      "scene_index": 0,
+      "prompt": "Painterly cinematic still of a quiet desk late at night inside a dark modern apartment. An open, unbranded laptop casts a soft cool glow, and beside it sits a ceramic cup of tea gone cold with no steam. A large window behind the desk shows a distant city skyline of tiny warm window lights under a deep indigo night sky. A warm amber desk-lamp pool contrasts with muted blue shadows. Shot from a slightly elevated three-quarter angle at a 35mm natural perspective with shallow depth of field, focus on the laptop and cup. Dark sky in the upper third leaves clean negative space. Subtle film grain, calm, contemplative, slightly lonely mood. No people visible.",
+      "negative_prompt": "text, letters, words, numerals, readable screen content, logos, brand marks, apple logo, watermark, signature, faces, people, celebrity likeness, political symbols, harsh lighting, oversaturated colours, clutter, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 1,
+      "prompt": "Photorealistic over-the-shoulder close-up of an anonymous person seen from behind, with the head out of frame or turned away so no face is identifiable. The person holds a generic unbranded smartphone in a dim bedroom at night. The phone screen shows only abstract, blurred chat bubbles with no legible content, and its soft cool blue light falls on the hand and fingers. The background is softly out of focus: a rumpled bed with grey linen and a simple round analog wall clock without numerals, its hands near quarter past eleven. Warm amber bedside-lamp spill mixes with blue screen light. Shot at 50mm with shallow depth of field and gentle film grain, matching the painterly grade of the series. Quiet, slightly weary, restless atmosphere. Upper third kept dark and uncluttered for text overlay.",
+      "negative_prompt": "text, legible messages, letters, numerals on clock, timestamps, emojis, app logos, brand names, UI branding, watermark, identifiable face, real person, celebrity likeness, political symbols, harsh flash, bright daylight, cluttered room",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 2,
+      "prompt": "Traditional painterly scene in the style of classical Indian miniature art, Pahari and Rajput inspired, on the field of Kurukshetra at dawn. Krishna is shown blue-complexioned with a serene, compassionate expression, wearing a golden crown with a single peacock feather, yellow pitambara garments, jewelled ornaments and a garland. He sits calmly on an ornate wooden chariot drawn by white horses standing at rest, gently speaking. Arjuna, in princely armour and crown, sits facing him on the chariot with palms folded in reverent attention, his bow laid down beside him. The opposing armies appear only as faint, distant banners and soft silhouettes on the horizon, with no combat. Golden sunrise light, a soft ochre and pale-gold sky, and fine decorative borders of flat miniature perspective. Balanced, dignified, reverent composition with the chariot in the lower half. A wide open sky in the upper third leaves space for a verse overlay. Palette of warm gold, saffron, peacock blue and soft cream.",
+      "negative_prompt": "text, letters, Sanskrit script, words, watermark, logos, sexualised depiction, revealing or suggestive poses, comedic or cartoonish style, caricature, meme style, exaggerated expressions, distorted or disrespectful anatomy, gore, blood, injury, active combat, weapons in use, violence, dead bodies, modern objects, real living people, celebrity likeness, political symbols, flags of modern nations, dark horror tones",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 3,
+      "prompt": "Minimalist painterly illustration of three small traditional clay oil lamps (diyas) in a row on a dark, worn wooden surface. Each flame flickers restlessly and leans in a different direction as if pulled by an unseen draught. Thin wisps of soft grey smoke curl upward into the darkness. Deep crimson, burnt orange and amber glow with rich shadow, evoking rajas: agitated, striving energy. Low eye-level side view at a 50mm natural perspective with shallow depth of field, the lamps occupying the lower third. Large clean dark negative space above for three lines of overlay text. Subtle film grain and a soft oil-paint texture, with a tense yet beautiful, introspective mood.",
+      "negative_prompt": "text, letters, numerals, watermark, logos, people, hands, faces, fire hazard, burning objects, explosion, cluttered background, bright daylight, cartoon style, oversaturated neon colours",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 4,
+      "prompt": "Photorealistic, softly focused still life on a wooden table beside a window in early morning. An open paper journal shows blank, faintly lined pages with no writing, a simple pen resting across it, and a small unlit brass diya beside the journal. Gentle diffused natural daylight comes from the side through sheer curtains, with soft long shadows. Muted earth tones of warm oak, cream paper, soft brass and pale sage, carrying a hint of the series' amber grade and fine film grain. Slightly elevated three-quarter angle at a 50mm lens with shallow depth of field, objects placed in the lower half. Calm open space above for reflection questions overlay. Peaceful, unhurried, quiet mood. No people.",
+      "negative_prompt": "text, handwriting, legible words, letters, numerals, logos, brand marks, watermark, people, hands, faces, cluttered desk, harsh shadows, night lighting, oversaturated colours",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 5,
+      "prompt": "Painterly scene of a single brass oil lamp in a quiet carved-stone temple alcove, its flame burning perfectly still and upright with no smoke. The lamp gives a soft white-gold radiance that gently illuminates smooth, weathered stone textures and a simple floral offering of a few jasmine blossoms beside it. A palette of ivory, pale gold, warm stone grey and soft shadow creates a sense of clarity, stillness and sattva. The composition is centred and symmetrical, the lamp in the lower-middle frame at eye level with a 50mm natural perspective. Dark stone above provides clean space for a text overlay. Fine oil-paint texture and subtle grain create a serene, reverent mood that deliberately contrasts with the restless crimson flames of the earlier slide.",
+      "negative_prompt": "text, inscriptions, letters, Sanskrit script, numerals, watermark, logos, people, faces, deity idols, flickering or leaning flame, smoke, red or crimson tones, clutter, harsh light, cartoon style, political or religious-political symbols",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 6,
+      "prompt": "Cinematic painterly landscape of a calm, wide river at sunrise with soft low mist drifting over the surface. A lone simple wooden rowing boat rests motionless on mirror-still water in the lower-middle frame. The sky glows golden-pink and peach and is reflected softly on the water, with distant gentle tree-lined banks in silhouette. Wide 35mm composition with a low horizon in the lower third and generous open sky above for closing text. A quiet, uncluttered corner is left for a small understated brand mark to be added in editing. Warm, hopeful, peaceful mood with soft oil-paint texture and subtle film grain that resolves the series' palette.",
+      "negative_prompt": "text, letters, words, numerals, logos, brand marks, watermark, people, faces, boats with figures, modern buildings, bridges, power lines, political symbols, storm, harsh sun flare, oversaturated colours, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    }
+  ]
+}

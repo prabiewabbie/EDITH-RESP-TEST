@@ -1,0 +1,85 @@
+{
+  "style_guide": "Two-world visual language joined by one warm thread of light. MODERN SCENES (1, 2, 3, 7, 8): cinematic photorealism, 35mm and 50mm lenses, shallow depth of field, soft film grain, slow deliberate camera moves. Palette: deep indigo and cool phone-blue (#1B2A4A, #3A6EA5) at night, pale dove-grey at dawn, shifting to warm amber and moonlight silver (#E8B86D, #C9D6E3) as the story resolves. The person is always anonymous: face unseen, back to camera or hands only. No logos, no readable screens. SACRED SCENES (4, 5, 6): painterly, reverent, in the spirit of classical Indian devotional painting with soft brush texture. Palette: saffron, marigold gold, lotus pink, peacock blue and parchment cream (#F2A541, #D4A017, #F4E4C1, #1F6F8B). Light is golden, diffused and sacred. The recurring motif is a small flickering brass diya or oil lamp, a warm point of light that links both worlds. Mood throughout: compassionate, quiet, unhurried, never preachy. Master framing is 4:5 with key subjects kept center-safe so the 9:16 crop works. Absolutely no text, letters, numbers or logos rendered in any frame, because all on-screen text is added in editing.",
+  "assets": [
+    {
+      "kind": "video",
+      "scene_index": 0,
+      "prompt": "Cinematic photorealistic close-up of a dark bedroom at 2 a.m. An anonymous person lies under a rumpled grey blanket, face turned away and unseen, lit only by the cool blue glow of a phone held close. On the nightstand a small bedside clock emits a faint red-amber glow, its display softly out of focus and unreadable. Deep indigo shadows, a sliver of streetlight on the wall. 50mm lens, shallow depth of field, very slow push-in, subtle film grain. Quiet, intimate, slightly restless mood.",
+      "negative_prompt": "visible face, identifiable person, celebrity likeness, readable screen, app interface, brand logos, legible clock digits, text, letters, numbers, watermark, bright lighting, horror tone, sexualised content",
+      "aspect": "4:5",
+      "duration_seconds": 5.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 1,
+      "prompt": "Extreme macro close-up of a thumb slowly scrolling a phone screen in a dark room. The screen content is a completely abstract blur of soft colour blocks, with nothing legible. Shifting blue and white light flickers across the fingertip and knuckle. Very shallow depth of field, 100mm macro lens, gentle slow motion, muted cool blue palette with indigo shadows. Hypnotic, weary mood.",
+      "negative_prompt": "readable text, app interface, social media logos, brand logos, recognizable content, faces on screen, letters, numbers, watermark, harsh colours, fast motion",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 2,
+      "prompt": "The same bedroom at early morning. Pale dove-grey light filters through thin linen curtains. On the nightstand a phone lights up with a soft glow, and a hand reaches over to silence it. The anonymous figure sits up slowly on the edge of the bed, back to camera and shoulders heavy, hair tousled. 35mm lens, static medium shot at eye level, soft natural light, desaturated cool palette. Calm, compassionate, understated mood that is gentle rather than dramatic.",
+      "negative_prompt": "visible face, identifiable person, celebrity likeness, readable screen, alarm text, legible numbers, brand logos, text, watermark, dramatic despair, harsh lighting",
+      "aspect": "4:5",
+      "duration_seconds": 5.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 3,
+      "prompt": "Painterly transition: pale morning light dissolves into a serene golden dawn over the wide field of Kurukshetra. In traditional devotional iconography, Lord Krishna sits upon an ornate wooden chariot drawn by white horses. He is blue-complexioned with a peacock feather in his crown, wears yellow silk pitambara and gold ornaments, and has a gentle, compassionate expression and a raised hand in a teaching gesture. Arjuna, in princely armour with his bow resting beside him, listens attentively with palms joined in reverence. The distant armies appear only as soft hazy silhouettes on the far horizon. Warm saffron and marigold sky, soft brush texture, diffused sacred light. Wide-to-medium composition with the chariot center-framed and a slow, gentle drift. Reverent and peaceful mood.",
+      "negative_prompt": "undignified depiction, non-traditional iconography, sexualised depiction, comedic or cartoonish style, meme style, caricature, violence, gore, blood, injury, weapons in use, close-up battle, real living people, celebrity likeness, political symbols, flags with symbols, text, letters, watermark, modern objects",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 4,
+      "prompt": "Elegant warm parchment-toned background with subtle fibrous paper texture and soft vignette edges, left mostly empty in the upper two-thirds to leave clean space for typography added in editing. A small brass oil lamp with a steady, gently flickering flame rests in the lower right corner, casting a warm amber glow across the parchment. Faint marigold petals lie scattered nearby. Very slow, steady camera push-in, shallow depth of field, cream, gold and soft brown palette. Contemplative, sacred stillness.",
+      "negative_prompt": "text, letters, Devanagari script, calligraphy, numbers, watermark, logos, clutter, harsh shadows, smoke overpowering frame",
+      "aspect": "4:5",
+      "duration_seconds": 9.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 5,
+      "prompt": "Painterly sequence of a balanced, harmonious day with gentle crossfades. First, a simple shared meal of rice, dal and fruit on brass plates, with hands passing food at a low wooden table. Second, two figures seen from behind on a calm walk along a tree-lined path at dusk. Third, a tidy wooden desk with an open blank notebook and a cup of tea beside a window. Fourth, a neatly made bed bathed in silver moonlight. Soft brush texture, warm earthy palette of terracotta, ochre, sage and cream, soft diffused light. Faces are unseen or turned away throughout. Serene, steady rhythm.",
+      "negative_prompt": "visible faces, identifiable people, celebrity likeness, text, writing in notebook, letters, numbers, logos, brand packaging, clutter, excess, harsh lighting, photorealism",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 6,
+      "prompt": "The modern bedroom at night, now warmer in tone. A hand gently places a phone face-down on a wooden nightstand. The blue glow fades away, and soft silver moonlight from the window fills the room. Beside the phone a small brass diya burns with a calm, steady flame, adding a warm amber accent. 50mm lens, close-to-medium framing on the nightstand, slow subtle pull-back, palette shifting from cool blue to amber and moonlight silver. Quiet, peaceful stillness and gentle relief.",
+      "negative_prompt": "visible face, identifiable person, celebrity likeness, readable screen, brand logos, text, letters, numbers, watermark, fire hazard, harsh lighting",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 7,
+      "prompt": "Wide, calm static shot of the darkened bedroom. A large window shows a deep indigo starlit sky with a thin crescent moon. A softly made bed and a small brass diya glow faintly on the nightstand. The center of the frame is left open and uncluttered, with soft negative space for the logo added in editing. 24mm lens, symmetrical composition, cool indigo and silver palette with a single warm gold accent, very slow breathing push-in. Restful, hopeful closing mood.",
+      "negative_prompt": "logos, text, letters, numbers, watermark, people, faces, phone glow, clutter, bright city lights, harsh lighting",
+      "aspect": "4:5",
+      "duration_seconds": 5.0
+    },
+    {
+      "kind": "voiceover",
+      "scene_index": 0,
+      "prompt": "Warm, gentle, conversational voice, gender-neutral or soft-spoken, mid-30s, with a calm late-night tone like a kind friend speaking quietly, unhurried pace and natural pauses. Read the verse slowly and reverently with a slight deepening of tone, and read the reflection softly. Read as follows. Scene 1: 'It's 2:14 a.m. You're not resting. You're just not ready to let today end.' Scene 2: 'The day felt like it belonged to everyone else. So we take the night back. One more video. One more scroll.' Scene 3: 'Then morning comes, and the hours we reclaimed leave us waking up already tired.' Scene 4: 'In the Bhagavad Gita's sixth chapter, on meditation, Krishna speaks to Arjuna about balance.' Scene 5: '\"Yoga killeth out all pain for him who is regulated in eating and amusement, regulated in performing actions, regulated in sleeping and waking.\" Bhagavad Gita, chapter six, verse seventeen.' Scene 6: 'Notice what the verse names: not only work, but amusement and sleep too. Commentators broadly read yukta as regulated, harmonized: a middle way, neither excess nor deprivation.' Scene 7: 'A reflection, not scripture: maybe the rest we're looking for comes from rhythm, not from more stolen hours.' Scene 8: 'So tonight, no shame. Just put the phone down one reel earlier.' Pronounce yukta as 'YOOK-tuh'. Use a non-judgmental, compassionate delivery throughout.",
+      "negative_prompt": "celebrity voice imitation, real person voice clone, preachy tone, dramatic movie-trailer delivery, fast pacing, comedic tone",
+      "aspect": "4:5",
+      "duration_seconds": 50.0
+    },
+    {
+      "kind": "music",
+      "scene_index": 0,
+      "prompt": "Gentle ambient underscore at about 60 BPM in a tender D minor resolving to D major. Scenes 1 to 3 (0 to 16 s): sparse, airy synth pad and soft felt piano notes with a late-night, introspective feel. Scene 4 (16 to 22 s): a warm bansuri flute enters over a low tanpura drone as the music turns sacred and golden. Scene 5 (22 to 31 s): music pares back to tanpura drone and faint bansuri so the verse sits clearly. Scenes 6 and 7 (31 to 45 s): a soft, steady pulse of gentle hand percussion suggests rhythm and balance, with warm strings blooming. Scene 8 (45 to 50 s): resolve to a peaceful major chord with a soft bell chime and a slow fade. Keep it mixed under the voice-over, meditative, hopeful, with no vocals.",
+      "negative_prompt": "vocals, lyrics, loud drums, EDM drops, aggressive percussion, copyrighted melodies, devotional songs sung by real artists, sudden volume spikes",
+      "aspect": "4:5",
+      "duration_seconds": 50.0
+    }
+  ]
+}
