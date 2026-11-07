@@ -1,0 +1,51 @@
+# Post 15 — style guide
+
+Echoes of Gita carousel, 4:5 master (9:16 safe crops). The series moves between modern office life and timeless reflection, unified by one look: muted indigo shadows, warm amber lamplight, and saffron and rose dawn accents. A recurring small brass diya with a soft flame is the visual thread. Photoreal slides use a cinematic 35-50mm lens feel, shallow depth of field, gentle film grain and soft practical lighting. Painterly slides, the sacred and closing images, use warm gouache and oil textures with luminous, reverent light. Every composition is calm and uncluttered, with generous negative space (top or bottom third) for editorial text added later. Any people shown are fictional and non-identifiable. The mood is quiet, empathetic and contemplative, never dramatic. The divine figures Krishna and Arjuna appear only in dignified traditional iconography. No text, letters, numerals, logos or watermarks are rendered in any image.
+
+## Scene 0 · image · 4:5
+
+Cinematic photorealistic split composition at dusk showing two identical modern office desks side by side under warm lamplight, each with an open laptop and a ceramic cup of tea. The left desk is cluttered and tense: blank sticky notes scattered, tangled cables, papers askew, a harsher cool cast. The right desk carries the same workload neatly arranged, with a small brass diya glowing softly beside the laptop and a warm, settled feel. No people. Eye-level frontal framing, 35mm lens, symmetrical layout with a subtle central divide. Muted indigo and amber palette, soft film grain. Large empty dark negative space across the top third. Mood: quiet contrast, curiosity.
+
+Negative: text, letters, words, writing on sticky notes, numbers, logos, watermark, people, faces, celebrity likeness, political symbols, harsh neon, oversaturated colors, cartoon style
+
+## Scene 1 · image · 4:5
+
+Photorealistic cinematic scene late at night in a dim open-plan office. A fictional South Asian professional woman in her early thirties, in simple business-casual clothing, sits alone at her desk. Only her desk lamp is lit, casting a warm pool of amber light, and blurred city lights glow through the large window behind her. She rests her chin on her hand and gazes at her laptop screen with tired, thoughtful eyes. A plain analog wall clock with hands near twenty to ten is softly out of focus, with no numerals. Three-quarter side angle, 50mm lens, shallow depth of field, gentle empathetic lighting. Deep indigo shadows against warm lamp tones, soft film grain. Empty dark space in the upper area. Mood: weary, quiet, human.
+
+Negative: text, numerals on clock, letters, readable screen content, logos, watermark, real person, celebrity likeness, recognisable face of a public figure, political symbols, crying melodrama, sexualised pose, distorted hands, extra fingers
+
+## Scene 2 · image · 4:5
+
+Painterly, reverent illustration in traditional Indian devotional iconography, warm gouache and oil texture. Krishna, blue-complexioned and serene, wears a peacock-feather crown, yellow silk garments and gold ornaments. He sits as charioteer on an ornate wooden chariot and turns gently toward Arjuna, who wears princely attire and listens with folded hands and a humble, attentive expression. Four white horses stand calmly at rest. The Kurukshetra plain stretches far behind, with distant armies only as soft, hazy silhouettes on the horizon. A golden dawn sky glows with luminous light around the figures. Medium-wide composition, eye level, figures in the upper two-thirds, open soft ground and sky in the lower third. Palette of saffron, gold, soft blue and cream. Mood: calm, luminous, dignified, sacred.
+
+Negative: undignified depiction of Krishna or Arjuna, non-traditional iconography, sexualised depiction, comedic depiction, cartoon or meme style, caricature, violence, gore, blood, graphic injury, weapons raised in combat, close-up battle, real living people, celebrity likeness, political symbols, text, letters, logos, watermark, distorted anatomy, extra limbs
+
+## Scene 3 · image · 4:5
+
+Painterly, softly lit overhead image of two pairs of hands kneading dough side by side on a worn wooden table in gentle morning window light, making identical motions. The left pair is tense, with tight knuckles, strained tendons and flour scattered roughly. The right pair is relaxed and unhurried, moving with ease, with a small fresh marigold resting beside the dough. Top-down composition, balanced framing, no faces shown. Warm earth tones of ochre, cream and soft brown, with a touch of marigold orange. Quiet domestic atmosphere and subtle painterly brushwork. Clean table space along the bottom. Mood: contemplative, same action with a different heart.
+
+Negative: text, letters, logos, watermark, faces, celebrity likeness, political symbols, distorted hands, extra fingers, messy grotesque textures, harsh lighting
+
+## Scene 4 · image · 4:5
+
+Photorealistic macro close-up of a small open paper notebook on a dark wooden desk. Its page is filled with rows of hand-drawn tally marks (simple strokes only, no writing), with a pen resting across the page. Beside it a single brass diya flame flickers warmly. In the softly blurred background, a dark window is streaked with raindrops. Low angle, 85mm macro lens, shallow depth of field. Cool blue tones throughout with one warm amber point of light from the diya. Empty dark space in the upper portion. Mood: contemplative, gentle, introspective.
+
+Negative: text, words, letters, numbers, handwriting other than tally strokes, logos, watermark, people, faces, celebrity likeness, political symbols, cluttered composition, oversaturated
+
+## Scene 5 · image · 4:5
+
+Warm cinematic photorealistic single frame blending three moments through soft golden light leaks into one cohesive image. On the left, a softly blurred bright hospital corridor with a caregiver walking. In the center, a small diverse team gathered around a meeting table in friendly discussion. On the right, a young colleague looking on attentively, learning. All people are fictional, partially turned or softly out of focus, and non-identifiable. Golden-hour backlight with gentle lens flare, 35mm lens, layered depth and dreamy transitions between scenes. Palette of honey gold, warm amber and soft cream with faint indigo shadows. Calm space in the upper area. Mood: hopeful, human, unhurried.
+
+Negative: text, signage, letters, logos, watermark, readable screens, real person, celebrity likeness, recognisable faces, political symbols, medical gore, chaotic collage, harsh contrast
+
+## Scene 6 · image · 4:5
+
+Photorealistic, peaceful scene of the same fictional South Asian professional woman, seen from behind and not recognisable. She has just closed her laptop at a reasonable early-evening hour and carries her coat over her arm. She steps toward an open office door through which warm sunset light pours in, casting long soft shadows across the floor. Her tidy desk with the closed laptop sits in the foreground. Rear three-quarter view, 35mm lens, gentle backlight with warm haze. Warm amber and rose palette with soft indigo in the shadows. Mood: calm, liberating, balanced.
+
+Negative: text, signage, letters, logos, watermark, visible face, real person, celebrity likeness, political symbols, dark gloomy lighting, sexualised pose, distorted anatomy
+
+## Scene 7 · image · 4:5
+
+Painterly closing image: a single brass diya with a steady glowing flame floats on a perfectly still river at dawn. Its golden reflection ripples gently on the water, and a few green lotus leaves and one closed pink lotus bud float nearby. Soft mist hovers over the water under a saffron and rose sky. Minimal, centered composition, low eye-level view across the water. Ample open sky and calm water left empty around the diya. Luminous gouache and oil texture. Palette of saffron, rose, soft gold and pale indigo. Mood: serene, reverent, peaceful.
+
+Negative: text, letters, wordmark, logos, watermark, people, faces, celebrity likeness, political symbols, cluttered composition, harsh light, oversaturated colors
