@@ -1,0 +1,71 @@
+{
+  "id": "t01",
+  "shot": 2,
+  "created": "2026-10-20T11:24:37",
+  "status": "failed_qc",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photoreal cinematic film still. Sanjaya, the royal narrator: elderly wise man with a white beard, cream robes and a simple sandalwood mark on his forehead, eyes glowing faintly gold with divine vision; calm, reverent; seated cross-legged, facing three-quarters to camera right, eyes opening as the golden glow rises in them. Identity: Sanjaya, the royal narrator: elderly wise man in cream robes, eyes glowing faintly with divine vision, in a dim palace hall. Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke. hero closeup composed for a vertical 9:16 frame: medium close-up, Sanjaya on the left third looking toward screen right; foreground out-of-focus pillar edge; background lamps as warm bokeh. This is the first frame of the shot, framed as a three-quarter view. camera at eye level. 50 mm equivalent lens: natural perspective, believable proportions, moderate background separation, controlled depth of field. depth of field around f/2.8-f/4, focus locked on the nearest eye; a deliberate focal hierarchy, not blur everywhere. warm natural sunlight, with a soft inner radiance around the divine figure motivated by the sun behind; luminous but physically plausible; no neon halos or glowing outlines; warm. dust motes lit gold around his face, light haze, floating petals or dust in the light. richly detailed cream cotton robe, aged skin, white beard. grade: photoreal cinematic CGI of an Indian epic, golden-hour backlight, sun low in frame, volumetric haze and dust, warm rim light on skin and metal, shallow depth of field, anamorphic flare, heroic scale; exposure deep crushed blacks (5th-percentile luma ~11/255), bright creamy highlights (95th ~222), mid-tones low (~82); warm amber highlights, earthy midtones, controlled deep shadows, natural skin, never uniformly orange. the image character of a modern large-format digital cinema camera: filmic highlight roll-off, wide dynamic range, natural colour separation, smooth skin tones, rich shadow detail, fine organic texture and natural 180-degree-shutter motion blur.",
+    "negative": "cartoon, illustration, anime, video-game render, plastic or waxy skin, artificial smoothness, excessive sharpening, overprocessed HDR halos, oversaturated orange-and-teal, glowing outlines, excessive artificial bloom, temporal flicker, warped architecture, unstable background, inconsistent shadows, random camera shake, abrupt zoom, extreme lens distortion, compression artifacts, text, watermark, logo, gore, blood, distorted face, asymmetrical eyes, morphing face, malformed hands, extra fingers, extra limbs, broken joints, floating feet, sliding feet, changing clothing, inconsistent jewellery",
+    "video": "Subtle orbit (15-25 degrees): camera arcs around the subject on a shallow curve, from three-quarter view to about 20 degrees further round, slow, smooth; camera arcs 15 degrees slowly from his left profile toward his face, ending on a three-quarter close-up of his glowing eyes. Keep subject anchored, light direction and anatomy constant, background shifts naturally. No full 360 spins. His eyes open slowly and a soft golden light rises within them; a breath of wind stirs his robe. dust motes lit gold around his face, light haze, floating petals or dust in the light. lighting and shadows stay consistent with the first frame: warm natural sunlight, with a soft inner radiance around the divine figure motivated by the sun behind; luminous but physically plausible; no neon halos or glowing outlines; warm. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: his glowing eyes gazing into the distance at screen right, holding for the flash to the battlefield."
+  },
+  "spec": {
+    "purpose": "hero_closeup",
+    "characters": [
+      "sanjaya"
+    ],
+    "subject": "Sanjaya, the royal narrator: elderly wise man with a white beard, cream robes and a simple sandalwood mark on his forehead, eyes glowing faintly gold with divine vision; calm, reverent; seated cross-legged, facing three-quarters to camera right, eyes opening as the golden glow rises in them",
+    "environment": "Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke",
+    "composition": "medium close-up, Sanjaya on the left third looking toward screen right; foreground out-of-focus pillar edge; background lamps as warm bokeh",
+    "camera_height": "eye",
+    "lens": "normal_50",
+    "focus": "eyes",
+    "move": "orbit_subtle",
+    "move_detail": "camera arcs 15 degrees slowly from his left profile toward his face, ending on a three-quarter close-up of his glowing eyes",
+    "subject_motion": "His eyes open slowly and a soft golden light rises within them; a breath of wind stirs his robe",
+    "lighting": "divine_glow",
+    "atmosphere": "dust motes lit gold around his face",
+    "materials": "cream cotton robe, aged skin, white beard",
+    "end_frame": "his glowing eyes gazing into the distance at screen right, holding for the flash to the battlefield",
+    "screen_direction": "left_to_right",
+    "on_screen_seconds": 2.4,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "soft shimmer",
+    "narration": ""
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": false,
+      "problems": [
+        "the eye glow became laser beams across the face, which reads as a meme; keep only a faint warm glow inside the irises, no beams or flare lines"
+      ]
+    }
+  ],
+  "cost_usd": 0.18,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "Subtle orbit (15-25 degrees): camera arcs around the subject on a shallow curve, from three-quarter view to about 20 degrees further round, slow, smooth; camera arcs 15 degrees slowly from his left profile toward his face, ending on a three-quarter close-up of his glowing eyes. Keep subject anchored, light direction and anatomy constant, background shifts naturally. No full 360 spins. His eyes open slowly and a soft golden light rises within them; a breath of wind stirs his robe. dust motes lit gold around his face, light haze, floating petals or dust in the light. lighting and shadows stay consistent with the first frame: warm natural sunlight, with a soft inner radiance around the divine figure motivated by the sun behind; luminous but physically plausible; no neon halos or glowing outlines; warm. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: his glowing eyes gazing into the distance at screen right, holding for the flash to the battlefield.",
+    "image_url": "https://v3b.fal.media/files/b/0aaf218b/kaG91OPliN9-J4qcVxkQk_rHtqdzjl.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 41.78,
+    "flicker": 3.37,
+    "notes": []
+  },
+  "ended": "2026-10-20T11:25:58",
+  "reviewed": true,
+  "retry_hint": "Fix: the eye glow became laser beams across the face, which reads as a meme; keep only a faint warm glow inside the irises, no beams or flare lines"
+}

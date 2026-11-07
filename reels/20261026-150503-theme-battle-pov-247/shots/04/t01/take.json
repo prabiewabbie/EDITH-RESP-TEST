@@ -1,0 +1,74 @@
+{
+  "id": "t01",
+  "shot": 3,
+  "created": "2026-10-26T15:23:07",
+  "status": "ready",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. Five Kaurava war chariots, dark wood and iron with dark red banners, each pulled by two brown horses and driven by South Asian charioteers in iron scale armour, charge at full gallop from screen right to screen left across the plain; behind them foot soldiers with round bronze shields run in the dust; a lead horse stretches mid-stride. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The first charge of the battle, seen from Arjuna's chariot. Lens: 21 mm at f/5.6, eye height on the chariot, wide, deep focus, the nearest chariot large at frame right, the rest receding. Camera: static first frame of the shot. Atmosphere: thick dust thrown up by hooves and wheels, blown left to right by the wind, clods of earth in the air. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make",
+    "video": "Five Kaurava war chariots, dark wood and iron with dark red banners, each pulled by two brown horses and driven by South Asian charioteers in iron scale armour, charge at full gallop from screen right to screen left across the plain; behind them foot soldiers with round bronze shields run in the dust; a lead horse stretches mid-stride. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The first charge of the battle, seen from Arjuna's chariot. Lens: 21 mm at f/5.6, eye height on the chariot, wide, deep focus, the nearest chariot large at frame right, the rest receding. Camera: handheld from the moving chariot, strong shake on the horses' impacts, panning slightly left to follow the lead chariot; start half a second before the lead horse's stride, end mid-stride. Atmosphere: thick dust thrown up by hooves and wheels, blown left to right by the wind, clods of earth in the air. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 5 seconds, continuous action with no cut inside the clip. First frame: chariots already moving. Last frame: dust closing in after the chariots pass. Sound: hooves at a gallop on hard earth, wheels rattling and creaking, a war cry from many men, wind, dirt hitting wood; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make."
+  },
+  "spec": {
+    "purpose": "establishing",
+    "characters": [],
+    "subject": "Kaurava chariots charge right to left across the plain toward the camera's side",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "SUBJECTIVE wide from the chariot",
+    "camera_height": "eye",
+    "lens": "ultrawide_21",
+    "focus": "deep",
+    "move": "handheld_stabilized",
+    "move_detail": "",
+    "subject_motion": "horses at full gallop, wheels throw dirt, banners stream",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "lead horse mid-stride",
+    "screen_direction": "right_to_left",
+    "on_screen_seconds": 1.2,
+    "framing": "vertical",
+    "transition_in": "smash_cut",
+    "sfx": "hooves at a gallop, wheels rattling, a war cry from many men, wind",
+    "narration": "",
+    "source_in": -1.0,
+    "source_of": -1,
+    "ramp_at": -1.0,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "model": "bytedance/seedance-2.0/mini/image-to-video"
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.8535,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "bytedance/seedance-2.0/mini/image-to-video",
+  "gen_seconds": 5,
+  "request": {
+    "prompt": "Five Kaurava war chariots, dark wood and iron with dark red banners, each pulled by two brown horses and driven by South Asian charioteers in iron scale armour, charge at full gallop from screen right to screen left across the plain; behind them foot soldiers with round bronze shields run in the dust; a lead horse stretches mid-stride. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The first charge of the battle, seen from Arjuna's chariot. Lens: 21 mm at f/5.6, eye height on the chariot, wide, deep focus, the nearest chariot large at frame right, the rest receding. Camera: handheld from the moving chariot, strong shake on the horses' impacts, panning slightly left to follow the lead chariot; start half a second before the lead horse's stride, end mid-stride. Atmosphere: thick dust thrown up by hooves and wheels, blown left to right by the wind, clods of earth in the air. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 5 seconds, continuous action with no cut inside the clip. First frame: chariots already moving. Last frame: dust closing in after the chariots pass. Sound: hooves at a gallop on hard earth, wheels rattling and creaking, a war cry from many men, wind, dirt hitting wood; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "image_url": "https://v3b.fal.media/files/b/0aaff1a2/Jgt__6ciD1io6fsjCypVe_CSv0V9Dj.png",
+    "duration": "5",
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 121,
+    "motion": 32.92,
+    "flicker": 4.68,
+    "notes": []
+  },
+  "ended": "2026-10-26T15:27:23",
+  "reviewed": true
+}
