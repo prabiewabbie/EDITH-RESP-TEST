@@ -1,0 +1,76 @@
+{
+  "id": "t01",
+  "shot": 1,
+  "created": "2026-10-26T15:19:30",
+  "status": "ready",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. man who looks about 30; oval face, high cheekbones, gentle strong jaw; large almond-shaped dark brown eyes, calm steady gaze; straight nose, full lips at rest in a faint knowing calm; deep blue-grey skin with a natural matte sheen and real skin texture, small vermilion tilak on the forehead; long black wavy hair, part tied up under a gold crown set with one peacock feather; lean athletic build, upright relaxed posture; yellow silk pitambara, garland of fresh forest flowers, gold armlets. Seen from behind and a little above, as the archer standing behind him sees him: he sits on the driver's board holding the reins in both hands, shoulders relaxed, completely still. Arjuna's war chariot, gold and white, worn and dusty from use, four white horses, a banner bearing Hanuman, carved spoked wheels caked with dirt. The four horses shift their weight, one tosses its head and blows; the Hanuman banner snaps on its pole. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The chariot faces screen right toward the enemy. Lens: 50 mm at f/4, high angle from standing height looking down past the peacock feather and gold crown to the horses' backs; crown in the foreground, horses mid-ground, the plain beyond in soft focus. Camera: static first frame of the shot. Atmosphere: dust lifting from the horses' hooves, blown left to right; skin of his neck is matte blue-grey with no glow. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make",
+    "video": "man who looks about 30; oval face, high cheekbones, gentle strong jaw; large almond-shaped dark brown eyes, calm steady gaze; straight nose, full lips at rest in a faint knowing calm; deep blue-grey skin with a natural matte sheen and real skin texture, small vermilion tilak on the forehead; long black wavy hair, part tied up under a gold crown set with one peacock feather; lean athletic build, upright relaxed posture; yellow silk pitambara, garland of fresh forest flowers, gold armlets. Seen from behind and a little above, as the archer standing behind him sees him: he sits on the driver's board holding the reins in both hands, shoulders relaxed, completely still. Arjuna's war chariot, gold and white, worn and dusty from use, four white horses, a banner bearing Hanuman, carved spoked wheels caked with dirt. The four horses shift their weight, one tosses its head and blows; the Hanuman banner snaps on its pole. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The chariot faces screen right toward the enemy. Lens: 50 mm at f/4, high angle from standing height looking down past the peacock feather and gold crown to the horses' backs; crown in the foreground, horses mid-ground, the plain beyond in soft focus. Camera: locked off on a tripod at a standing man's eye height, no movement. Only the world moves: horses, harness, banner, dust. Krishna stays still the whole time. Atmosphere: dust lifting from the horses' hooves, blown left to right; skin of his neck is matte blue-grey with no glow. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 5 seconds. First and last frame: the same composition, Krishna unmoved; the horses restless. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make."
+  },
+  "spec": {
+    "purpose": "wide",
+    "characters": [
+      "krishna",
+      "chariot"
+    ],
+    "subject": "Krishna on the driver's seat, seen from behind and above, reins in both hands, four white horses ahead",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "SUBJECTIVE, Arjuna looking down past Krishna's crown to the horses",
+    "camera_height": "high",
+    "lens": "normal_50",
+    "focus": "deep",
+    "move": "locked_off",
+    "move_detail": "",
+    "subject_motion": "horses shift and toss their heads, the banner snaps; Krishna does not move",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "Krishna unmoved, horses restless",
+    "screen_direction": "left_to_right",
+    "on_screen_seconds": 2.6,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "horses blowing and stamping, harness jingle, banner cloth snapping, wind",
+    "narration": "",
+    "source_in": -1.0,
+    "source_of": -1,
+    "ramp_at": -1.0,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video"
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.205,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 5,
+  "request": {
+    "prompt": "man who looks about 30; oval face, high cheekbones, gentle strong jaw; large almond-shaped dark brown eyes, calm steady gaze; straight nose, full lips at rest in a faint knowing calm; deep blue-grey skin with a natural matte sheen and real skin texture, small vermilion tilak on the forehead; long black wavy hair, part tied up under a gold crown set with one peacock feather; lean athletic build, upright relaxed posture; yellow silk pitambara, garland of fresh forest flowers, gold armlets. Seen from behind and a little above, as the archer standing behind him sees him: he sits on the driver's board holding the reins in both hands, shoulders relaxed, completely still. Arjuna's war chariot, gold and white, worn and dusty from use, four white horses, a banner bearing Hanuman, carved spoked wheels caked with dirt. The four horses shift their weight, one tosses its head and blows; the Hanuman banner snaps on its pole. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The chariot faces screen right toward the enemy. Lens: 50 mm at f/4, high angle from standing height looking down past the peacock feather and gold crown to the horses' backs; crown in the foreground, horses mid-ground, the plain beyond in soft focus. Camera: locked off on a tripod at a standing man's eye height, no movement. Only the world moves: horses, harness, banner, dust. Krishna stays still the whole time. Atmosphere: dust lifting from the horses' hooves, blown left to right; skin of his neck is matte blue-grey with no glow. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 5 seconds. First and last frame: the same composition, Krishna unmoved; the horses restless. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "image_url": "https://v3b.fal.media/files/b/0aaff18d/KAcdWMZt1HpxKCEBG28Py_oyo9urbB.png",
+    "duration": "5",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 121,
+    "motion": 19.28,
+    "flicker": 4.38,
+    "notes": []
+  },
+  "ended": "2026-10-26T15:21:00",
+  "reviewed": true
+}

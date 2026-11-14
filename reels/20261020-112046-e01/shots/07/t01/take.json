@@ -1,0 +1,68 @@
+{
+  "id": "t01",
+  "shot": 6,
+  "created": "2026-10-20T11:30:12",
+  "status": "ready",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photoreal cinematic film still. the whole field of Kurukshetra: two vast armies drawn up facing each other with an open plain between them, the sun rising in the gap. Identity: Kurukshetra battlefield at dawn: two vast armies facing each other, saffron and white banners, conches, dust and haze, sun rising between them. Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them. establishing composed for a vertical 9:16 frame: vertical frame: foreground a raised banner at the bottom edge, middle ground the two armies receding to left and right, background the rising sun and sky in the upper third, leaving space for one line of text. This is the first frame of the shot, framed as a close-up. camera above the subject looking down. 18-24 mm equivalent lens: exaggerated depth, strong leading lines, large foreground elements, monumental perspective, no faces near the lens. depth of field around f/5.6, deep focus: foreground to horizon readable; a deliberate focal hierarchy, not blur everywhere. sunbeams cutting through smoke, dust or architectural openings; visible shafts of warm light, subject partly in the beam; dim ambient. volumetric sun rays through dust and haze, drifting smoke and dust motes; subtle, never hiding the image. richly detailed banners, armour glints, dry plain. grade: photoreal cinematic CGI of an Indian epic, golden-hour backlight, sun low in frame, volumetric haze and dust, warm rim light on skin and metal, shallow depth of field, anamorphic flare, heroic scale; exposure deep crushed blacks (5th-percentile luma ~11/255), bright creamy highlights (95th ~222), mid-tones low (~82); warm amber highlights, earthy midtones, controlled deep shadows, natural skin, never uniformly orange. the image character of a modern large-format digital cinema camera: filmic highlight roll-off, wide dynamic range, natural colour separation, smooth skin tones, rich shadow detail, fine organic texture and natural 180-degree-shutter motion blur.",
+    "negative": "cartoon, illustration, anime, video-game render, plastic or waxy skin, artificial smoothness, excessive sharpening, overprocessed HDR halos, oversaturated orange-and-teal, glowing outlines, excessive artificial bloom, temporal flicker, warped architecture, unstable background, inconsistent shadows, random camera shake, abrupt zoom, extreme lens distortion, compression artifacts, text, watermark, logo, gore, blood, distorted face, asymmetrical eyes, morphing face, malformed hands, extra fingers, extra limbs, broken joints, floating feet, sliding feet, changing clothing, inconsistent jewellery",
+    "video": "Slow pull-back reveal: camera dollies slowly backward away from the subject, from close-up to medium wide revealing the surroundings, slow and steady, ease-in and ease-out; camera starts behind the foreground banner and pulls slowly back and up, revealing the full scale of both armies; ends composed and still. Keep subject stays the visual anchor while the world opens up around it. No zooming, sudden speed changes. The sun rises slowly; banners stir along both lines; haze drifts across the plain. volumetric sun rays through dust and haze, drifting smoke and dust motes; subtle, never hiding the image. lighting and shadows stay consistent with the first frame: sunbeams cutting through smoke, dust or architectural openings; visible shafts of warm light, subject partly in the beam; dim ambient. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: a composed, breathing wide of both armies and the sun between them, held for the verse line."
+  },
+  "spec": {
+    "purpose": "establishing",
+    "characters": [
+      "kurukshetra"
+    ],
+    "subject": "the whole field of Kurukshetra: two vast armies drawn up facing each other with an open plain between them, the sun rising in the gap",
+    "environment": "Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them",
+    "composition": "vertical frame: foreground a raised banner at the bottom edge, middle ground the two armies receding to left and right, background the rising sun and sky in the upper third, leaving space for one line of text",
+    "camera_height": "high",
+    "lens": "ultrawide_21",
+    "focus": "deep",
+    "move": "pull_out",
+    "move_detail": "camera starts behind the foreground banner and pulls slowly back and up, revealing the full scale of both armies; ends composed and still",
+    "subject_motion": "The sun rises slowly; banners stir along both lines; haze drifts across the plain",
+    "lighting": "volumetric_rays",
+    "atmosphere": "volumetric sun rays through dust and haze",
+    "materials": "banners, armour glints, dry plain",
+    "end_frame": "a composed, breathing wide of both armies and the sun between them, held for the verse line",
+    "screen_direction": "none",
+    "on_screen_seconds": 3.0,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "distant conch, wind",
+    "narration": ""
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.18,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "Slow pull-back reveal: camera dollies slowly backward away from the subject, from close-up to medium wide revealing the surroundings, slow and steady, ease-in and ease-out; camera starts behind the foreground banner and pulls slowly back and up, revealing the full scale of both armies; ends composed and still. Keep subject stays the visual anchor while the world opens up around it. No zooming, sudden speed changes. The sun rises slowly; banners stir along both lines; haze drifts across the plain. volumetric sun rays through dust and haze, drifting smoke and dust motes; subtle, never hiding the image. lighting and shadows stay consistent with the first frame: sunbeams cutting through smoke, dust or architectural openings; visible shafts of warm light, subject partly in the beam; dim ambient. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: a composed, breathing wide of both armies and the sun between them, held for the verse line.",
+    "image_url": "https://v3b.fal.media/files/b/0aaf21ad/lPOSHCGpiIzth5o-tpDxJ_SDXUxsCN.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 21.52,
+    "flicker": 4.74,
+    "notes": []
+  },
+  "ended": "2026-10-20T11:31:38",
+  "reviewed": true
+}
