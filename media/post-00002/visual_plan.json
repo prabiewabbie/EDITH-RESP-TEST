@@ -1,0 +1,85 @@
+{
+  "style_guide": "Two visual worlds joined by one warm thread of light. MODERN WORLD (scenes 0, 1, 6, 7): photorealistic, cinematic, 35mm/50mm lenses, shallow depth of field, gentle film grain. Night interiors begin in cool desaturated blue (#1B2A41, #3A5A80 screen glow) and resolve to warm tungsten amber (#E8A951, #C97B2E) as calm returns. The person is always anonymous: seen from behind, in silhouette, or as hands only. Generic, unbranded objects only. EPIC WORLD (scenes 2–5): painterly, reverent devotional realism inspired by classical Indian miniature and oil-painting traditions, with soft brushwork and luminous haze. Golden-dawn palette of saffron, ochre, ivory, deep peacock blue (#1F4E79) and Krishna's yellow silk (#F2C14E). Slow, steady camera moves; never shaky. All divine and epic figures appear with dignity in traditional iconography. Krishna is blue-complexioned, wears yellow silk and a crown with a peacock feather, and is serene. Arjuna wears princely warrior attire with the bow Gandiva. Battle armies appear only at a distance, still and non-violent. CONTINUITY: a warm flame or lamp glow links the scenes and grows from tiny to dominant as the story moves from noise to clarity. Mood arc: overwhelmed, then reverent, then honest, then quiet resolve. NO text, letters, logos, watermarks or legible screens in any generated frame; all on-screen text, the verse and the Echoes of Gita title are added in editing. Master aspect 4:5, composed with safe margins so it can be reframed to 9:16 (keep key subjects centred, with headroom at top and bottom for captions).",
+  "assets": [
+    {
+      "kind": "video",
+      "scene_index": 0,
+      "prompt": "Cinematic photorealistic night interior. A dim wooden desk lit only by a laptop screen whose glow shows an abstract blur of many small rectangular browser-tab shapes (no legible text). A young graduate is seen from behind in soft silhouette, face not visible, resting their head in one hand, shoulders slumped. Beside the laptop lie two blank folded white letters side by side and a ceramic cup of tea with a faint last wisp of steam. Cool blue screen glow rim-lights the hair and shoulder, with deep shadows in the rest of the room. 35mm lens, over-the-shoulder composition, shallow depth of field, gentle film grain. Very slow push-in. Mood: overwhelmed, quiet, lonely.",
+      "negative_prompt": "text, letters, words, readable screen, logos, brand names, watermark, identifiable face, celebrity likeness, real person, political symbols, bright daylight, cartoon, oversaturated, distorted hands",
+      "aspect": "4:5",
+      "duration_seconds": 5.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 1,
+      "prompt": "Photorealistic close-up of a laptop screen as abstract, unbranded interface panels multiply and overlap rapidly: generic audio-waveform players, blurred article layouts made of grey bars, and video thumbnails filled only with abstract geometric gradients. Nothing is legible, there are no faces and no logos. Rack focus to a smartphone on the wooden desk that vibrates repeatedly, its screen lighting up with stacked blank rounded notification bubbles (no readable words). Cool blue and cyan glow, slight flicker, 50mm macro feel, shallow depth of field. The cutting quickens slightly, then the motion stops and the phone screen dims to stillness. Mood: rising information overload, then hush.",
+      "negative_prompt": "legible text, readable names, letters, words, numbers, real app interfaces, logos, brand marks, social media icons, real faces, celebrity likeness, political symbols, watermark, cartoon",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 2,
+      "prompt": "Painterly, reverent wide establishing shot of the plain of Kurukshetra at golden dawn, in the style of classical Indian devotional painting with soft oil brushwork. A vast open earthen field rolls under a luminous saffron and ivory sky with low haze. Two great armies stand very far in the distance on either side, tiny, still and softly hazy, with tall cloth banners raised and fluttering gently; there is no combat. In the centre foreground-middle ground stands a magnificent ornate golden chariot drawn by four white horses. Krishna is seated as charioteer at the front and Arjuna stands behind him, both small in frame and shown as dignified silhouettes against the rising sun. Light dust motes drift in the golden air. Very slow aerial drift forward. Palette of ochre, saffron, ivory and soft peacock blue. Mood: vast, solemn, on the edge of decision.",
+      "negative_prompt": "undignified depiction of divine figures, non-traditional iconography, sexualised depiction, comedic depiction, meme style, cartoon caricature, combat, fighting, blood, gore, injury, corpses, weapons in use, violence, real living people, celebrity likeness, political symbols, flags of modern nations, text, letters, watermark, logos",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 3,
+      "prompt": "Painterly medium two-shot in traditional Indian devotional iconography on the chariot at Kurukshetra. Krishna is blue-complexioned, wears flowing yellow silk, a jewelled golden crown with a single peacock feather and a garland of fresh flowers, and has a serene, compassionate expression with a calm, gently raised hand. Arjuna is a noble prince in warrior attire with a gold-trimmed armour vest, crown and earrings. His great bow Gandiva rests set down at his side as he turns toward Krishna with palms joined in respectful, humble appeal. Warm low morning sunlight from the side, soft golden rim light, fine dust floating in the air, and the far background is a soft blur of hazy banners. 85mm portrait feel with gentle depth of field. Barely perceptible slow push-in. Palette of peacock blue, saffron yellow, ivory and warm gold. Mood: reverent stillness, sincerity, trust.",
+      "negative_prompt": "undignified depiction of divine figures, non-traditional iconography, wrong skin colour for Krishna, sexualised depiction, revealing clothing, comedic depiction, meme style, cartoon caricature, exaggerated expressions, violence, blood, gore, injury, real living people, celebrity likeness, political symbols, text, letters, watermark, logos, distorted hands, extra fingers",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 4,
+      "prompt": "Quiet, warm close shot of a traditional polished brass oil lamp (diya) with a single steady flame, resting on a dark aged wooden surface against a deep velvety near-black background. Warm amber glow falls off softly into shadow, with a subtle reflection on the wood grain and a faint smoke curl. The composition places the lamp in the lower-left third and leaves generous clean negative space on the right and above for the verse text, which is added in editing. 50mm lens, shallow depth of field, almost no motion except the gently breathing flame. Mood: deep calm, contemplation, sacred quiet.",
+      "negative_prompt": "text, letters, words, calligraphy, watermark, logos, flickering chaotic fire, multiple flames, hands, people, faces, clutter, cool blue light, cartoon",
+      "aspect": "4:5",
+      "duration_seconds": 8.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 5,
+      "prompt": "Close painterly macro detail of an aged palm-leaf manuscript resting on dark cloth, lit warmly by unseen lamplight from the side. The textured honey-brown leaf has a frayed edge, a binding-cord hole and faint ink-darkened grooves, kept soft and illegible. Leave a clear, softly glowing area of the leaf in the centre where the Devanagari word and caption will be overlaid in editing, with a gentle warm light bloom in that spot timed for the midpoint. Slow, steady lateral camera drift across the leaf, shallow depth of field. Palette of honey, umber and amber gold. Mood: intimate, scholarly, tender humility.",
+      "negative_prompt": "legible text, readable script, letters, words, numbers, watermark, logos, modern paper, hands, faces, people, harsh light, cartoon",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 6,
+      "prompt": "Cinematic photorealistic return to the same wooden desk at night, now lit by a small warm table lamp with a soft tungsten amber glow and the screen glow fading. Only the young graduate's hands and forearms are visible; there is no face. The fingers calmly close abstract unbranded tab panels on the laptop one by one, then gently fold the laptop shut. One hand turns the smartphone face down on the desk. The cooled tea cup and two blank letters rest neatly beside it. The colour temperature shifts from lingering blue to warm amber over the shot. 50mm lens, slow steady framing, shallow depth of field, gentle film grain. Mood: quiet relief, intention, warmth returning.",
+      "negative_prompt": "legible text, readable screen, logos, brand names, identifiable face, real person, celebrity likeness, political symbols, watermark, distorted hands, extra fingers, harsh light, cartoon",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 7,
+      "prompt": "Photorealistic close shot of an open hardbound book with cream pages, its type kept soft and illegible, resting beside the small warm lamp on the wooden desk. A thin cloth bookmark ribbon lies across the pages, which glow gold in the lamplight, and the closed laptop is softly out of focus behind. The camera slowly pulls back to reveal the calm, tidy desk in warm amber light. Keep clean dark space at the bottom of the frame for the title card added in editing. 35mm lens, shallow depth of field, gentle film grain. Mood: peaceful invitation, continuity, hope.",
+      "negative_prompt": "legible text, readable pages, book title, letters, logos, watermark, faces, people, real person, political symbols, cool blue light, clutter, cartoon",
+      "aspect": "4:5",
+      "duration_seconds": 5.0
+    },
+    {
+      "kind": "voiceover",
+      "scene_index": 0,
+      "prompt": "Warm, calm, gender-neutral adult narrator with a gentle Indian-English accent: intimate, sincere and unhurried, like a trusted friend sharing something meaningful. Scenes 0–1 are slightly quicker and empathetic. Scenes 2–3 are reverent and storytelling. For the verse in scene 4, slow down noticeably, speak with softness and gravity, and leave a short pause before the citation. In scene 5, pronounce 'iva' as 'EE-vuh' and 'Kurukshetra' as 'koo-roo-KSHAY-truh'. Scene 6 is reflective and tender, with brief pauses after 'Pause.' and 'I am confused.' Scene 7 is warm and inviting. Script: Ten tabs open. Ten experts. Ten opposite answers about your life. Even Arjuna knew this feeling. / Take the safe job. Follow your passion. Move abroad. Stay near family. Every voice sounds certain, and you feel less certain than ever. / On the field of Kurukshetra, Arjuna had just heard Krishna speak of steady wisdom, and of action. To him, the two teachings seemed to pull in different directions. / So Arjuna did not pretend to understand. He turned to his teacher and spoke honestly. / With these perplexing words Thou only confusest my understanding; therefore tell me with certainty the one way by which I may reach bliss. Bhagavad Gita, chapter three, verse two. / In the Sanskrit, Arjuna even softens his words with 'iva', meaning 'as if'. He doesn't blame his teacher. He admits his bewilderment and asks for clarity, and that sincere question opens the whole teaching of Karma Yoga. / A reflection, not scripture: perhaps all this noise isn't a personal failure. Perhaps the first step is Arjuna's step. Pause. Admit, 'I am confused.' And turn sincerely to one trusted source of wisdom, rather than collecting ten more voices. / Krishna's answer unfolds across all of Chapter Three. Keep reading with us.",
+      "negative_prompt": "celebrity voice imitation, real person voice clone, dramatic trailer voice, robotic tone, comedic delivery, background noise",
+      "aspect": "4:5",
+      "duration_seconds": 52.0
+    },
+    {
+      "kind": "music",
+      "scene_index": 0,
+      "prompt": "52-second instrumental underscore with no vocals. 0–11s (modern overwhelm): a sparse, slightly restless ambient electronic pulse with soft muted piano and subtle ticking textures, building gently in density, then cutting to near-silence at 11s as the phone buzzing fades. 11–25s (Kurukshetra): a low tanpura drone enters with a warm string pad and a distant, noble bansuri melody in a contemplative raga mood such as Yaman or Bhairav; spacious, dawn-like and reverent, never martial. 25–33s (verse): music drops to just the tanpura drone and one sustained soft note, leaving room for the voice. 33–40s (iva): delicate santoor or harp shimmer over the drone. 40–52s (resolution): the warm piano returns, joined by the bansuri in a hopeful, gentle resolution on a major-leaning cadence, ending in a soft fade. Mix sits under narration at about -18 LUFS, with a peaceful, sincere and devotional overall feel.",
+      "negative_prompt": "vocals, lyrics, chanting with words, heavy drums, war drums, epic trailer percussion, EDM drops, comedic tones, copyrighted melodies, abrupt endings",
+      "aspect": "4:5",
+      "duration_seconds": 52.0
+    }
+  ]
+}

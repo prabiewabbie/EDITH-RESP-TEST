@@ -1,0 +1,77 @@
+{
+  "style_guide": "Two visual worlds bound by one warm light. (1) PRESENT, photorealistic: a small rented apartment in a cold foreign city at night. Palette is cool steel-blue and slate shadows broken by warm amber pools from a phone screen and later a brass diya. Shot on a 35mm or 50mm prime at shallow depth of field, with soft bokeh city lights through rain-streaked glass and subtle film grain. The human figure is always seen from behind, in silhouette or as hands only, never with an identifiable face. (2) MEMORY, photorealistic: a family kitchen back home in warm afternoon sun, honey-gold tones, heavy 16mm film grain, soft halation and a dreamy, slightly faded look. (3) SCRIPTURE, painterly: a reverent painting in the tradition of classical Indian devotional art, like Raja Ravi Varma-inspired oil painting with soft gouache textures. Palette is dawn gold, saffron, ivory, peacock blue and Krishna's luminous blue, with diffused divine glow and gentle mist. Compositions are still and symmetrical. Krishna and Arjuna appear in traditional iconography with dignity and serenity. The war is shown only as distant banners and silhouettes, with no combat or injury. Across all three worlds: slow, meditative camera moves (gentle push-ins, soft drifts, slow dissolves), with warm light as the recurring motif linking phone glow, chai steam, divine light and diya flame. Absolutely no text, letters or readable UI anywhere in frame, since all on-screen text is added in editing. Master aspect is 4:5. Keep key subjects centered with safe margins so a 9:16 reframe works.",
+  "assets": [
+    {
+      "kind": "video",
+      "scene_index": 1,
+      "prompt": "Cinematic photorealistic night interior of a small, sparse apartment in a cold foreign city. Rain trickles down a large window, and distant city lights are blurred into soft blue and amber bokeh. A young adult, seen from behind in soft silhouette with no visible face, sits on the edge of a neatly made bed wearing a plain hoodie and holds a smartphone. The phone screen shows an abstract, text-free messaging interface: a single rounded audio bubble with a small red heart shape and a simple waveform. The thumb hovers, pauses, then gently taps the bubble. The warm amber glow of the screen lights the hands and fingertips against cool blue room tones. Over-the-shoulder composition on a 35mm lens at shallow depth of field, with a slow push-in toward the phone. Quiet, intimate, homesick mood with subtle film grain.",
+      "negative_prompt": "any text, letters, words, captions, readable UI, usernames, timestamps, app logos, brand logos, watermarks, identifiable face, celebrity likeness, real living person, political symbols, flags, bright cheerful lighting, cluttered room, distorted hands, extra fingers, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 5.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 2,
+      "prompt": "Opens on an extreme close-up of an abstract audio waveform pulsing gently in warm amber on a dark phone screen, in macro with shallow focus. A soft, dreamlike cross-fade carries us into a memory: a modest family kitchen back home in warm afternoon sunlight streaming through a window with a light cotton curtain. Aged, gentle hands wearing a single simple gold bangle stir a steel pot of milky chai on a gas stove, and fragrant steam curls upward through the sunbeams. Steel utensils and a small jar of spices sit softly out of focus. No faces are shown, only hands and steam. Shot on a 50mm lens at a low angle near counter height, with heavy golden 16mm film grain, gentle halation and a slightly faded nostalgic palette. Slow drifting camera, with a tender, comforting mood.",
+      "negative_prompt": "any text, letters, words, labels on jars, brand logos, packaging text, watermarks, faces, identifiable person, celebrity likeness, political symbols, modern glossy kitchen, cold lighting, mess or spills, distorted hands, extra fingers, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 3,
+      "prompt": "Painterly, reverent wide shot of the field of Kurukshetra at dawn in the style of classical Indian devotional oil painting. In the foreground stands a single ornate golden chariot with carved wheels and a small saffron banner, yoked to four calm white horses standing still. Far on the horizon, two great armies appear only as faint, hazy silhouettes and rows of distant banners, softened by golden mist. The sky glows in dawn gold, peach and pale saffron, with soft sun rays breaking through. The composition is symmetrical with a low horizon and generous sky. Any figures on the chariot are tiny, dignified and indistinct. Very slow aerial drift forward. Calm, still, sacred atmosphere with no movement of armies and no combat.",
+      "negative_prompt": "combat, fighting, weapons in use, arrows flying, blood, gore, injury, corpses, fire, smoke from destruction, chaos, any text, letters, inscriptions, watermarks, logos, political symbols, modern flags, real living people, celebrity likeness, sexualised depiction, comedic depiction, meme style, cartoonish exaggeration, disrespectful or distorted depiction of divine figures, non-traditional iconography",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 4,
+      "prompt": "Painterly traditional-iconography scene on the ornate golden chariot at Kurukshetra, in the style of classical Indian devotional oil painting. Krishna, with a luminous blue complexion, sits with serene, compassionate composure. He wears a bright yellow silk dhoti and a jeweled golden crown with a single peacock feather, along with a tulsi garland and gentle gold ornaments, and one hand is raised softly in a teaching gesture. A soft radiant halo of golden-white divine light surrounds Him. Before Him kneels Arjuna in princely golden armor with a regal crown, his great bow Gandiva laid down respectfully beside him, hands folded in reverent anjali. His expression is earnest and attentive as he looks up toward Krishna. The background is soft dawn mist with faint distant banners. Balanced, reverent composition on a medium-wide framing, with Krishna slightly elevated and lit by divine glow and Arjuna in warm reflected light. Palette is peacock blue, saffron, gold and ivory. Extremely slow push-in with subtle shimmering light. Dignified, still, devotional mood.",
+      "negative_prompt": "any text, letters, Sanskrit or English script, captions, watermarks, logos, sexualised depiction, revealing or suggestive clothing, comedic or cartoonish expressions, meme style, caricature, violent gore, blood, injury, active combat, weapons pointed, anger or aggression, distorted anatomy, extra limbs, extra fingers, wrong skin tone for Krishna, non-traditional or modernised iconography, real living people, celebrity likeness, political symbols, flags, disrespectful poses, neon colors",
+      "aspect": "4:5",
+      "duration_seconds": 11.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 5,
+      "prompt": "Slow painterly close-up of Arjuna in the style of classical Indian devotional oil painting. He wears a princely golden crown and armor, his eyes lift upward in quiet thirst and gratitude, and his expression is soft, humble and deeply attentive. His hands are folded in anjali at his chest, catching a beam of warm golden light. The background softly dissolves into gentle flowing ribbons of golden and peacock-blue light, like streams of radiance, suggesting words that keep giving and never run dry. Shallow depth of field in a painterly rendering on an 85mm portrait framing, slightly below eye level. Very slow push-in as the light ribbons drift. Palette is gold, saffron, ivory and soft blue. Reverent, nourished, peaceful mood.",
+      "negative_prompt": "any text, letters, script, calligraphy, captions, watermarks, logos, sexualised depiction, comedic or exaggerated expression, meme style, caricature, tears of anguish, violent gore, blood, injury, weapons raised, aggression, distorted face, distorted hands, extra fingers, non-traditional or modernised iconography, real living people, celebrity likeness, political symbols, harsh shadows",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 6,
+      "prompt": "Cinematic photorealistic night interior, back in the small apartment in the cold foreign city. Rain still streaks the window and blurred city lights glow cool blue beyond. The phone now rests face-up on the bed with its screen dimmed. The same young adult, seen from behind in soft silhouette with no visible face, turns and reaches toward the nightstand. There sits a worn, cloth-bound copy of the Bhagavad Gita with a plain, unmarked cover and softened corners, beside a small brass diya with a gently flickering flame. The fingertips touch the book as the diya's warm amber light blooms across the room, slowly overpowering the cool blue tones. Shot on a 35mm lens with shallow depth of field and a gentle lateral drift toward the nightstand. Subtle film grain. Calm, consoling, quietly hopeful mood.",
+      "negative_prompt": "any text, readable title, letters, words on book cover or spine, captions, watermarks, brand logos, identifiable face, celebrity likeness, real living person, political symbols, religious caricature, harsh overhead lighting, cluttered room, fire hazard, large flames, distorted hands, extra fingers, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 8.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 7,
+      "prompt": "Photorealistic overhead top-down shot of an open, well-worn book resting on a soft, textured wool blanket in muted indigo. The pages are cream with abstract, unreadable soft-focus lines rather than legible script. A small brass diya at the upper edge of the frame casts a warm flickering glow across the pages. A clay kulhad cup of milky chai sits beside the book, steam curling gently upward. A single dried marigold petal rests on the page. Composition is centered with generous empty margins, and the warm amber palette is set against deep shadow. Very slow overhead push-in, then a gentle fade into a calm, warm, softly textured saffron-to-amber gradient background left completely clean and empty in the center for a logo to be added in editing. Serene, inviting, contemplative mood.",
+      "negative_prompt": "any readable text, legible script, letters, logos, watermarks, captions, brand marks, faces, people, celebrity likeness, political symbols, cluttered props, cold lighting, spilled chai, large flames, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "voiceover",
+      "scene_index": 0,
+      "prompt": "Warm, intimate, unhurried narration in clear Indian-accented English by a calm adult voice, gender-neutral or softly male. The tone should feel like confiding in a friend late at night: gentle, reverent, never preachy. Speak slowly with natural pauses, close-mic and slightly breathy, with minimal room reverb. Lower the voice almost to a whisper for the opening, read the verse with quiet reverence and a slight slowing, and say 'Reflection' lines softly and thoughtfully. Script, by scene: [1] You've heard this voice note a hundred times. Tonight you press play again. [2] You know every word by heart. Still, something in you settles when you hear them. [3] In Chapter 10 of the Bhagavad Gita, Arjuna has already heard Krishna describe His divine glories. And yet, he asks again. [4] \"In detail tell me again of Thy yoga and glory, O Janardana; for me there is never satiety in hearing thy life-giving words.\" Bhagavad Gita, chapter ten, verse eighteen. [5] Arjuna isn't asking for new information. Many traditional readings see this as the mark of a sincere seeker: hearing what is sacred nourishes, and it does not run dry. [6] A reflection: perhaps the words that sustain us, a verse or a loving voice, were never meant to be heard just once. [7] Tonight, return to one verse that once steadied you. Read it again, slowly. Pronounce Janardana as jah-NAR-dah-nah and Arjuna as AR-joo-nah.",
+      "negative_prompt": "theatrical or booming delivery, dramatic movie-trailer tone, fast pacing, sing-song cadence, comedic inflection, heavy reverb, background noise, mispronunciation of Sanskrit names, imitation of any real or celebrity voice",
+      "aspect": "4:5",
+      "duration_seconds": 50.0
+    },
+    {
+      "kind": "music",
+      "scene_index": 0,
+      "prompt": "Gentle, contemplative instrumental score of about 50 seconds at roughly 60 BPM. Open with soft rain ambience and a sustained tanpura drone in C, joined by sparse, warm felt-piano notes. At about 11 seconds, as the memory and the Kurukshetra dawn appear, add a tender bansuri flute melody in a raga-inspired mood like Yaman or Bhimpalasi, which is meditative and longing. During the verse, from about 18 to 29 seconds, thin the arrangement to tanpura, a soft string pad and faint temple-bell shimmer so the narration stays clear. Swell gently with low strings and bansuri during the nourishment section, then settle back into rain, piano and diya warmth. End on a resolved, softly fading tanpura chord with a single distant bell. Mixed low under voice, with an intimate, homesick, devotional and hopeful feel.",
+      "negative_prompt": "percussion-heavy beats, EDM, trap, loud drums, war drums, battle music, aggressive brass, vocals or lyrics, chanting with words, comedic tones, abrupt endings, copyrighted melodies, imitation of any real artist",
+      "aspect": "4:5",
+      "duration_seconds": 50.0
+    }
+  ]
+}

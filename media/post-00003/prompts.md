@@ -1,0 +1,45 @@
+# Post 3 — style guide
+
+Warm, reverent Indian painterly style blending classical miniature and devotional oil-painting traditions with soft, modern naturalism. Visible gentle brushwork, slightly textured canvas or parchment grain, no photorealism. Palette: saffron, marigold gold, deep indigo blue, terracotta, warm ivory and muted earth greens. Golden lamplight and diya glow are recurring motifs; dusk and dawn light dominate. Family scenes use the same modest middle-class Indian home: a wooden dining table, brass lamps, simple cotton clothing, and generic, non-identifiable faces with soft features. Divine figures appear only in dignified traditional iconography. Compositions are calm and balanced, with an eye-level or gently elevated 35-50mm feel and a soft depth of field. Every slide leaves clean negative space in the upper third for text added in editing. Mood: intimate, empathetic, peaceful, devotional. Master aspect 4:5; keep key subjects centered so a 9:16 crop also works.
+
+## Scene 0 · image · 4:5
+
+Warm painterly scene of an Indian family dinner at dusk, seen from a gentle distance at slightly elevated eye level, 35mm feel. A wooden table holds steaming bowls of dal, rice and rotis, with a brass lamp casting soft golden light. A young adult sits quietly at one side, and beside their plate rests a small, well-worn cloth-bound book with a plain cover. Parents, a grandparent and a younger sibling talk and laugh around the table. Generic, non-identifiable soft faces and simple cotton clothing. Rich saffron, amber and deep indigo shadows, with a dusky blue window behind. Calm, intimate mood and visible brushwork. Clean, softly lit wall space in the upper third.
+
+Negative: text, letters, words, captions, logos, watermark, legible book titles, real people, celebrity likeness, identifiable faces, political symbols, photorealism, harsh lighting, cluttered composition, distorted hands, extra fingers
+
+## Scene 1 · image · 4:5
+
+Elegant, minimal background for a quote card. Aged ivory parchment fills the frame with subtle fibers and soft vignetting, framed by a delicate border of thin saffron and deep indigo-blue lines with fine traditional Indian lotus-vine ornament at the corners. In the lower right corner sits a small brass diya with a softly glowing flame, casting a warm halo onto the parchment. The center and upper two-thirds are left completely empty and evenly lit for text added in editing. Painterly, reverent and serene, with a warm golden palette and a flat frontal composition.
+
+Negative: text, letters, calligraphy, script, Devanagari characters, words, numbers, logos, watermark, people, figures, faces, clutter, heavy patterns in center, photorealism, harsh shadows
+
+## Scene 2 · image · 4:5
+
+Classical Indian devotional painting in traditional iconography. Krishna, blue-complexioned with a serene, compassionate expression, wears a peacock-feather crown, a yellow silk pitambara and simple gold ornaments. He is seated as charioteer at the front of an ornate wooden chariot and turns gently toward Arjuna. Arjuna, in princely attire with his bow resting at his side, listens with folded hands and a humble, attentive expression. Four white horses stand calmly. The armies of Kurukshetra appear only as a hazy, distant line on the horizon with faint banners under a soft rose-and-gold dawn sky. Mid-distance three-quarter view and a balanced composition. Palette of saffron, gold, indigo and soft pastels. Dignified, peaceful and devotional, with an open sky in the upper third.
+
+Negative: text, letters, words, logos, watermark, sexualised depiction, revealing or suggestive clothing, comedic or cartoonish style, meme style, caricature, exaggerated expressions, violence, gore, blood, injury, weapons in use, close-up battle, corpses, aggressive poses, disrespectful depiction of divine figures, non-traditional iconography, real people, celebrity likeness, political symbols, flags of modern nations, photorealism, distorted anatomy, extra limbs
+
+## Scene 3 · image · 4:5
+
+Painterly image of a simple Indian village courtyard at sunrise, wide 35mm composition at eye level. An elderly man quietly sweeps the packed-earth ground with a broom. A potter sits at his wheel shaping a clay pot with careful hands. A woman in a cotton sari draws water from a stone well. Each figure is absorbed in steady, careful work. A neem tree, terracotta pots and whitewashed mud walls fill the scene. Soft low golden sunlight with long gentle shadows and light morning haze. Palette of earthy ochre, terracotta, soft green and warm gold. Mood of harmony and quiet dignity in everyday labour. Generic, non-identifiable faces and a pale sky in the upper third.
+
+Negative: text, letters, words, logos, watermark, real people, celebrity likeness, identifiable faces, political symbols, poverty-porn framing, distress, photorealism, modern vehicles, clutter, distorted hands, extra fingers
+
+## Scene 4 · image · 4:5
+
+The same Indian family dinner table and room as the opening slide, now in a moment of gentle tension, eye level, 50mm feel. The young adult leans forward mid-sentence with an earnest open hand gesture. A parent sits with posture slightly withdrawn, arms loosely folded and gaze turned aside. A sibling glances down at a phone, its screen dark and unreadable. Half-finished bowls rest on the table. The lamplight is dimmer and cooler, with muted amber turning toward dusky blue-grey shadows. Painterly, empathetic and understated, not dramatic. Generic, non-identifiable soft faces. Quiet, dim wall space in the upper third.
+
+Negative: text, letters, words, readable screen, logos, watermark, shouting, anger, crying, violence, melodrama, real people, celebrity likeness, identifiable faces, political symbols, photorealism, harsh lighting, distorted hands, extra fingers
+
+## Scene 5 · image · 4:5
+
+Warm painterly scene after dinner in the same home's simple kitchen, eye level, 35mm feel. The young adult washes dishes at a steel sink alongside a parent, both smiling softly, shoulders close. A younger sibling dries plates with a cotton towel nearby. Steam rises gently from the sink, and stacked brass and steel vessels sit on the counter. A small clay diya glows on the windowsill against a deep indigo night window. Golden lamplight fills the room again with a saffron, amber and warm ivory palette. Peaceful, tender, everyday harmony. Generic, non-identifiable soft faces. Softly lit wall space in the upper third.
+
+Negative: text, letters, words, logos, watermark, brand labels, real people, celebrity likeness, identifiable faces, political symbols, photorealism, harsh lighting, clutter, distorted hands, extra fingers
+
+## Scene 6 · image · 4:5
+
+Closing still life in painterly style. A single brass diya burns with a steady, calm flame on a warm wooden table. Beside it rests a closed, cloth-bound book with a plain saffron cover and no markings, along with a few marigold petals. In the background, soft circular bokeh of warm household lights glows in amber and gold against deep indigo shadow. Low, close camera at a 50mm feel with shallow depth of field. The composition is anchored in the lower half, leaving generous, clean dark-gradient space in the upper half for text. Calm, reverent and contemplative.
+
+Negative: text, letters, words, book title, logos, watermark, people, hands, faces, political symbols, religious symbols other than the diya, clutter, photorealism, harsh lighting, smoke clouds
