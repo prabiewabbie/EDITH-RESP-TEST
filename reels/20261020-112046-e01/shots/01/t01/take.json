@@ -1,0 +1,72 @@
+{
+  "id": "t01",
+  "shot": 0,
+  "created": "2026-10-20T11:21:54",
+  "status": "failed_qc",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photoreal cinematic film still. Dhritarashtra, the blind Kuru king: aged man with a long grey beard, heavy gold crown and dark silk robes with gold borders, seated upright on an ornate carved throne; his eyes are unseeing, gaze unfocused, posture anxious, hands gripping the armrests; dignified, never grotesque; in left profile, chin slightly lifted, lips parted as he asks his question. Identity: Dhritarashtra, the blind Kuru king: aged, grey beard, ornate throne, unseeing eyes, anxious posture. Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke. hero closeup composed for a vertical 9:16 frame: face fills the right two thirds in left-facing profile; foreground soft lamp flame on the left edge; background pillars falling into darkness. This is the first frame of the shot, framed as a medium close-up. camera at eye level. 85 mm equivalent lens: tight framing with natural facial proportions, compressed perspective, strong subject-background separation, smooth creamy background defocus, crisp detail at the eyes with gentle focus falloff. depth of field around f/2, focus locked on the nearest eye; a deliberate focal hierarchy, not blur everywhere. flickering oil lamps or torches close to the subject; warm orange key with deep falloff into darkness, gentle natural flicker; almost none. thin incense smoke, floating dust motes, faint smoke. richly detailed weathered skin, grey beard hair, hammered gold crown, silk. grade: photoreal cinematic CGI of an Indian epic, golden-hour backlight, sun low in frame, volumetric haze and dust, warm rim light on skin and metal, shallow depth of field, anamorphic flare, heroic scale; exposure deep crushed blacks (5th-percentile luma ~11/255), bright creamy highlights (95th ~222), mid-tones low (~82); warm amber highlights, earthy midtones, controlled deep shadows, natural skin, never uniformly orange. the image character of a modern large-format digital cinema camera: filmic highlight roll-off, wide dynamic range, natural colour separation, smooth skin tones, rich shadow detail, fine organic texture and natural 180-degree-shutter motion blur.",
+    "negative": "cartoon, illustration, anime, video-game render, plastic or waxy skin, artificial smoothness, excessive sharpening, overprocessed HDR halos, oversaturated orange-and-teal, glowing outlines, excessive artificial bloom, temporal flicker, warped architecture, unstable background, inconsistent shadows, random camera shake, abrupt zoom, extreme lens distortion, compression artifacts, text, watermark, logo, gore, blood, distorted face, asymmetrical eyes, morphing face, malformed hands, extra fingers, extra limbs, broken joints, floating feet, sliding feet, changing clothing, inconsistent jewellery",
+    "video": "Slow push-in (dolly): camera dollies slowly forward along the subject's eyeline, from medium close-up to close-up, very slow, about 5 percent of frame height per second, gentle ease-in, steady middle, soft ease-out to a stop; starts on a medium close-up of head and crown, dollies slowly forward along his eyeline to a tight close-up of the eye and crown jewels; very slow. Keep subject's eyes on the focal plane; background shifts with real parallax. No digital zoom, changing facial proportions. Lamp light flickers across his face; he slowly turns his head a few degrees toward the light; incense smoke drifts past. thin incense smoke, floating dust motes, faint smoke. lighting and shadows stay consistent with the first frame: flickering oil lamps or torches close to the subject; warm orange key with deep falloff into darkness, gentle natural flicker; almost none. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: tight on the unseeing eye with flame light dancing in it, cut on his stillness."
+  },
+  "spec": {
+    "purpose": "hero_closeup",
+    "characters": [
+      "dhritarashtra"
+    ],
+    "subject": "Dhritarashtra, the blind Kuru king: aged man with a long grey beard, heavy gold crown and dark silk robes with gold borders, seated upright on an ornate carved throne; his eyes are unseeing, gaze unfocused, posture anxious, hands gripping the armrests; dignified, never grotesque; in left profile, chin slightly lifted, lips parted as he asks his question",
+    "environment": "Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke",
+    "composition": "face fills the right two thirds in left-facing profile; foreground soft lamp flame on the left edge; background pillars falling into darkness",
+    "camera_height": "eye",
+    "lens": "portrait_85",
+    "focus": "eyes",
+    "move": "push_in",
+    "move_detail": "starts on a medium close-up of head and crown, dollies slowly forward along his eyeline to a tight close-up of the eye and crown jewels; very slow",
+    "subject_motion": "Lamp light flickers across his face; he slowly turns his head a few degrees toward the light; incense smoke drifts past",
+    "lighting": "firelight",
+    "atmosphere": "thin incense smoke, floating dust motes",
+    "materials": "weathered skin, grey beard hair, hammered gold crown, silk",
+    "end_frame": "tight on the unseeing eye with flame light dancing in it, cut on his stillness",
+    "screen_direction": "right_to_left",
+    "on_screen_seconds": 2.4,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "lamp flame crackle, low hall ambience",
+    "narration": ""
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": false,
+      "problems": [
+        "Dhritarashtra must read as an aged Indian king: dark-brown Indian complexion and Indian features, not European",
+        "he is blind: eyes clouded and unfocused, gazing past the light, no red glint"
+      ]
+    }
+  ],
+  "cost_usd": 0.18,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "Slow push-in (dolly): camera dollies slowly forward along the subject's eyeline, from medium close-up to close-up, very slow, about 5 percent of frame height per second, gentle ease-in, steady middle, soft ease-out to a stop; starts on a medium close-up of head and crown, dollies slowly forward along his eyeline to a tight close-up of the eye and crown jewels; very slow. Keep subject's eyes on the focal plane; background shifts with real parallax. No digital zoom, changing facial proportions. Lamp light flickers across his face; he slowly turns his head a few degrees toward the light; incense smoke drifts past. thin incense smoke, floating dust motes, faint smoke. lighting and shadows stay consistent with the first frame: flickering oil lamps or torches close to the subject; warm orange key with deep falloff into darkness, gentle natural flicker; almost none. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: tight on the unseeing eye with flame light dancing in it, cut on his stillness.",
+    "image_url": "https://v3b.fal.media/files/b/0aaf217b/IUdkY6WK0x9Vt3Ncc8A3j_okCwsYLX.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 22.93,
+    "flicker": 2.79,
+    "notes": []
+  },
+  "ended": "2026-10-20T11:23:15",
+  "reviewed": true,
+  "retry_hint": "Fix: Dhritarashtra must read as an aged Indian king: dark-brown Indian complexion and Indian features, not European; he is blind: eyes clouded and unfocused, gazing past the light, no red glint"
+}

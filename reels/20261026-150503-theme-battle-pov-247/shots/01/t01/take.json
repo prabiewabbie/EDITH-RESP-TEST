@@ -1,0 +1,49 @@
+{
+  "id": "t01",
+  "shot": 0,
+  "created": "2026-10-26T15:05:57",
+  "status": "failed",
+  "hint": "",
+  "provider": "bytedance/seedance-2.0/mini/image-to-video",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Seen only from his own eyes: his right hand holds the string drawn to the corner of his jaw, three callused fingers hooked on the string, the bronze arrowhead out in front of him trembling a few millimetres; the dark recurve limb of the Gandiva with gold bands crosses the left edge. His face is not in frame. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The moment before the battle opens; across the field the Kaurava line of chariots and banners waits, small and soft. Lens: 35 mm at f/2.8, first-person eye height, arrow shaft and knuckles sharp in the foreground, the distant army out of focus. Camera: static first frame of the shot. Atmosphere: dust blown left to right by the wind, low haze over the far army, a banner snapping at frame edge. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make"
+  },
+  "spec": {
+    "purpose": "hero_closeup",
+    "characters": [
+      "arjuna"
+    ],
+    "subject": "POV down the drawn arrow: Arjuna's right hand at his cheek, string taut, arrowhead trembling",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "SUBJECTIVE. Arrow shaft runs from lower-left into depth; knuckles and string edge frame right; Kaurava line soft in the distance",
+    "camera_height": "eye",
+    "lens": "wide_32",
+    "focus": "foreground_frame",
+    "move": "handheld_stabilized",
+    "move_detail": "handheld, tiny breathing sway, no travel",
+    "subject_motion": "string quivers, knuckles whiten, the arrowhead trembles a few millimetres",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "arrowhead still trembling, hand tightening",
+    "screen_direction": "away",
+    "on_screen_seconds": 2.0,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "bowstring creak, his breath through the nose, wind across the plain, distant army murmur, a conch far off",
+    "narration": "",
+    "source_in": -1.0,
+    "source_of": -1,
+    "ramp_at": -1.0,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "model": "bytedance/seedance-2.0/mini/image-to-video"
+  },
+  "qc": [],
+  "cost_usd": 0.0,
+  "error": "HTTPStatusError: Client error '422 Unprocessable Entity' for url 'https://queue.fal.run/fal-ai/nano-banana-2/requests/01a178bf-2cda-7f81-88ec-deae45aada58'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422",
+  "ended": "2026-10-26T15:06:02"
+}

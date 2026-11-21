@@ -1,0 +1,77 @@
+{
+  "id": "t02",
+  "shot": 5,
+  "created": "2026-10-26T16:01:27",
+  "status": "ready",
+  "hint": "Fix: on impact only a small spray of a few orange sparks and wood splinters, no radial burst or flash of light; the soldier faces screen right toward the incoming arrow with the shield angled to the right; the arrow stays an arrow with grey fletching the whole time and sticks in the shield, never a spear",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. An arrow with grey fletching streaks in from screen right and slams into a round bronze shield held up by a South Asian Pandava foot soldier in a white dhoti and leather cuirass standing just in front of the chariot; on impact sparks spit from the bronze, splinters fly from the shaft, the shield jolts back against his forearm and he braces, his bare feet skidding in the dust. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The charge reaches the Pandava line. Lens: 50 mm at f/2.8, medium detail, the shield face and the arrow sharp, everything else soft. Camera: static first frame of the shot. Atmosphere: dust, sparks from the impact only, a few wood splinters. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: on impact only a small spray of a few orange sparks and wood splinters, no radial burst or flash of light; the soldier faces screen right toward the incoming arrow with the shield angled to the right; the arrow stays an arrow with grey fletching the whole time and sticks in the shield, never a spear",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make",
+    "video": "An arrow with grey fletching streaks in from screen right and slams into a round bronze shield held up by a South Asian Pandava foot soldier in a white dhoti and leather cuirass standing just in front of the chariot; on impact sparks spit from the bronze, splinters fly from the shaft, the shield jolts back against his forearm and he braces, his bare feet skidding in the dust. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The charge reaches the Pandava line. Lens: 50 mm at f/2.8, medium detail, the shield face and the arrow sharp, everything else soft. Camera: tracking right to left on a fast slider alongside the arrow for its last metre, then stopping hard on the shield at impact; begin half a second before the arrow enters frame, end with the arrow quivering in the shield. Atmosphere: dust, sparks from the impact only, a few wood splinters. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 4 seconds. First frame: empty air with the raised shield. Last frame: the arrow quivering in the dented shield. Motion right to left, continuous with the archer's arrow in the shot before. Sound: arrow whistle closing in, a hard crack of iron on bronze, the shield ringing, the soldier's grunt, feet skidding in dust; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: on impact only a small spray of a few orange sparks and wood splinters, no radial burst or flash of light; the soldier faces screen right toward the incoming arrow with the shield angled to the right; the arrow stays an arrow with grey fletching the whole time and sticks in the shield, never a spear"
+  },
+  "spec": {
+    "purpose": "prop_detail",
+    "characters": [],
+    "subject": "the enemy arrow streaks right to left and slams into a bronze shield in front of the chariot",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "SUBJECTIVE, the shield of a Pandava foot soldier in the foreground",
+    "camera_height": "eye",
+    "lens": "normal_50",
+    "focus": "follow",
+    "move": "track_lateral",
+    "move_detail": "",
+    "subject_motion": "arrow strikes, sparks, splinters, the shield jolts",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "arrow quivering in the shield",
+    "screen_direction": "right_to_left",
+    "on_screen_seconds": 1.2,
+    "framing": "vertical",
+    "transition_in": "whip_pan",
+    "sfx": "arrow whistle closing in, crack of the arrowhead on bronze, shield ringing, the soldier's grunt",
+    "narration": "",
+    "source_in": 0.4,
+    "source_of": -1,
+    "ramp_at": 0.6,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "flip": false,
+    "model": "bytedance/seedance-2.0/mini/image-to-video"
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.6988,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "bytedance/seedance-2.0/mini/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "An arrow with grey fletching streaks in from screen right and slams into a round bronze shield held up by a South Asian Pandava foot soldier in a white dhoti and leather cuirass standing just in front of the chariot; on impact sparks spit from the bronze, splinters fly from the shaft, the shield jolts back against his forearm and he braces, his bare feet skidding in the dust. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The charge reaches the Pandava line. Lens: 50 mm at f/2.8, medium detail, the shield face and the arrow sharp, everything else soft. Camera: tracking right to left on a fast slider alongside the arrow for its last metre, then stopping hard on the shield at impact; begin half a second before the arrow enters frame, end with the arrow quivering in the shield. Atmosphere: dust, sparks from the impact only, a few wood splinters. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 4 seconds. First frame: empty air with the raised shield. Last frame: the arrow quivering in the dented shield. Motion right to left, continuous with the archer's arrow in the shot before. Sound: arrow whistle closing in, a hard crack of iron on bronze, the shield ringing, the soldier's grunt, feet skidding in dust; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make. Fix: on impact only a small spray of a few orange sparks and wood splinters, no radial burst or flash of light; the soldier faces screen right toward the incoming arrow with the shield angled to the right; the arrow stays an arrow with grey fletching the whole time and sticks in the shield, never a spear",
+    "image_url": "https://v3b.fal.media/files/b/0aaff288/1S6Isz3o52TjJ66mW9TRx_stzns17O.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 18.88,
+    "flicker": 12.12,
+    "notes": [
+      "sudden brightness jump: possible flicker or lighting pop"
+    ]
+  },
+  "ended": "2026-10-26T16:04:59",
+  "reviewed": true
+}

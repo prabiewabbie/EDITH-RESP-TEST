@@ -1,0 +1,15 @@
+{
+  "next": 1,
+  "attempts": {
+    "e01": 1
+  },
+  "history": [
+    {
+      "at": "2026-10-20T11:40:08",
+      "episode": "e01",
+      "status": "published",
+      "folder": "reels/20261020-112046-e01",
+      "url": "https://youtube.com/shorts/7Rdp__zT1Io"
+    }
+  ]
+}

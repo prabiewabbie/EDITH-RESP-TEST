@@ -1,0 +1,80 @@
+{
+  "id": "t01",
+  "shot": 8,
+  "created": "2026-10-26T15:33:34",
+  "status": "failed_qc",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Close-up of his face and the drawn string, three-quarter profile facing screen right, the bow at full draw: sweat on his temple, dust in the beard, the scar through his left eyebrow. He breathes out slowly; his eyes leave the far target and lower to the arrow and his own hand; his shoulders settle. Nothing else changes. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The battle is still all around him, unseen; this is the one still moment. Lens: 85 mm at f/2, close-up from slightly above his eye line and in front of him, his eyes sharp, background dissolved into warm dust. Camera: static first frame of the shot. Atmosphere: dust drifting slowly through the sunlight behind him, one strand of hair moving in the wind. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make",
+    "video": "South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Close-up of his face and the drawn string, three-quarter profile facing screen right, the bow at full draw: sweat on his temple, dust in the beard, the scar through his left eyebrow. He breathes out slowly; his eyes leave the far target and lower to the arrow and his own hand; his shoulders settle. Nothing else changes. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The battle is still all around him, unseen; this is the one still moment. Lens: 85 mm at f/2, close-up from slightly above his eye line and in front of him, his eyes sharp, background dissolved into warm dust. Camera: locked off on a tripod, no movement at all; the stillness is the point. Atmosphere: dust drifting slowly through the sunlight behind him, one strand of hair moving in the wind. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 5 seconds. First frame: eyes on the far target. Last frame: eyes on the arrow, face calm. Same sun from screen left, rim light on the right side of his face, same armour, crown and scar as shots 1 and 3. Sound: one long slow breath out, faint wind, nothing else; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make."
+  },
+  "spec": {
+    "purpose": "hero_closeup",
+    "characters": [
+      "arjuna"
+    ],
+    "subject": "Arjuna at full draw, still; his eyes leave the target and come to rest on the arrow and his hand",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "KRISHNA'S VIEW: slow, steady, slightly above, warm; the turn of the reel",
+    "camera_height": "high",
+    "lens": "portrait_85",
+    "focus": "eyes",
+    "move": "locked_off",
+    "move_detail": "",
+    "subject_motion": "a slow breath out, eyes lower from the far target to the arrow, shoulders settle",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "eyes on the arrow, calm",
+    "screen_direction": "left_to_right",
+    "on_screen_seconds": 3.6,
+    "framing": "vertical",
+    "transition_in": "smash_cut",
+    "sfx": "one long breath, wind only",
+    "narration": "",
+    "source_in": -1.0,
+    "source_of": -1,
+    "ramp_at": -1.0,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "model": "bytedance/seedance-2.0/mini/image-to-video"
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": false,
+      "problems": [
+        "one continuous locked-off close-up with no camera move; his face must not change at all; he faces screen right with the bow at full draw the whole time and the arrow pointing screen right; only his eyes move, from the far target down to the arrowhead, then one slow breath out; the thin pale scar through his left eyebrow visible"
+      ]
+    }
+  ],
+  "cost_usd": 0.205,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 5,
+  "request": {
+    "prompt": "South Asian man about 30; long rectangular face, defined jaw, short dark beard; deep-set dark brown eyes, heavy brows; straight nose with a slight bump; warm bronze-brown skin, sunburn on the cheekbones, a thin pale scar through the left eyebrow, bowstring calluses on the right fingers; long black hair tied back under a plain gold warrior crown; tall broad-shouldered archer's build; dented bronze-and-gold breastplate over a white dhoti, leather arm guards, the Gandiva: a tall dark recurve bow with gold bands. Close-up of his face and the drawn string, three-quarter profile facing screen right, the bow at full draw: sweat on his temple, dust in the beard, the scar through his left eyebrow. He breathes out slowly; his eyes leave the far target and lower to the arrow and his own hand; his shoulders settle. Nothing else changes. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The battle is still all around him, unseen; this is the one still moment. Lens: 85 mm at f/2, close-up from slightly above his eye line and in front of him, his eyes sharp, background dissolved into warm dust. Camera: locked off on a tripod, no movement at all; the stillness is the point. Atmosphere: dust drifting slowly through the sunlight behind him, one strand of hair moving in the wind. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 5 seconds. First frame: eyes on the far target. Last frame: eyes on the arrow, face calm. Same sun from screen left, rim light on the right side of his face, same armour, crown and scar as shots 1 and 3. Sound: one long slow breath out, faint wind, nothing else; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "image_url": "https://v3b.fal.media/files/b/0aaff1e1/lptHnKc9l37HO-LFvmQ4q_PFOCjwrY.png",
+    "duration": "5",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [
+    "bytedance/seedance-2.0/mini/image-to-video: bytedance/seedance-2.0/mini/image-to-video: HTTP 422: {\"detail\":[{\"loc\":[\"body\",\"image_url\"],\"msg\":\"The images or videos provided may contain likenesses of real people or other private information that cannot be processed.\",\"type\":\"content_policy_violation\",\"url\":\"https://docs.fal.ai/errors#content_policy_violation\",\"ctx\":{\"extra_info\":{\"reason\":\"partner_validation_failed\"}},\"input\":\"https://v3b.fal.media/files/b/0aaff1e1/lptHnKc9l37HO-LFvmQ4q_PFOCjwrY.png\",\"categories\":[\"model_moderated\"]}]}"
+  ],
+  "metrics": {
+    "frames": 121,
+    "motion": 23.75,
+    "flicker": 2.43,
+    "notes": []
+  },
+  "ended": "2026-10-26T15:36:06",
+  "reviewed": true,
+  "retry_hint": "Fix: one continuous locked-off close-up with no camera move; his face must not change at all; he faces screen right with the bow at full draw the whole time and the arrow pointing screen right; only his eyes move, from the far target down to the arrowhead, then one slow breath out; the thin pale scar through his left eyebrow visible"
+}
