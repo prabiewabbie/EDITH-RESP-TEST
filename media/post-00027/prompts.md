@@ -1,0 +1,57 @@
+# Post 27 — style guide
+
+Quiet, cinematic late-night meditation that shifts gently into reverent, painterly devotional art. Master aspect 4:5, with a safe-centred composition so it can be reframed to 9:16. Palette: deep midnight and indigo blues, cool smartphone cyan, a soft moonlight silver, and a faint warm amber from distant city lights. The single devotional scene uses dawn tones of pale gold, peach and soft sky blue. Lighting is low-key and soft, with gentle falloff, no harsh contrast and a subtle filmic grain. Camera work is slow and unhurried: gentle push-ins, locked-off frames, slow time-lapse drift. No fast cuts and no shake. Lenses: 50–85mm shallow depth of field for the intimate bedroom shots, 24–35mm wide for the skies. Real-world scenes are photorealistic and painterly at the edges, while the Krishna–Arjuna scene is a traditional, reverent painting style inspired by classical Indian miniature and devotional art. The mood is tender, calm, non-judgemental and spacious, with lots of negative space for captions added in editing. No people's faces are visible in the modern scenes. Never render any text, letters, Devanagari, UI or logos inside generated frames. All on-screen text and the Echoes of Gita mark are added in editing.
+
+## Scene 1 · video · 4:5
+
+Photorealistic cinematic close-up of a dim bedroom at 1 a.m. A smartphone's cold blue-cyan glow lights a rumpled white pillow and a relaxed hand loosely holding the phone. The face is completely out of frame or lost in deep shadow. The phone screen is an abstract soft blur of light with no readable content. 85mm lens, very shallow depth of field, focus on the fingertips and the edge of the phone, with the bedding falling into soft bokeh. Deep indigo shadows, cool blue key light from the screen, faint grain. Almost still, with only a subtle breathing movement of the hand. The mood is quiet, tired and tender. Leave negative space in the upper third for a caption.
+
+Negative: readable text, letters, words, numbers, UI elements, app interface, logos, watermark, captions, visible face, identifiable person, real living people, celebrity likeness, political symbols, bright harsh lighting, clutter, fast motion, camera shake
+
+## Scene 2 · video · 4:5
+
+Photorealistic night bedroom. A hand gently sets a smartphone down onto a soft rumpled blanket, the screen still glowing as a faint blue rectangle of light with no visible content. The camera then performs a slow, smooth push-in toward a nearby window with sheer white curtains stirring slightly in a soft breeze. Outside, warm amber city lights are blurred into gentle bokeh. 50mm lens, shallow depth of field. Muted midnight blues dominate, with a faint amber accent from the window. Soft, low-key lighting. The mood is tender and accepting: a quiet acknowledgement of hurt.
+
+Negative: readable text, letters, words, numbers, UI elements, app interface, logos, watermark, captions, visible face, identifiable person, real living people, celebrity likeness, political symbols, harsh lighting, fast motion, camera shake
+
+## Scene 3 · video · 4:5
+
+Slow forward move through an open window with sheer curtains, revealing a vast night sky above a sleeping city. Thin wisps of pale smoke and slow-moving clouds drift across a field of stars. Below, distant city lights shimmer in warm amber and soft white. 28mm wide lens, with the horizon in the lower fifth and the sky dominating the frame. Deep indigo to navy gradient, silver starlight, gentle haze. The look is painterly and cinematic, with subtle film grain. The mood is unhurried, spacious and contemplative.
+
+Negative: text, letters, words, signage, billboards, readable signs, logos, watermark, captions, people, real living people, celebrity likeness, political symbols, flags, landmarks of specific real cities, harsh lighting, fast motion, lens flare overload
+
+## Scene 4 · video · 4:5
+
+Wide, open night sky filling the frame. A gentle time-lapse: soft grey smoke, thin clouds and drifting haze pass slowly across the sky from left to right. Behind them, the deep dark expanse and steady stars remain perfectly clear, untouched and unchanged. 24mm wide lens, locked-off camera, no horizon or only a faint silhouette of distant rooftops at the bottom edge. The palette is deep indigo, midnight blue and silver starlight, with luminous edges on the clouds. Calm, vast and timeless, with ample empty space in the centre and lower third for verse captions added in editing.
+
+Negative: text, letters, Devanagari script, Sanskrit characters, words, calligraphy, symbols, logos, watermark, captions, people, real living people, celebrity likeness, political symbols, storms, lightning, fire, harsh lighting, fast motion, camera shake
+
+## Scene 5 · video · 4:5
+
+Reverent, painterly devotional scene in traditional Indian iconography, inspired by classical miniature and temple-painting styles. Lord Krishna is shown with a serene blue complexion, a peacock feather in his crown, a yellow pitambara garment and gentle jewellery, with a calm, compassionate expression. He is seated as charioteer at the front of an ornate wooden chariot drawn by white horses. Arjuna sits respectfully beside him in traditional warrior attire, with his bow resting, attentive and peaceful, listening. They are at the quiet edge of the field of Kurukshetra at dawn, and the field stretches away distant, empty and calm, with no conflict shown. A vast pale sky arches above them in peach, soft gold and pale blue, with soft clouds drifting slowly through it. Wide composition with the figures in the lower third and the sky dominant. Very subtle motion only: drifting clouds, a gentle breeze in the horses' manes and the fabric. Soft, luminous dawn light with a dignified, sacred and tranquil mood.
+
+Negative: undignified depiction, sexualised depiction, revealing or suggestive poses, comedic or cartoonish style, meme style, caricature, distorted anatomy, violence, gore, blood, injury, weapons in use, battle in progress, armies clashing, corpses, modern clothing, non-traditional iconography, real living people, celebrity likeness, political symbols, flags, party emblems, text, letters, words, Sanskrit script, logos, watermark, captions
+
+## Scene 6 · video · 4:5
+
+Return to the night sky over a sleeping city, seen from a high, quiet vantage. A bright full moon sits in the upper third. A single small soft cloud drifts slowly across the moon, dimming it for a moment, then passes on, leaving the moon and sky exactly as before. 35mm lens, locked-off camera, with a gentle silver halo around the moon. Faint warm amber city lights twinkle softly at the bottom edge. The palette is deep navy and indigo with moonlight silver. The light is soft and steady, and the mood is calm, reassuring and still.
+
+Negative: text, letters, words, signage, logos, watermark, captions, people, real living people, celebrity likeness, political symbols, flags, storms, lightning, harsh lighting, fast motion, camera shake
+
+## Scene 7 · video · 4:5
+
+Photorealistic quiet bedroom at night. A hand slowly places a smartphone face down on a simple wooden bedside table, and the blue glow disappears. Cool silver moonlight now softly fills the room, falling across the bedsheets and the table. Through the window behind, clouds keep drifting slowly across a calm, open, starry sky. 50mm lens with moderate depth of field. The camera holds, then the frame slowly fades to a deep, even midnight blue, leaving a clean empty field for a logo added in editing. The mood is peaceful, resolved and gentle.
+
+Negative: text, letters, words, logos, brand marks, watermark, captions, readable screen, UI elements, visible face, identifiable person, real living people, celebrity likeness, political symbols, harsh lighting, fast motion, camera shake
+
+## Scene 0 · voiceover · 4:5
+
+Warm, gentle, unhurried narrator in their 30s with a soft neutral accent. Close-mic, intimate late-night tone, like speaking quietly to a friend who can't sleep. Calm and compassionate, never preachy. Natural pauses between sentences, slightly slower and reverent on the verse. Script: "It's 1 a.m. and you've read that one comment eleven times. Pause. Look up at the sky for a moment. [pause] Some words land hard. They sting. That's real, and it's okay that it hurts. [pause] In the Bhagavad Gita, Krishna offers Arjuna an image worth holding on a night like this. [pause] As the omnipresent ether is not affected, by reason of its subtlety, so seated everywhere in the body the Self is not affected. [pause] Teachers across many traditions read this as describing the Self: like space, it holds everything that passes through it, yet is not stained by any of it. [pause] A reflection, not scripture: that comment can reach your mind, and the mind may feel it. The Gita points to a deeper witness in you that those words do not touch. [pause] You don't have to pretend it didn't hurt. Just put the phone down. Breathe. Let it pass, like a cloud across the sky." Timing guide per scene: 6s, 7s, 7s, 10s, 8s, 9s, 8s.
+
+Negative: dramatic movie-trailer voice, shouting, sing-song, robotic cadence, celebrity voice imitation, impersonation of real people, heavy reverb, background noise, rushed delivery
+
+## Scene 0 · music · 4:5
+
+Calm ambient meditative score, about 60 BPM or free-time. A soft tanpura drone in D, warm low synth pads, distant airy textures, sparse felt-piano notes, and a very gentle bansuri flute phrase entering around the verse (≈20s) and swelling subtly at the dawn chariot scene (≈30–38s). Light shimmering high tones evoke a night sky and stars. No percussion and no drops. The mix stays low under the voiceover, and the track resolves into a soft sustained chord and fades out over the final 4 seconds. The mood is spacious, tender, reverent and reassuring.
+
+Negative: vocals, lyrics, chanting over narration, percussion, beats, EDM drops, aggressive dynamics, dissonance, horror tones, comedic sounds, copyrighted melodies, devotional songs by real artists

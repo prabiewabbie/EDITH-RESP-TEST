@@ -1,0 +1,63 @@
+# Post 19 — style guide
+
+Cinematic, contemplative short film that alternates between two visual worlds. (1) Modern scenes: a dark bedroom at night lit mainly by a smartphone's cool blue-white glow, with a small brass diya as a warm counterpoint. Use 50mm and 85mm lenses, shallow depth of field, soft 35mm film grain, slow camera moves, and never show a face. (2) Scriptural and symbolic scenes: painterly, reverent, in the style of traditional Indian devotional painting blended with soft cinematic light, with gentle textures and dignified composition. Palette: midnight blue, slate, and cool cyan for the anger and isolation beats. Ember red-orange marks rising anger. Saffron, amber, and gold carry warmth, memory, and resolution. Cream parchment is used for the end card. Mood is quiet, intimate, and non-judgmental, moving from tension to calm. Keep all frames free of legible text, letters, logos, and UI labels, because on-screen text is added in editing. Krishna and Arjuna appear only in traditional iconography, with dignity. Compose the master at 4:5 with the subject centered and safe margins at top and bottom so frames reframe cleanly to 9:16.
+
+## Scene 1 · video · 4:5
+
+Cinematic close-up in a dark bedroom late at night. A smartphone held in one hand casts a cool blue-white glow that lights the fingers from below. The thumb hovers just above a glowing blue rounded button shape at the bottom of the screen. Above it sits a long draft message rendered only as soft, abstract, out-of-focus grey lines. In the deep background, a faint warm glow from a bedside clock is blurred into bokeh. 85mm lens, very shallow depth of field, focus on the thumb tip. Soft 35mm film grain, near-silent stillness with a barely perceptible slow push-in. Palette is midnight blue and cyan with a tiny amber accent. The mood is tense, quiet, and suspended.
+
+Negative: face, head, identifiable person, legible text, readable words, letters, numbers, app logos, brand names, UI labels, watermark, bright daylight, cartoon, distorted hands, extra fingers
+
+## Scene 2 · video · 4:5
+
+Painterly, reverent scene in traditional Indian devotional painting style with soft cinematic light. Lord Krishna, serene and compassionate, has a blue complexion and a peacock feather in his crown. He wears yellow pitambara silk garments, gold ornaments, and a tulsi garland. He is seated as charioteer at the front of an ornate wooden chariot, his body turned gently toward Arjuna. Arjuna sits attentively in traditional warrior attire with a bow resting at his side and a respectful, listening posture. Four white horses stand calmly. The Kurukshetra plain is visible only far in the distance as tiny, indistinct banners under a soft golden dawn haze, with no combat. Medium-wide composition at eye level, with the chariot centered and warm rim light around both figures. The palette is gold, saffron, peacock blue, and soft cream sky. The mood is calm, dignified, and instructive. A very slow, gentle push-in.
+
+Negative: undignified depiction of Krishna or Arjuna, non-traditional iconography, sexualised depiction, comedic depiction, meme style, cartoon caricature, violence, gore, blood, wounds, close-up battle, weapons in use, real living people, celebrity likeness, political symbols, flags with emblems, legible text, letters, watermark, distorted anatomy, extra limbs
+
+## Scene 3 · video · 4:5
+
+The same dark bedroom and the same hand holding a glowing smartphone, framed in close-up with no face visible. The screen's light slowly shifts from cool blue to a warmer ember red-orange tint that washes over the knuckles. The fingers tighten their grip slightly. The edges of the frame soften into a hazy blur with a subtle heat-shimmer distortion, as if seen through rising heat. The screen content is only abstract, unreadable blurred shapes. 85mm lens, shallow depth of field, slow push-in, soft film grain. The palette moves from deep shadow to ember orange and muted crimson. The mood is rising tension and clouded judgement.
+
+Negative: face, head, identifiable person, legible text, readable words, letters, app logos, UI labels, watermark, fire, explosion, violence, cartoon, distorted hands, extra fingers
+
+## Scene 4 · video · 4:5
+
+Gentle dissolving montage of warm, painterly memory fragments with soft cinematic light. First, a top-down view of a family dinner table with steaming bowls of dal, rice and rotis, with hands reaching to share, cropped so that no faces appear. Next, a close-up of an elder's wrinkled hands holding a small child's hands. Then a hand lighting a brass festival diya amid marigold flowers. Finally, an old faded printed photograph on a wooden shelf, blurred so that no faces are identifiable. Each fragment begins rich in saffron, amber, and gold. It then slowly drains of color toward grey and drifts out of focus as a cool blue phone glow bleeds in from the frame edge. Lenses range from 50mm to 85mm, with shallow depth of field, soft film grain, and slow cross-dissolves. The mood is tender, nostalgic, and fading.
+
+Negative: identifiable faces, celebrity likeness, real living people, legible text, letters, watermark, harsh lighting, cartoon, distorted hands, extra fingers, political symbols
+
+## Scene 5 · video · 4:5
+
+Symbolic cinematic still-life in slow motion. A single small clay diya oil lamp sits on a dark wooden bedside surface. Next to it, a smartphone lies face-down with a faint cool blue glow leaking from beneath its edges. A draft of air makes the flame bend, shrink, and flicker low until it is almost extinguished, then it barely holds. There are deep shadows throughout, with warm amber flame light set against cool blue ambient light. Macro 100mm lens at low angle, with the flame in sharp focus, a creamy dark background, and subtle smoke wisps. The mood is fragile, tense, and contemplative.
+
+Negative: people, faces, legible text, letters, logos, watermark, large fire, burning room, explosion, bright daylight, cartoon
+
+## Scene 6 · video · 4:5
+
+Wide, painterly landscape at dusk in a soft cinematic style. A lone traveler in a simple traditional cotton dhoti and shawl is seen from behind at a distance and appears small in the frame. The traveler stands at the edge of an earthen path that winds forward and disappears into thick, rolling mist. There are low hills and a few silhouetted trees. A soft grey-blue sky carries a last faint band of muted light on the horizon. Wide 24mm composition with the figure placed on the lower third and generous negative space above. A gentle drift of fog moves across the scene with a slow lateral camera move. The palette is muted blues, slate grey, and pale silver. The mood is quiet, contemplative, and melancholic, not frightening.
+
+Negative: face visible, identifiable person, celebrity likeness, horror, monsters, cliff fall, injury, violence, gore, legible text, letters, watermark, political symbols, cartoon, sexualised depiction
+
+## Scene 7 · video · 4:5
+
+The same bedroom at night, shown in a close-up of the hand with no face visible. The thumb slowly lifts away from the glowing blue button, and the screen shows only abstract, unreadable blurred shapes. The hand calmly turns the phone face-down onto a wooden bedside table. Beside it, a small brass diya burns bright, steady, and upright. As the phone's cool glow disappears, the room's light warms gently into amber and soft gold. 50mm lens, shallow depth of field, slow and peaceful pull-back that reveals the table and diya. Soft film grain. The palette shifts from cool blue to warm saffron and gold. The mood is relief, calm, and grounded.
+
+Negative: face, head, identifiable person, legible text, readable words, letters, app logos, UI labels, watermark, harsh light, cartoon, distorted hands, extra fingers
+
+## Scene 8 · video · 4:5
+
+Minimal end-card background. A soft cream parchment texture with subtle fibers and gently darkened warm edges fills the frame. A small brass diya with a calm, steady flame sits at the bottom center, casting a faint golden glow upward. The upper two-thirds of the frame is left as clean, open empty space for the verse and brand typography to be added in editing. Frontal, centered composition with very subtle flame flicker and a slow glow pulse. The palette is cream, ivory, warm gold, and soft amber. The mood is serene and reverent.
+
+Negative: text, letters, Devanagari script, words, logos, watermark, people, faces, clutter, busy patterns, harsh shadows, cartoon
+
+## Scene 0 · voiceover · 4:5
+
+Warm, calm, mid-register narrator with a gentle Indian-English accent. Delivery is intimate and unhurried, like speaking softly to a friend late at night, and is never preachy. Pause briefly before each quoted verse line. Read the quotes with quiet reverence, slightly slower. Script: 'Your thumb is on send. Before you press it, watch what the Gita says happens next. [pause] In the Bhagavad Gita, Krishna describes to Arjuna, step by step, what anger does to the mind. It reads less like a scolding and more like a diagnosis. [pause] From anger proceedeth delusion. The heat rises, and the mind clouds over. The message feels completely justified. [pause] From delusion confused memory. We lose sight of what we know. The years of shared meals, the help in hard times, the love behind this family, all of it fades from view. [pause] From confused memory the destruction of Reason. Discernment is the faculty that weighs what is right. Without memory to guide it, it gives way. [pause] From destruction of Reason he perishes. Traditional commentators broadly read this as a fall, losing one's footing on the path toward one's higher self. [pause] A reflection, not scripture: the chain is easiest to break at its first link. Before the delusion settles, set the phone down. Breathe. Remember who is on the other side of that message. [pause] Echoes of Gita. Ancient words for the moments we live in.' Pronounce 'Krishna' as KRISH-nuh, 'Arjuna' as AR-joo-nuh, and 'Gita' as GEE-tah.
+
+Negative: shouting, dramatic movie-trailer voice, sarcasm, comedic tone, robotic cadence, background noise, impersonation of any real or celebrity voice
+
+## Scene 0 · music · 4:5
+
+A 48-second instrumental underscore in a contemplative Indian classical-ambient style, with a slow tempo around 60 BPM in D minor resolving to D major. From 0 to 5 seconds, a low tanpura drone sits under a faint, sparse, cold synth pad. From 5 to 11 seconds, a warm, reverent bansuri phrase enters for the Krishna and Arjuna scene. From 11 to 30 seconds, tension slowly builds with a low pulsing frame drum, a darker pad, and subtle dissonance, and warmth drains away during the memory section. From 30 to 36 seconds, the arrangement thins to near-silence with only the drone and a fragile high note. From 36 to 48 seconds, a gentle resolution arrives as the bansuri melody returns in major mode with soft santoor shimmer. The piece settles into a calm, sustained final chord under the end card. Keep the mix low and spacious so the voiceover stays clear.
+
+Negative: vocals, lyrics, EDM drops, heavy percussion, aggressive or horror stingers, comedic sounds, sudden loud swells, recognizable copyrighted melodies

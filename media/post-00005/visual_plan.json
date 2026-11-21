@@ -1,0 +1,77 @@
+{
+  "style_guide": "Two visual worlds joined by one palette. MODERN WORLD (scenes 1, 2, 6, 7): cinematic photorealism on a 35mm lens look with shallow depth of field and gentle film grain. A dim minimalist apartment at night, lit mainly by cool laptop blue (#2B4A7A) with deep shadow. As the story resolves, the light warms toward amber diya and lamp glow (#E8A54B) and soft pre-dawn blue. The protagonist is an anonymous young professional, always seen from behind or over the shoulder with the face in shadow, and is never identifiable. SACRED/METAPHOR WORLD (scenes 3, 4, 5): painterly, inspired by traditional Indian miniature painting (Pahari/Kangra sensibility) with soft cinematic volumetric light. Palette is saffron, gold, deep indigo, lotus pink and misty dawn tones. Krishna follows traditional iconography: blue-complexioned, peacock feather in the crown, yellow pitambara garments, serene expression. Arjuna appears as a dignified princely warrior in traditional attire. Mood throughout is contemplative, quiet and reverent. Camera moves are slow push-ins, pans and pull-backs only, with no fast cuts. Master aspect is 4:5. Keep the subjects centered with safe margins so frames can be reframed to 9:16, and leave clean negative space in the upper and lower thirds for on-screen text added in editing. No text, letters, numerals, logos or brand marks are generated in any visual.",
+  "assets": [
+    {
+      "kind": "video",
+      "scene_index": 1,
+      "prompt": "Cinematic photorealistic night interior. A dim, minimalist apartment lit only by the cool blue glow of an open laptop on a wooden desk. An anonymous young professional sits motionless, seen from behind and over the shoulder, face fully in shadow, shoulders slightly hunched. A ceramic cup of tea sits beside the laptop, gone cold with no steam. A dark window shows faint city night bokeh. The laptop screen is a soft, out-of-focus blur of overlapping bright rectangles with nothing legible. 35mm lens, shallow depth of field, slow steady push-in toward the shoulder and screen. Palette is deep navy shadows and cool blue highlights. Mood is weary, stuck and quiet, with subtle film grain. Clean negative space at the top of the frame for a caption.",
+      "negative_prompt": "text, letters, numbers, readable clock digits, logos, brand names, visible face, identifiable person, celebrity likeness, real living people, political symbols, bright daylight, clutter, cartoon style, fast camera motion",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 2,
+      "prompt": "Cinematic photorealistic macro of a laptop screen at night. A slow horizontal pan across a crowded row of browser tabs and overlapping windows rendered as abstract, illegible UI shapes: a grid of generic listing cards, a glossy brochure-style layout with a soft photo of a campus building, a mostly empty email draft window with a blinking cursor line, and a paused video thumbnail of a sunrise silhouette. A cursor drifts slowly across the screen without clicking. Very shallow depth of field so all interface detail stays soft and unreadable. Cool blue and white screen glow with faint reflections on the glass. The mood is restless and overwhelmed, with slight screen moiré softened away.",
+      "negative_prompt": "readable text, letters, words, numbers, logos, brand names, real website interfaces, recognizable apps, faces, real living people, celebrity likeness, political symbols, sharp focus on UI text, glitch effects, fast motion",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 3,
+      "prompt": "Painterly scene in the style of traditional Indian miniature painting (Pahari/Kangra), with soft cinematic dawn light and gentle mist. On the plain of Kurukshetra, a golden ornate chariot drawn by white horses stands still in the open space between two vast armies. The armies appear only as distant silhouettes with banners still in the morning haze, and no fighting is shown. Krishna, blue-complexioned with a peacock feather in his crown and flowing yellow pitambara silk, sits serenely as charioteer, holding the reins lightly, his expression compassionate. Arjuna, a dignified princely warrior in traditional attire and crown, sits beside him with head bowed, his bow Gandiva set down at his feet. The composition is wide, with the chariot centered in the lower-middle third. Palette is gold, saffron, soft rose and misty blue. A very slow push-in conveys a calm, reverent, contemplative mood.",
+      "negative_prompt": "text, letters, logos, combat, blood, gore, wounds, corpses, weapons in use, violent action, sexualised depiction, revealing or immodest clothing, comedic or cartoonish style, meme style, caricature, distorted anatomy, disrespectful pose, non-traditional iconography, wrong skin color for Krishna, modern clothing, real living people, celebrity likeness, political symbols, flags of modern nations",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 4,
+      "prompt": "Painterly close-up in the style of traditional Indian miniature painting with soft cinematic light. Krishna's gentle blue-complexioned hand is raised in a graceful teaching gesture (vitarka/abhaya mudra), adorned with a simple gold bracelet, and the edge of a yellow silk sleeve is visible. The background is a softly blurred field of deep indigo with warm saffron light glowing from the side, and faint golden dust motes drift in the air. Shallow depth of field, near-still framing and an almost imperceptible slow drift. The mood is reverent, still and luminous. The upper and lower thirds are left as calm, uncluttered dark indigo space for verse text added in editing.",
+      "negative_prompt": "text, letters, Sanskrit script, calligraphy, words, logos, sexualised depiction, comedic or cartoonish style, meme style, caricature, distorted or extra fingers, deformed hands, violent imagery, gore, weapons, non-traditional iconography, wrong skin color for Krishna, modern jewelry or clothing, real living people, celebrity likeness, political symbols",
+      "aspect": "4:5",
+      "duration_seconds": 9.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 5,
+      "prompt": "Painterly nature metaphor in a soft miniature-painting-inspired landscape style. Seen from a gentle aerial view at sunrise, a vast plain is split into two halves. On the left, a single clear, steady stream flows straight toward a golden rising sun on the horizon, sparkling with light. On the right, a river fans out into countless thin, wandering channels that branch endlessly across the plain and fade into pale haze. The palette is soft morning colors: peach, gold, sage green and misty blue. The camera drifts slowly forward with a gentle aerial motion. The mood is clear and contemplative, and the contrast between the two halves reads at a glance. No people appear.",
+      "negative_prompt": "text, letters, numbers, logos, people, faces, buildings, roads, maps labels, real living people, political symbols, harsh contrast, stormy weather, cartoon style, fast motion",
+      "aspect": "4:5",
+      "duration_seconds": 8.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 6,
+      "prompt": "Cinematic photorealistic apartment interior at night, the same setting as the opening scene. Over-the-shoulder view of the anonymous young professional, face in shadow, at the laptop. On screen, the soft, illegible window shapes disappear one by one and the display grows calmer and simpler until only a clean, blank, softly glowing page remains. The person's posture slowly relaxes, shoulders dropping and the spine settling as they exhale. The room's light gradually shifts from cool blue toward warm amber lamp tones. 35mm lens, shallow depth of field, slow and steady framing. The mood is release and quiet steadiness, with subtle film grain.",
+      "negative_prompt": "text, letters, readable UI, numbers, logos, brand names, visible face, identifiable person, real living people, celebrity likeness, political symbols, dramatic gestures, fast motion, harsh lighting",
+      "aspect": "4:5",
+      "duration_seconds": 9.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 7,
+      "prompt": "Cinematic photorealistic still-life moment. A hand gently closes the laptop on a wooden desk. Beside it, a small traditional brass diya (oil lamp) is lit and its warm flame flickers softly. Next to the lamp lies an open paper notebook with a single faint pencil line of handwriting, too soft-focus to read. Through the window behind, faint blue pre-dawn light is beginning. A slow pull-back reveals the quiet, tidy room, and the cold tea cup is now set aside. The palette is warm amber diya glow against soft dawn blue. The mood is peaceful, hopeful and still. 35mm lens, shallow depth of field. The lower third is left clean for the caption and wordmark added in editing.",
+      "negative_prompt": "legible handwriting, text, letters, words, numbers, logos, brand names, faces, identifiable person, real living people, celebrity likeness, political symbols, religious idols, clutter, fire hazard, harsh lighting, fast motion",
+      "aspect": "4:5",
+      "duration_seconds": 7.0
+    },
+    {
+      "kind": "voiceover",
+      "scene_index": 0,
+      "prompt": "Warm, calm, gender-neutral adult narrator with a gentle Indian-English accent. The tone is intimate and reflective, like speaking to one person late at night, with an unhurried pace and natural pauses between scenes. Use a slightly lower, more reverent register for the verse, and pronounce 'Kurukshetra', 'Arjuna', 'Krishna' and 'Kurus' correctly. Script: 'Twenty-three tabs open. Zero decisions made. The Bhagavad Gita has a name for this kind of mind. [pause] Every tab is a possible life. Each one opens three more questions. And the night keeps going. [pause] Long ago, on the field of Kurukshetra, Arjuna stood frozen before a choice he could not bear to make. Krishna spoke to him. [pause] \"The determinate Reason is but one-pointed, O joy of the Kurus; many-branched and endless are the thoughts of the irresolute.\" Bhagavad Gita, chapter two, verse forty-one. [pause] Traditional commentators read one-pointed as an understanding settled on the highest aim. The many-branched mind, they explain, is pulled in countless directions by desires for different results. [pause] A reflection, not scripture: perhaps the inner work isn't finding a better option. Perhaps it's steadying the one who chooses. [pause] Before you compare paths, you might ask: what am I truly aiming at?'",
+      "negative_prompt": "celebrity voice clone, imitation of real living person, theatrical over-acting, comedic tone, robotic cadence, fast pacing, background noise",
+      "aspect": "4:5",
+      "duration_seconds": 52.0
+    },
+    {
+      "kind": "music",
+      "scene_index": 0,
+      "prompt": "Minimal ambient score of about 52 seconds at around 60 BPM. It opens with a soft low synth drone and faint electronic room hum, conveying restless late-night stillness, with sparse muted piano notes under scenes 1–2. At the Kurukshetra scene (around 13s), a warm tanpura drone enters together with a gentle, breathy bansuri phrase. The music stays reverent and spacious under the verse (19–28s), sitting low so the narration stays clear. A light, flowing texture with soft harp-like plucks supports the river metaphor. During the final scenes (from about 36s), the dissonance resolves into a warm major-key pad with a single quiet bansuri line, ending on a soft, sustained tanpura note that fades out as the diya glows. The mood moves from restless to steady and hopeful.",
+      "negative_prompt": "vocals, lyrics, chanting of specific mantras, heavy percussion, drops, EDM, trap beats, aggressive drums, comedic tone, copyrighted melodies, devotional songs by known artists",
+      "aspect": "4:5",
+      "duration_seconds": 52.0
+    }
+  ]
+}
