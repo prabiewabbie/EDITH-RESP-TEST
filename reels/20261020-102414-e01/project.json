@@ -1,0 +1,250 @@
+{
+  "id": "20261020-102414-e01",
+  "selected": {},
+  "rejected": {},
+  "prompt_overrides": {},
+  "kind": "episode",
+  "episode": {
+    "kind": "episode",
+    "id": "e01",
+    "chapter": 1,
+    "title": "The blind king asks",
+    "verses": [
+      "1.1"
+    ],
+    "story": "In Hastinapura the blind king Dhritarashtra asks Sanjaya what his sons and the Pandavas are doing on the field of Kurukshetra. Sanjaya, granted divine sight, begins to describe the battlefield.",
+    "set_pieces": [
+      "dhritarashtra on his throne in a dark hall",
+      "sanjaya's eyes glowing as the battlefield appears",
+      "two armies under a rising sun"
+    ]
+  },
+  "options": {},
+  "direction": "",
+  "status": "planned",
+  "created": "2026-10-20T10:24:14",
+  "plan": {
+    "title": "The blind king asks | Bhagavad Gita 1.1",
+    "description": "Chapter 1, verse 1 of the Bhagavad Gita: in Hastinapura the blind king Dhritarashtra asks Sanjaya what is happening on the field of Kurukshetra, and Sanjaya, granted divine sight, begins to see the battlefield.",
+    "tags": [
+      "Bhagavad Gita",
+      "Gita 1.1",
+      "Dhritarashtra",
+      "Sanjaya",
+      "Kurukshetra",
+      "Mahabharata",
+      "Krishna",
+      "Hindu scripture",
+      "Shorts",
+      "Echoes of Gita"
+    ],
+    "music_mood": "tension",
+    "shots": [
+      {
+        "purpose": "hero_closeup",
+        "characters": [
+          "dhritarashtra"
+        ],
+        "subject": "Dhritarashtra, the blind Kuru king: aged man with a long grey beard, heavy gold crown and dark silk robes with gold borders, seated upright on an ornate carved throne; his eyes are unseeing, gaze unfocused, posture anxious, hands gripping the armrests; dignified, never grotesque; in left profile, chin slightly lifted, lips parted as he asks his question",
+        "environment": "Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke",
+        "composition": "face fills the right two thirds in left-facing profile; foreground soft lamp flame on the left edge; background pillars falling into darkness",
+        "camera_height": "eye",
+        "lens": "portrait_85",
+        "focus": "eyes",
+        "move": "push_in",
+        "move_detail": "starts on a medium close-up of head and crown, dollies slowly forward along his eyeline to a tight close-up of the eye and crown jewels; very slow",
+        "subject_motion": "Lamp light flickers across his face; he slowly turns his head a few degrees toward the light; incense smoke drifts past",
+        "lighting": "firelight",
+        "atmosphere": "thin incense smoke, floating dust motes",
+        "materials": "weathered skin, grey beard hair, hammered gold crown, silk",
+        "end_frame": "tight on the unseeing eye with flame light dancing in it, cut on his stillness",
+        "screen_direction": "right_to_left",
+        "on_screen_seconds": 2.4,
+        "framing": "vertical",
+        "transition_in": "cut",
+        "sfx": "lamp flame crackle, low hall ambience",
+        "narration": ""
+      },
+      {
+        "purpose": "macro_insert",
+        "characters": [],
+        "subject": "the flame of a small bronze oil lamp with a curl of incense smoke rising beside it",
+        "environment": "Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke",
+        "composition": "flame in the lower centre third; foreground blurred bronze rim of the lamp; background dark pillars as soft bokeh",
+        "camera_height": "eye",
+        "lens": "macro_100",
+        "focus": "rack_to_subject",
+        "move": "rack_focus",
+        "move_detail": "camera locked; focus pulls from the bronze rim in the foreground to the flame tip over the shot",
+        "subject_motion": "The flame sways and flares in a draft; smoke ribbons curl upward",
+        "lighting": "firelight",
+        "atmosphere": "incense smoke ribbons",
+        "materials": "polished bronze, ghee oil, flame",
+        "end_frame": "the flame flares bright, almost filling the frame, as a hand-over to the vision",
+        "screen_direction": "none",
+        "on_screen_seconds": 1.8,
+        "framing": "vertical",
+        "transition_in": "cut",
+        "sfx": "flame flare",
+        "narration": ""
+      },
+      {
+        "purpose": "hero_closeup",
+        "characters": [
+          "sanjaya"
+        ],
+        "subject": "Sanjaya, the royal narrator: elderly wise man with a white beard, cream robes and a simple sandalwood mark on his forehead, eyes glowing faintly gold with divine vision; calm, reverent; seated cross-legged, facing three-quarters to camera right, eyes opening as the golden glow rises in them",
+        "environment": "Hastinapura palace hall at night: dark carved stone pillars, oil lamps in bronze stands, incense smoke",
+        "composition": "medium close-up, Sanjaya on the left third looking toward screen right; foreground out-of-focus pillar edge; background lamps as warm bokeh",
+        "camera_height": "eye",
+        "lens": "normal_50",
+        "focus": "eyes",
+        "move": "orbit_subtle",
+        "move_detail": "camera arcs 15 degrees slowly from his left profile toward his face, ending on a three-quarter close-up of his glowing eyes",
+        "subject_motion": "His eyes open slowly and a soft golden light rises within them; a breath of wind stirs his robe",
+        "lighting": "divine_glow",
+        "atmosphere": "dust motes lit gold around his face",
+        "materials": "cream cotton robe, aged skin, white beard",
+        "end_frame": "his glowing eyes gazing into the distance at screen right, holding for the flash to the battlefield",
+        "screen_direction": "left_to_right",
+        "on_screen_seconds": 2.4,
+        "framing": "vertical",
+        "transition_in": "cut",
+        "sfx": "soft shimmer",
+        "narration": ""
+      },
+      {
+        "purpose": "wide",
+        "characters": [
+          "kurukshetra"
+        ],
+        "subject": "two vast ancient Indian armies facing each other across the plain of Kurukshetra, banners raised, chariots in the front ranks, figures small against the sun",
+        "environment": "Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them",
+        "composition": "wide frame layered in depth: foreground silhouetted spear tips and banners, middle ground ranks of soldiers and chariots, background the low sun between the armies",
+        "camera_height": "eye",
+        "lens": "tele_120",
+        "focus": "deep",
+        "move": "track_lateral",
+        "move_detail": "camera slides slowly left to right parallel to the front ranks; compressed telephoto perspective",
+        "subject_motion": "Banners ripple in the wind; dust drifts across the ranks; horses shift their weight",
+        "lighting": "golden_backlight",
+        "atmosphere": "dense golden dust and haze",
+        "materials": "saffron and white silk banners, bronze armour, wooden chariot wheels",
+        "end_frame": "the sun flares between two banners, cut on the flare",
+        "screen_direction": "left_to_right",
+        "on_screen_seconds": 2.6,
+        "framing": "rotated_wide",
+        "transition_in": "flash",
+        "sfx": "wind over the plain, distant horses",
+        "narration": ""
+      },
+      {
+        "purpose": "low_angle_detail",
+        "characters": [],
+        "subject": "sandalled feet of foot soldiers and the carved spoked wheel of a chariot pressing into dusty earth",
+        "environment": "Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them",
+        "composition": "lens just above the ground; foreground pebbles and dust; middle ground the wheel and feet; background a blur of banners and sun",
+        "camera_height": "ground",
+        "lens": "wide_32",
+        "focus": "follow",
+        "move": "ground_track",
+        "move_detail": "camera skims just above the ground, tracking slowly left to right alongside the rolling wheel",
+        "subject_motion": "The wheel rolls forward slowly, crushing small stones; dust lifts and glows in the backlight",
+        "lighting": "golden_backlight",
+        "atmosphere": "dust kicked up and backlit",
+        "materials": "carved wood, bronze rim, leather sandals, dry earth",
+        "end_frame": "the wheel passes, leaving a cloud of glowing dust",
+        "screen_direction": "left_to_right",
+        "on_screen_seconds": 2.0,
+        "framing": "vertical",
+        "transition_in": "cut",
+        "sfx": "wheel on dirt, footsteps",
+        "narration": ""
+      },
+      {
+        "purpose": "prop_detail",
+        "characters": [
+          "chariot"
+        ],
+        "subject": "the banner of Arjuna's ornate gold and white chariot, bearing the emblem of Hanuman, unfurling at the top of its pole",
+        "environment": "Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them",
+        "composition": "banner on the right half of the frame, pole rising from the lower left; background bright hazy sky with the sun just out of frame",
+        "camera_height": "low",
+        "lens": "normal_50",
+        "focus": "foreground_frame",
+        "move": "locked_off",
+        "move_detail": "camera holds completely still on a low angle looking up at the banner",
+        "subject_motion": "The banner snaps open and ripples in a strong gust; tassels swing",
+        "lighting": "golden_side",
+        "atmosphere": "light haze, fine dust",
+        "materials": "embroidered silk, gold thread, carved wooden pole",
+        "end_frame": "the banner fully unfurled with the Hanuman emblem readable, cut on the snap",
+        "screen_direction": "left_to_right",
+        "on_screen_seconds": 1.8,
+        "framing": "vertical",
+        "transition_in": "cut",
+        "sfx": "cloth snapping in wind",
+        "narration": ""
+      },
+      {
+        "purpose": "establishing",
+        "characters": [
+          "kurukshetra"
+        ],
+        "subject": "the whole field of Kurukshetra: two vast armies drawn up facing each other with an open plain between them, the sun rising in the gap",
+        "environment": "Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them",
+        "composition": "vertical frame: foreground a raised banner at the bottom edge, middle ground the two armies receding to left and right, background the rising sun and sky in the upper third, leaving space for one line of text",
+        "camera_height": "high",
+        "lens": "ultrawide_21",
+        "focus": "deep",
+        "move": "pull_out",
+        "move_detail": "camera starts behind the foreground banner and pulls slowly back and up, revealing the full scale of both armies; ends composed and still",
+        "subject_motion": "The sun rises slowly; banners stir along both lines; haze drifts across the plain",
+        "lighting": "volumetric_rays",
+        "atmosphere": "volumetric sun rays through dust and haze",
+        "materials": "banners, armour glints, dry plain",
+        "end_frame": "a composed, breathing wide of both armies and the sun between them, held for the verse line",
+        "screen_direction": "none",
+        "on_screen_seconds": 3.0,
+        "framing": "vertical",
+        "transition_in": "cut",
+        "sfx": "distant conch, wind",
+        "narration": ""
+      }
+    ],
+    "verse_shot_index": 6,
+    "verse_line": "On the holy plain, on the field of Kuru, gathered together, eager for battle"
+  },
+  "review": {
+    "fidelity_score": 9,
+    "respect_score": 10,
+    "craft_score": 8,
+    "issues": [
+      {
+        "severity": "minor",
+        "problem": "Arjuna's chariot banner is shown before Arjuna is introduced in the story; it appears only as part of the army Sanjaya sees, which the synopsis allows.",
+        "fix": "Keep it as a detail of the field, no characters in focus."
+      },
+      {
+        "severity": "minor",
+        "problem": "Sanjaya's divine glow could read as supernatural spectacle.",
+        "fix": "Glow kept faint and in the eyes only (divine_glow with restraint)."
+      }
+    ],
+    "verdict": "approve"
+  },
+  "verse": {
+    "chapter": 1,
+    "verse": 1,
+    "sanskrit": "धृतराष्ट्र उवाच ।\nधर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः ।\nमामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ॥ १ ॥",
+    "transliteration": "dhṛitarāśhtra uvācha\ndharma-kṣhetre kuru-kṣhetre samavetā yuyutsavaḥ\nmāmakāḥ pāṇḍavāśhchaiva kimakurvata sañjaya",
+    "translation": "Dhritarâshtra said: On the holy plain, on the field of Kuru, gathered together, eager for battle, what did they, O Sanjaya, my people and the Pândavas?",
+    "source": "Annie Besant (tr.), The Bhagavad-Gita, 4th ed. 1922, public domain",
+    "url": "https://en.wikisource.org/wiki/Bhagavad-Gita_(Besant_4th)/Discourse_1"
+  },
+  "plan_notes": [],
+  "planner": "claude-code",
+  "estimate_usd": {
+    "fal": 1.64
+  }
+}

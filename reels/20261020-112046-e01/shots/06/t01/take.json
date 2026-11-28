@@ -1,0 +1,68 @@
+{
+  "id": "t01",
+  "shot": 5,
+  "created": "2026-10-20T11:28:46",
+  "status": "ready",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photoreal cinematic film still. the banner of Arjuna's ornate gold and white chariot, bearing the emblem of Hanuman, unfurling at the top of its pole. Identity: Arjuna's war chariot: ornate gold and white, four white horses, banner bearing Hanuman, wheels spoked and carved. Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them. prop detail composed for a vertical 9:16 frame: banner on the right half of the frame, pole rising from the lower left; background bright hazy sky with the sun just out of frame. This is the first frame of the shot, framed as a the composed frame. low camera looking up, below the subject's eyeline. 50 mm equivalent lens: natural perspective, believable proportions, moderate background separation, controlled depth of field. depth of field around f/2.8-f/4, soft out-of-focus foreground framing a sharp subject; a deliberate focal hierarchy, not blur everywhere. low warm sun from the side, raking across faces and surfaces; sculpted half-lit faces, texture-revealing grazing light, rich shadow gradient; minimal; negative fill on the shadow side. light haze, fine dust, light haze. richly detailed embroidered silk, gold thread, carved wooden pole. grade: photoreal cinematic CGI of an Indian epic, golden-hour backlight, sun low in frame, volumetric haze and dust, warm rim light on skin and metal, shallow depth of field, anamorphic flare, heroic scale; exposure deep crushed blacks (5th-percentile luma ~11/255), bright creamy highlights (95th ~222), mid-tones low (~82); warm amber highlights, earthy midtones, controlled deep shadows, natural skin, never uniformly orange. the image character of a modern large-format digital cinema camera: filmic highlight roll-off, wide dynamic range, natural colour separation, smooth skin tones, rich shadow detail, fine organic texture and natural 180-degree-shutter motion blur.",
+    "negative": "cartoon, illustration, anime, video-game render, plastic or waxy skin, artificial smoothness, excessive sharpening, overprocessed HDR halos, oversaturated orange-and-teal, glowing outlines, excessive artificial bloom, temporal flicker, warped architecture, unstable background, inconsistent shadows, random camera shake, abrupt zoom, extreme lens distortion, compression artifacts, text, watermark, logo, gore, blood, distorted face, asymmetrical eyes, morphing face, malformed hands, extra fingers, extra limbs, broken joints, floating feet, sliding feet, changing clothing, inconsistent jewellery, extra legs, sliding hooves or paws, mechanical repetitive gait, melting fur",
+    "video": "Locked-off: camera holds completely still on a tripod, from the composed frame to the same frame, static, none; camera holds completely still on a low angle looking up at the banner. Keep only the world moves: wind, smoke, dust, cloth, water, breathing. No camera drift, horizon tilt. The banner snaps open and ripples in a strong gust; tassels swing. light haze, fine dust, light haze. lighting and shadows stay consistent with the first frame: low warm sun from the side, raking across faces and surfaces; sculpted half-lit faces, texture-revealing grazing light, rich shadow gradient; minimal; negative fill on the shadow side. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: the banner fully unfurled with the Hanuman emblem readable, cut on the snap."
+  },
+  "spec": {
+    "purpose": "prop_detail",
+    "characters": [
+      "chariot"
+    ],
+    "subject": "the banner of Arjuna's ornate gold and white chariot, bearing the emblem of Hanuman, unfurling at the top of its pole",
+    "environment": "Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them",
+    "composition": "banner on the right half of the frame, pole rising from the lower left; background bright hazy sky with the sun just out of frame",
+    "camera_height": "low",
+    "lens": "normal_50",
+    "focus": "foreground_frame",
+    "move": "locked_off",
+    "move_detail": "camera holds completely still on a low angle looking up at the banner",
+    "subject_motion": "The banner snaps open and ripples in a strong gust; tassels swing",
+    "lighting": "golden_side",
+    "atmosphere": "light haze, fine dust",
+    "materials": "embroidered silk, gold thread, carved wooden pole",
+    "end_frame": "the banner fully unfurled with the Hanuman emblem readable, cut on the snap",
+    "screen_direction": "left_to_right",
+    "on_screen_seconds": 1.8,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "cloth snapping in wind",
+    "narration": ""
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.18,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "Locked-off: camera holds completely still on a tripod, from the composed frame to the same frame, static, none; camera holds completely still on a low angle looking up at the banner. Keep only the world moves: wind, smoke, dust, cloth, water, breathing. No camera drift, horizon tilt. The banner snaps open and ripples in a strong gust; tassels swing. light haze, fine dust, light haze. lighting and shadows stay consistent with the first frame: low warm sun from the side, raking across faces and surfaces; sculpted half-lit faces, texture-revealing grazing light, rich shadow gradient; minimal; negative fill on the shadow side. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: the banner fully unfurled with the Hanuman emblem readable, cut on the snap.",
+    "image_url": "https://v3b.fal.media/files/b/0aaf21a4/cpO8jWk2qCSDtU6MEQJCe_oquM1hPi.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 11.03,
+    "flicker": 1.6,
+    "notes": []
+  },
+  "ended": "2026-10-20T11:30:11",
+  "reviewed": true
+}

@@ -1,0 +1,66 @@
+{
+  "id": "t01",
+  "shot": 4,
+  "created": "2026-10-20T11:27:24",
+  "status": "ready",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photoreal cinematic film still. sandalled feet of foot soldiers and the carved spoked wheel of a chariot pressing into dusty earth. Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them. low angle detail composed for a vertical 9:16 frame: lens just above the ground; foreground pebbles and dust; middle ground the wheel and feet; background a blur of banners and sun. This is the first frame of the shot, framed as a subject entering from one side. camera just above the ground. 28-35 mm equivalent lens: strong spatial depth with a clear foreground element for scale, near-to-far separation, natural perspective with the camera kept a respectful distance from faces. depth of field around f/4, focus follows the moving subject smoothly; a deliberate focal hierarchy, not blur everywhere. low golden sun just above the horizon behind and slightly to the side of the subject; warm amber light, long shadows, bright rim highlights on hair, armour, cloth and edges, gradual falloff; soft warm bounce from the ground keeps the shadow side readable. dust kicked up and backlit, fine dust and haze catching the light. richly detailed carved wood, bronze rim, leather sandals, dry earth. grade: photoreal cinematic CGI of an Indian epic, golden-hour backlight, sun low in frame, volumetric haze and dust, warm rim light on skin and metal, shallow depth of field, anamorphic flare, heroic scale; exposure deep crushed blacks (5th-percentile luma ~11/255), bright creamy highlights (95th ~222), mid-tones low (~82); warm amber highlights, earthy midtones, controlled deep shadows, natural skin, never uniformly orange. the image character of a modern large-format digital cinema camera: filmic highlight roll-off, wide dynamic range, natural colour separation, smooth skin tones, rich shadow detail, fine organic texture and natural 180-degree-shutter motion blur.",
+    "negative": "cartoon, illustration, anime, video-game render, plastic or waxy skin, artificial smoothness, excessive sharpening, overprocessed HDR halos, oversaturated orange-and-teal, glowing outlines, excessive artificial bloom, temporal flicker, warped architecture, unstable background, inconsistent shadows, random camera shake, abrupt zoom, extreme lens distortion, compression artifacts, text, watermark, logo, gore, blood",
+    "video": "Ground-level tracking: camera skims just above the ground, tracking parallel to feet, hooves or wheels, from subject entering from one side to subject passing through frame, matched to the subject, smooth; camera skims just above the ground, tracking slowly left to right alongside the rolling wheel. Keep solid foot and ground contact; foreground stones and dust give depth; natural motion blur. No floating camera, sliding feet. The wheel rolls forward slowly, crushing small stones; dust lifts and glows in the backlight. dust kicked up and backlit, fine dust and haze catching the light. lighting and shadows stay consistent with the first frame: low golden sun just above the horizon behind and slightly to the side of the subject; warm amber light, long shadows, bright rim highlights on hair, armour, cloth and edges, gradual falloff; soft warm bounce from the ground keeps the shadow side readable. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: the wheel passes, leaving a cloud of glowing dust."
+  },
+  "spec": {
+    "purpose": "low_angle_detail",
+    "characters": [],
+    "subject": "sandalled feet of foot soldiers and the carved spoked wheel of a chariot pressing into dusty earth",
+    "environment": "Kurukshetra battlefield at dawn: two vast ancient Indian armies facing each other across an open plain, saffron and white banners, chariots and elephants, dust and haze, the sun rising low between them",
+    "composition": "lens just above the ground; foreground pebbles and dust; middle ground the wheel and feet; background a blur of banners and sun",
+    "camera_height": "ground",
+    "lens": "wide_32",
+    "focus": "follow",
+    "move": "ground_track",
+    "move_detail": "camera skims just above the ground, tracking slowly left to right alongside the rolling wheel",
+    "subject_motion": "The wheel rolls forward slowly, crushing small stones; dust lifts and glows in the backlight",
+    "lighting": "golden_backlight",
+    "atmosphere": "dust kicked up and backlit",
+    "materials": "carved wood, bronze rim, leather sandals, dry earth",
+    "end_frame": "the wheel passes, leaving a cloud of glowing dust",
+    "screen_direction": "left_to_right",
+    "on_screen_seconds": 2.0,
+    "framing": "vertical",
+    "transition_in": "cut",
+    "sfx": "wheel on dirt, footsteps",
+    "narration": ""
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.18,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "fal-ai/bytedance/seedance/v1.5/pro/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "Ground-level tracking: camera skims just above the ground, tracking parallel to feet, hooves or wheels, from subject entering from one side to subject passing through frame, matched to the subject, smooth; camera skims just above the ground, tracking slowly left to right alongside the rolling wheel. Keep solid foot and ground contact; foreground stones and dust give depth; natural motion blur. No floating camera, sliding feet. The wheel rolls forward slowly, crushing small stones; dust lifts and glows in the backlight. dust kicked up and backlit, fine dust and haze catching the light. lighting and shadows stay consistent with the first frame: low golden sun just above the horizon behind and slightly to the side of the subject; warm amber light, long shadows, bright rim highlights on hair, armour, cloth and edges, gradual falloff; soft warm bounce from the ground keeps the shadow side readable. photographic rather than synthetic; tactile textures with fine pores, threads, metal wear and dust; physically plausible light and shadow; all motion obeys weight, gravity and inertia with solid ground contact; stable identity, anatomy, costume and jewellery throughout the shot; stable background geometry; consistent light direction from first to last frame. the shot settles on: the wheel passes, leaving a cloud of glowing dust.",
+    "image_url": "https://v3b.fal.media/files/b/0aaf219c/FSXxSLQJ_nAs8P6TBRPRu_JlnD66F7.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16"
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 34.06,
+    "flicker": 4.01,
+    "notes": []
+  },
+  "ended": "2026-10-20T11:28:45",
+  "reviewed": true
+}

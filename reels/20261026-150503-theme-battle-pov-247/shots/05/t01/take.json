@@ -1,0 +1,74 @@
+{
+  "id": "t01",
+  "shot": 4,
+  "created": "2026-10-26T15:27:24",
+  "status": "ready",
+  "hint": "",
+  "provider": "fal",
+  "placeholder": false,
+  "prompts": {
+    "keyframe": "Photographic film still. A Kaurava archer, South Asian man about 35 with a dark beard and a dented iron helmet, iron scale armour over a dark red tunic, stands braced on a moving chariot facing screen left, a heavy wooden bow at full draw; he releases: the string snaps forward, the recoil throws his right shoulder back, his eyes stay on the target. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The charge, a few seconds in. Lens: 85 mm at f/2, chest-up close shot, his face and bow hand sharp, the dust behind him soft. Camera: static first frame of the shot. Atmosphere: dust streaming left to right behind him, sun glinting on the helmet rim. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. 9:16 vertical frame. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "negative": "extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make",
+    "video": "A Kaurava archer, South Asian man about 35 with a dark beard and a dented iron helmet, iron scale armour over a dark red tunic, stands braced on a moving chariot facing screen left, a heavy wooden bow at full draw; he releases: the string snaps forward, the recoil throws his right shoulder back, his eyes stay on the target. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The charge, a few seconds in. Lens: 85 mm at f/2, chest-up close shot, his face and bow hand sharp, the dust behind him soft. Camera: handheld on a long lens, jolting with the chariot's movement, a small reframe left as the arrow leaves; begin half a second before the release, end half a second after. Atmosphere: dust streaming left to right behind him, sun glinting on the helmet rim. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 4 seconds. First frame: full draw. Last frame: string still swinging, the arrow gone off screen left. The arrow travels right to left. Sound: bowstring snap and thrum, arrow whistle leaving, chariot rattle under him, wind; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make."
+  },
+  "spec": {
+    "purpose": "hero_closeup",
+    "characters": [],
+    "subject": "a Kaurava archer on a chariot releases an arrow screen left",
+    "environment": "Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left",
+    "composition": "SUBJECTIVE, telephoto as Arjuna's attention locks on him",
+    "camera_height": "eye",
+    "lens": "portrait_85",
+    "focus": "eyes",
+    "move": "handheld_stabilized",
+    "move_detail": "",
+    "subject_motion": "string snaps forward, recoil throws his shoulder back",
+    "lighting": "golden_side",
+    "atmosphere": "dust",
+    "materials": "bronze, skin, cotton, leather",
+    "end_frame": "string still swinging, arrow gone left",
+    "screen_direction": "right_to_left",
+    "on_screen_seconds": 0.6,
+    "framing": "vertical",
+    "transition_in": "cut_on_action",
+    "sfx": "bowstring snap, arrow whistle leaving, chariot rattle",
+    "narration": "",
+    "source_in": 0.6,
+    "source_of": -1,
+    "ramp_at": -1.0,
+    "ramp_frames": 8,
+    "ramp_speed": 0.25,
+    "black_after": 0.0,
+    "model": "bytedance/seedance-2.0/mini/image-to-video"
+  },
+  "qc": [
+    {
+      "stage": "clip",
+      "reviewer": "claude-code",
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "cost_usd": 0.6988,
+  "keyframe": "keyframe.png",
+  "clip": "clip.mp4",
+  "model": "bytedance/seedance-2.0/mini/image-to-video",
+  "gen_seconds": 4,
+  "request": {
+    "prompt": "A Kaurava archer, South Asian man about 35 with a dark beard and a dented iron helmet, iron scale armour over a dark red tunic, stands braced on a moving chariot facing screen left, a heavy wooden bow at full draw; he releases: the string snaps forward, the recoil throws his right shoulder back, his eyes stay on the target. Kurukshetra, a flat open plain of packed tan earth, late afternoon, dry wind from screen left; the Pandava line faces screen right, the Kaurava line faces screen left. The charge, a few seconds in. Lens: 85 mm at f/2, chest-up close shot, his face and bow hand sharp, the dust behind him soft. Camera: handheld on a long lens, jolting with the chariot's movement, a small reframe left as the arrow leaves; begin half a second before the release, end half a second after. Atmosphere: dust streaming left to right behind him, sun glinting on the helmet rim. Light: low late-afternoon sun from screen left about 15 degrees above the horizon, hard warm light around 3500 K, long shadows falling to screen right, natural falloff, bounce only from the dust. Colour: dust ochre, bronze, sun-faded white and deep shadow; moderate contrast, natural skin tones, light 35 mm film grain, slight lens breathing. Shot like a real camera on a real location: natural motion blur on fast movement; skin with pores, sweat, sun damage and fine hair; fabric with weight, folds and dirt at the hem; metal with scratches, dents and patina; ground churned with hoof marks and footprints; imperfect, asymmetric, uneven dust. Output: 9:16, 4 seconds. First frame: full draw. Last frame: string still swinging, the arrow gone off screen left. The arrow travels right to left. Sound: bowstring snap and thrum, arrow whistle leaving, chariot rattle under him, wind; no music, no speech, no singing. Avoid: extra or fused fingers, warped or melting weapons, faces changing between frames, symmetrical posed stances, plastic or airbrushed skin, glowing outlines, beams from eyes or hands, particles with no source, text, letters or watermarks in frame, modern objects, European features on Indian figures, cartoon blue skin, camera moves no rig could make.",
+    "image_url": "https://v3b.fal.media/files/b/0aaff1bc/T1G5vYVNUfDypHDGbfEP9_gp7rkENC.png",
+    "duration": "4",
+    "resolution": "720p",
+    "aspect_ratio": "9:16",
+    "generate_audio": true
+  },
+  "fallback_errors": [],
+  "metrics": {
+    "frames": 97,
+    "motion": 24.29,
+    "flicker": 4.43,
+    "notes": []
+  },
+  "ended": "2026-10-26T15:31:02",
+  "reviewed": true
+}
