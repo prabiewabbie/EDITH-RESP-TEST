@@ -1,0 +1,45 @@
+# Post 13 — style guide
+
+Echoes of Gita, 'Beginning of the Path' carousel. A unified dawn-to-sunrise story told in two complementary modes: (1) photorealistic, cinematic interiors for the modern meditator slides (1, 2, 5, 7) and (2) soft painterly, Indian-miniature-inspired illustration for the scripture and metaphor slides (3, 4, 6). Shared palette: pre-dawn slate blue (#3E4C66), mist grey (#B9BEC6), warm brass gold (#C9973F), sunrise saffron (#E8A85A), soft rose (#E9B8A8), aged parchment cream (#F2E8D5) and deep teak brown (#5A3E2B). Lighting progresses across the slides from cool blue pre-dawn to full warm morning sun, always low-angle, soft and directional, never harsh. Recurring motifs: the same round indigo cotton meditation cushion, the small brass diya oil lamp with a steady flame, an oatmeal wool shawl, and a teak wooden floor by a wooden-framed window. Photoreal slides: 35mm or 50mm look, shallow depth of field, gentle film grain, muted grading with lifted shadows. Painterly slides: fine brushwork, gouache and gold-leaf accents, soft edges, flat-perspective miniature composition with atmospheric haze. Mood is calm, compassionate, reverent and hopeful, never dramatic or distressing. Every frame leaves generous clean negative space, usually in the upper third, for on-screen text added in editing. No text, letters, logos or watermarks are generated in any image. Master aspect 4:5 (1080x1350), with key subjects kept within the central safe zone so frames can be extended to 9:16.
+
+## Scene 0 · image · 4:5
+
+Cinematic photorealistic early-morning interior. A round indigo cotton meditation cushion sits empty on a warm teak wooden floor beside a tall wooden-framed window. Soft slate-blue pre-dawn light fills the room, and the first thin band of warm gold sunrise glows at the window's lower edge. A small brass diya oil lamp beside the cushion burns with a steady, calm flame and casts a gentle warm pool of light. No people. The composition is low and centered in the lower third, with a 35mm lens at floor height, shallow depth of field and subtle film grain. The upper 40% of the frame is wide, calm negative space of softly lit wall and window. Muted palette of slate blue, mist grey and brass gold. Quiet, expectant, peaceful mood.
+
+Negative: text, letters, words, typography, captions, watermark, logo, signature, people, faces, hands, clutter, harsh light, neon, oversaturated colors, dark horror mood, smoke, fire hazard, religious political symbols
+
+## Scene 1 · image · 4:5
+
+Photorealistic, gently lit dawn interior in the same room with the teak floor and wooden window. An adult of unspecified ethnicity and gender is seen from behind and slightly to the side, sitting cross-legged on the indigo meditation cushion. They are wrapped in an oatmeal wool shawl, the face is not visible and the head is softly tilted. Faint, translucent, soft-focus wisps of pale light drift loosely around their head like morning mist, suggesting wandering thoughts in a gentle, airy way rather than a chaotic one. A ceramic cup of tea steams on the floor nearby, and the brass diya glows softly at the edge of the frame. Cool blue window light is balanced by a warm lamp glow. The camera uses a 50mm lens at seated eye level, three-quarter rear view, shallow depth of field. The figure sits in the lower half of the frame, leaving clean wall space above. The tone is warm, compassionate and relatable, not distressing.
+
+Negative: visible face, recognizable person, real person, celebrity likeness, text, letters, words, thought bubbles, icons, emojis, screens, phones, watermark, logo, distressed or crying expression, dark or anxious horror mood, chaotic swirling effects, harsh lighting, clutter, political symbols
+
+## Scene 2 · image · 4:5
+
+Reverent painterly illustration in a traditional Indian miniature-inspired style with gouache texture and delicate gold-leaf accents. Lord Krishna, with a dark blue complexion, wears a peacock-feather crown, yellow pitambara silk garments, a garland and traditional jewelry. He sits serenely on an ornate wooden chariot with a calm, compassionate expression and one hand raised in a gentle teaching gesture. Arjuna sits before him in princely attire and listens attentively with folded hands, his bow Gandiva laid respectfully aside. White horses stand calmly at rest. Soft golden dawn light and a warm saffron and rose sky surround the scene. The Kurukshetra field appears only as a hazy, distant horizon with tiny faint banners, with no combat and no soldiers in focus. The dignified, balanced composition places the figures in the lower two-thirds and leaves open, softly glowing sky above. Palette of parchment cream, saffron, brass gold and deep blue. Mood is sacred, tranquil and instructive.
+
+Negative: text, letters, words, Sanskrit script, captions, watermark, logo, sexualised depiction, revealing or suggestive clothing, comedic or cartoonish style, caricature, meme style, chibi, exaggerated expressions, violence, gore, blood, injury, weapons raised, battle combat in foreground, dead bodies, real living people, celebrity likeness, political symbols, flags of modern nations, distorted anatomy, extra limbs, incorrect iconography, disrespectful pose, modern clothing
+
+## Scene 3 · image · 4:5
+
+Painterly, softly lit illustration with gouache texture in a miniature-inspired style. A stone mountain path winds upward from the foreground through layers of soft morning mist toward a peaceful summit bathed in warm golden light. The lower path is clearly visible and walkable, with worn stone steps edged by grass and small wildflowers. Near the glowing summit stands a tiny lamp-lit stone shrine with a small warm flame. No figures. Atmospheric perspective shifts from cool slate blue and mist grey in the valley to saffron and gold at the peak. A vertical composition leads the eye from the bottom center up an S-curve path, with soft open sky and mist in the upper third. Earthy teak and moss tones, serene and encouraging mood.
+
+Negative: text, letters, words, signs, watermark, logo, people, figures, animals, harsh cliffs, dangerous terrain, stormy sky, dark ominous mood, oversaturated colors, photographic realism, modern buildings, political symbols
+
+## Scene 4 · image · 4:5
+
+Photorealistic intimate close-up of two relaxed hands resting palms-up on crossed knees in a meditation posture, draped in the edge of an oatmeal wool shawl over soft cotton clothing. A simple wooden mala lies loosely coiled beside them on the indigo cushion. Warm, low-angle sunrise light falls diagonally across the hands and highlights the skin texture. The skin tone is neutral and unspecified. Shot with an 85mm lens, very shallow depth of field and a creamy background blur of the teak floor and soft window glow. The hands sit in the lower half of the frame, with soft out-of-focus warm space above. Palette of brass gold, saffron and soft cream. Peaceful, gentle and intimate mood.
+
+Negative: face, recognizable person, real person, celebrity likeness, text, letters, words, watermark, logo, jewelry clutter, tattoos, rings with symbols, tense or clenched hands, extra fingers, deformed hands, harsh light, cold color cast, political symbols
+
+## Scene 5 · image · 4:5
+
+Painterly, gouache-textured scene of a still lake at sunrise. In the foreground a few soft concentric ripples fade outward, and toward the distance the water settles into glass-calm stillness reflecting the sky. A single closed pink lotus bud rises gracefully on its stem from the water in the lower third, slightly off-center, beside two round lotus leaves. Gentle gold and rose sunrise light sits low on a hazy horizon of distant soft hills. The wide, open, softly graded sky fills the upper half for text. Palette of soft rose, saffron, parchment cream and pale slate blue. Contemplative, hopeful and tranquil mood.
+
+Negative: text, letters, words, watermark, logo, people, figures, boats, fully opened lotus, wilted flower, storm, waves, dark mood, oversaturated neon colors, photographic harshness, clutter, political symbols
+
+## Scene 6 · image · 4:5
+
+Cinematic photorealistic interior echoing the first slide in the same room. The indigo meditation cushion sits on the teak wooden floor beside the wooden-framed window, now bathed in full warm morning sunlight that streams across the floor in soft golden beams. A neatly folded oatmeal wool shawl rests on the cushion as an invitation to return. The small brass diya oil lamp still glows gently beside it. The camera uses the same 35mm low floor-level angle as slide one for visual continuity, with shallow depth of field and subtle film grain. The cushion sits in the lower third, with a clean, uncluttered, sunlit wall and window space above, and an empty band near the bottom edge reserved for branding added in editing. Palette of saffron, brass gold and parchment cream. Serene, hopeful and welcoming mood.
+
+Negative: text, letters, words, brand name, logo, watermark, signature, people, faces, hands, clutter, harsh light, blown-out highlights, cold blue cast, dark mood, political symbols

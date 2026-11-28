@@ -1,0 +1,45 @@
+# Post 29 — style guide
+
+Visual series 'Echoes of Gita – Results Day' (carousel, master 4:5, safe-cropped for 9:16). Two harmonised modes alternate: (1) quiet cinematic photorealism for modern-life scenes, and (2) soft painterly realism in the style of traditional Indian devotional painting for scripture and symbolic scenes. Both share one palette: dawn and golden-hour light, warm amber, muted saffron, soft ivory, and calm powder-blue shadows, with low contrast, gentle film grain and soft bloom. Lighting is always natural, low-angle morning light or the warm glow of an oil lamp. Mood is contemplative, steady, hopeful and never dramatic. Composition is centred or rule-of-thirds, with generous clean negative space in the upper third (and lower quarter on closing slides) for on-screen text added in editing. Keep key subjects inside the central 4:5 safe zone so 9:16 crops work. Ordinary people are anonymous: shown from behind, as silhouettes, or as hands only, with no identifiable faces. Divine figures appear only in dignified traditional iconography. No rendered text, letters, logos, brand marks or UI copy in any image; all typography and the Echoes of Gita wordmark are added in post.
+
+## Scene 1 · image · 4:5
+
+Cinematic photorealistic close-up of a modern smartphone lying face-up on a warm oak desk at dawn. The screen glows softly with a single abstract notification shape: a simple blank envelope icon and blurred, illegible placeholder bars, with no letters. Beside it sits a small clay cup of chai with a faint wisp of steam. The fingertips of one anonymous hand rest at the bottom edge of the frame, poised but not touching. Soft side light from a window on the left gives warm amber highlights and cool blue shadows. Shot on a 50mm lens at f/1.8 with shallow depth of field, slightly high three-quarter angle. Quiet, tense-but-calm mood. Clean, softly blurred wall background in the upper third leaves negative space for text overlay.
+
+Negative: text, readable letters, words, numbers, email subject lines, sender names, brand logos, app logos, Gmail, Outlook, Apple, Samsung branding, watermark, identifiable face, real person, celebrity likeness, political symbols, clutter, harsh flash, neon colours, oversaturation, distorted hands, extra fingers
+
+## Scene 2 · image · 4:5
+
+Reverent painterly scene in traditional Indian devotional iconography. Krishna, with serene blue complexion, a peacock feather in his crown, yellow silk pitambara, gentle jewellery and a calm compassionate expression, sits upright on the front of an ornate wooden chariot drawn by white horses, one hand raised in a gentle teaching mudra. Arjuna, in princely attire with his bow set down beside him, kneels attentively before him with palms joined in respect. Golden-hour backlight, soft mist drifting across a distant, empty Kurukshetra plain, faint banners far away and no combat. Medium-wide composition with the figures in the lower two-thirds and soft luminous sky in the upper third left clean for verse text added in editing. Palette of saffron, gold, ivory and soft blue. Mood is peaceful, sacred and steady, with fine brushwork and a gentle glow.
+
+Negative: text, letters, words, calligraphy, watermark, logo; undignified, sexualised, comedic, cartoonish, meme-style, caricature or exaggerated depictions of Krishna, Arjuna or any divine figure; non-traditional or modernised costumes; violence, battle, weapons in use, blood, gore, injury, corpses; real living people, celebrity likeness, political symbols, flags of modern nations; distorted anatomy, extra limbs, extra fingers, garish colours, harsh shadows
+
+## Scene 3 · image · 4:5
+
+Painterly still life of an ancient palm-leaf manuscript bound with cord, lying open on a low carved wooden stand. The leaves show only faint, abstract, illegible ink texture. Beside it a small brass oil lamp burns with a soft steady flame, casting warm amber light and long gentle shadows. The background is a dim, softly textured plaster wall dissolving into darkness, with the upper third left uncluttered for text. Eye-level 85mm perspective with shallow depth of field. Palette of deep amber, ochre, burnished brass and soft shadow blue. Contemplative, scholarly, reverent mood.
+
+Negative: legible text, readable Sanskrit, Devanagari letters, words, numbers, watermark, logo, people, faces, hands, modern objects, electric lights, smoke clouds, fire hazard, clutter, oversaturation, harsh lighting
+
+## Scene 4 · image · 4:5
+
+Photorealistic wide interior shot from behind an anonymous student seated at a simple desk by a large window at early morning. The student appears as a soft dark silhouette, head and shoulders only, with no face visible. On the desk sit neat stacks of textbooks, loose handwritten notes rendered as illegible scribbles, and a closed or dimmed laptop. Outside, first sunlight breaks over city rooftops in warm gold against a pale blue sky. 35mm lens with gentle backlight and soft rim light on the silhouette. Calm, hopeful, grounded and still. Generous sky area in the upper third for text overlay.
+
+Negative: text, readable handwriting, book titles, logos, brand marks on laptop, watermark, visible face, identifiable person, celebrity likeness, political symbols, posters, mess, dramatic storm, gloomy darkness, distorted anatomy
+
+## Scene 5 · image · 4:5
+
+Soft painterly close-up of two relaxed hands resting palms-down on top of a closed matte-grey laptop on a wooden table. Beside them a small clay diya burns with a gentle flame, and a cup with a thin ribbon of rising steam sits in the soft background. Top-down three-quarter angle, 50mm with shallow depth of field. Warm diya glow mixes with cool dawn window light. Palette of warm amber, ivory and soft blue-grey. Minimal, uncluttered and meditative. Calm empty table surface in the upper portion leaves room for text.
+
+Negative: text, letters, numbers, logos, brand marks, Apple logo, watermark, faces, identifiable person, jewellery with symbols, political symbols, clutter, tension, clenched fists, extra fingers, distorted hands, harsh light
+
+## Scene 6 · image · 4:5
+
+Cinematic photorealistic wide landscape at sunrise. A lone small figure, seen from behind at a distance, walks along a quiet tree-lined dirt path toward a warm golden horizon carrying a simple backpack. Long soft shadows stretch across the path, and light mist glows between the trees. 35mm lens with a low, centred one-point perspective drawing the eye down the path. Palette of honey gold, soft saffron, sage green and pale morning blue. Mood of continuity, quiet resilience and gentle hope. Open sky in the upper third for text overlay.
+
+Negative: text, signs, letters, logos, watermark, identifiable face, real person, celebrity likeness, crowds, vehicles, political symbols, dark or ominous mood, harsh contrast, oversaturation
+
+## Scene 7 · image · 4:5
+
+Painterly closing image: a single pale pink-and-white lotus in full bloom floats on perfectly still water at dawn, its reflection mirrored precisely below. Gentle concentric ripples spread outward. Soft mist sits over the water with a gradient sky from muted saffron to soft blue. Centred composition with the lotus slightly below middle and generous clean negative space above and in the lower quarter for text and a wordmark added in editing. Diffuse, glowing light. Serene, sacred, resolved mood with fine brushwork texture.
+
+Negative: text, letters, words, wordmark, logo, watermark, signature, people, faces, multiple cluttered flowers, insects, debris, harsh shadows, oversaturated neon colours, political or religious-organisation symbols

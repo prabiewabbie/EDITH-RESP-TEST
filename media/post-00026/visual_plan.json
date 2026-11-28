@@ -1,0 +1,61 @@
+{
+  "style_guide": "Painterly cinematic realism with soft oil-painting texture and gentle film grain, unified across all slides. Palette: deep indigo and night blue for the confusion slides, shifting to warm amber, saffron gold and soft rose for the scripture and resolution slides. Low-contrast, diffused lighting with one warm motivated light source per frame. Calm, contemplative, reverent mood with nothing sensational. Compositions are uncluttered and leave generous negative space in the upper or lower third, where on-screen text will be added in editing. Lenses are a 35mm or 50mm feel with shallow depth of field. Human figures are never shown with identifiable faces, except for traditional divine iconography. Krishna and Arjuna follow classical Indian devotional painting conventions, shown with dignity and serenity. No text, letters, logos or watermarks are rendered in any image; all typography and the 'Echoes of Gita' wordmark are added in post. Master aspect is 4:5, with safe-area framing so each image can be recropped to 9:16.",
+  "assets": [
+    {
+      "kind": "image",
+      "scene_index": 0,
+      "prompt": "Painterly cinematic close-up of a smartphone lying on a rumpled bedsheet in a dim bedroom at night. The screen glows softly and shows a long scrolling grid of heavily blurred, abstract thumbnail tiles in muted colors. No faces, logos or readable content appear on the screen. Beside the phone sits a ceramic cup of cold tea with a faint skin on its surface. The phone's glow is the only light source, casting cool indigo light on the sheets, with a faint amber rim from a distant streetlight. Shot at a 50mm feel, slightly high angle, with shallow depth of field. The phone sits in the lower-middle of the frame, leaving empty dark space in the upper third. Palette is indigo, slate blue and muted amber. The mood is quiet, restless and late at night.",
+      "negative_prompt": "text, letters, numbers, readable UI, app logos, brand names, social media icons, faces, people, celebrity likeness, watermark, signature, harsh lighting, oversaturated colors, cartoon, meme style, clutter",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 1,
+      "prompt": "Painterly cinematic scene seen from behind: a young adult in their late twenties with dark hair, wearing a soft grey t-shirt, sits cross-legged on a bed in a small, modest apartment, scrolling a phone. The face is not visible. Around their head and shoulders, many faint translucent speech-bubble shapes float and overlap like drifting fog. The bubbles are completely blank, with soft edges and slight luminosity, and they grow denser and heavier near the figure. A warm bedside lamp glows amber on the left, while a large window on the right shows deep blue night with distant blurred city lights. Shot at a 35mm feel at eye level from behind, with the figure placed in the lower center and the bubbles filling the upper frame. Palette is warm amber against cool indigo. The mood is overwhelmed, cluttered in thought, quietly anxious.",
+      "negative_prompt": "text inside speech bubbles, letters, words, emojis, logos, visible face, identifiable person, celebrity likeness, political symbols, cartoon, comic style, meme style, harsh shadows, messy room, watermark",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 2,
+      "prompt": "Elegant painterly background plate for a scripture quote slide. It is an aged parchment surface with a subtle fibrous texture and softly darkened, vignetted edges. A thin, delicate antique-gold ornamental border runs around it, with a classical Indian floral motif at the corners. A single peacock feather rests diagonally in the lower right corner beside a small lit brass oil lamp (diya) whose gentle flame casts warm reverent light across the parchment. The large central area of the parchment is completely blank and evenly lit, with no writing, reserved for the verse to be added in editing. Shot from directly overhead with a slight soft-focus falloff at the edges. Palette is cream, ochre, antique gold, with peacock teal and blue accents. The mood is sacred, calm and timeless.",
+      "negative_prompt": "text, letters, Devanagari script, calligraphy, writing, symbols, numbers, logos, watermark, depictions of deities, faces, cluttered objects, harsh light, glossy plastic look, cartoon, meme style; depiction rules: no sexualised, comedic, violent-gore or meme-style depiction of any divine figure, no real living people, no celebrity likenesses, no political symbols",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 3,
+      "prompt": "Painterly scene in the style of classical Indian devotional art, rendered with cinematic soft light, at dawn on the plain of Kurukshetra. Krishna is depicted in traditional iconography: serene blue complexion, a crown adorned with a peacock feather, flowing yellow pitambara garments and gold ornaments. He sits as charioteer at the front of an ornate golden chariot, turning calmly toward Arjuna with a gentle, compassionate expression and one hand raised in a teaching gesture. Arjuna, a noble warrior in traditional armor and crown, sits behind him with his bow Gandiva lowered across his lap and his head bowed in thought. Four white horses stand perfectly still. The armies appear only as faint, tiny silhouettes and banners in the far misty distance, with no combat. Soft golden sunrise light breaks through the haze. Shot at a 50mm feel at low eye level, with the chariot in the lower two-thirds and an open misty sky above. Palette is gold, saffron, peacock blue and soft dawn rose. The mood is dignified, serene and reverent.",
+      "negative_prompt": "depiction rules: no sexualised, comedic, violent-gore or meme-style depiction of Krishna, Arjuna or any divine figure; no real living people; no celebrity likenesses; no political symbols or flags; no close-up battle, no blood, no wounds, no graphic injury, no weapons in use; also avoid text, letters, watermark, cartoon, anime, caricature, distorted anatomy, extra limbs, modern objects",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 4,
+      "prompt": "Painterly metaphorical still life: a large, soft, cloud-like tangle of fine grey and charcoal threads floating against a plain muted warm-grey background. Through the center runs a single luminous golden thread, caught in the tangle, but in the middle a short section of it is visibly slipping free and gently loosening. Soft directional light comes from the left, catching the golden thread so it glows subtly while the grey threads fall into gentle shadow. The composition is centered with generous empty space above and below. It is shot like a macro photograph with shallow depth of field. Palette is muted greys, warm taupe and a single accent of soft gold. The mood is calm, contemplative and quietly hopeful.",
+      "negative_prompt": "text, letters, logos, watermark, people, faces, hands, bright saturated colors, chaotic composition, harsh contrast, cartoon, meme style",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 5,
+      "prompt": "Warm painterly-realistic still life on a simple wooden desk by a window in the early morning. A smartphone lies face-down beside an open blank notebook with clean, unwritten pages and a simple pen laid across it. A small potted green plant and a ceramic cup of steaming tea sit nearby. Soft golden sunlight streams through the window from the right, casting long gentle shadows and visible warm light on the wood grain. The background is a softly blurred room with sheer curtains. Shot at a 35mm feel from a slight high angle, with the objects in the lower half and an airy, light-filled upper area. Palette is honey wood, cream, soft sage green and warm gold. The mood is peaceful, uncluttered, restful and intentional.",
+      "negative_prompt": "text, handwriting, writing on notebook pages, letters, logos, brand marks on phone, glowing phone screen, people, faces, clutter, cold lighting, oversaturated colors, watermark, cartoon",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 6,
+      "prompt": "Painterly cinematic landscape of a still mountain lake at sunrise. The water is perfectly calm, mirror-like, and clearly reflects the soft sky and layered mountain peaks. Thin mist drifts low over the far shore. In the lower foreground, a small clay diya with a gentle steady flame rests on a smooth flat stone at the water's edge. Soft gold and rose light washes over the peaks and sky. Shot at a 35mm feel with low, symmetrical composition and the horizon slightly above center. The diya sits in the lower left third, with clean empty space in the lower right corner and upper sky reserved for text and wordmark added in editing. Palette is soft gold, dusty rose, pale lavender and calm blue. The mood is deep quiet, stillness and gentle clarity.",
+      "negative_prompt": "text, letters, wordmark, logo, watermark, signature, people, faces, boats, buildings, ripples, wind, harsh sun glare, oversaturated colors, cartoon, meme style",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    }
+  ]
+}

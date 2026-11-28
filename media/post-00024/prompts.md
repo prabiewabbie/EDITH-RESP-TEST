@@ -1,0 +1,45 @@
+# Post 24 — style guide
+
+Unified painterly-cinematic look for all 7 slides: soft, warm natural light (early morning or sunrise), gentle film-like grain, subtle painterly brush texture over realistic forms. Palette: saffron, warm amber, cream, muted terracotta, soft sage, with deep indigo accents only on Krishna. Mood is calm, reverent and hopeful, never dramatic or alarming. Use shallow depth of field on close-ups and an eye-level or slightly elevated camera. Keep compositions uncluttered, with generous negative space (upper or lower third) reserved for text added in editing. No text, letters, numbers, logos or watermarks in any generated image. Human figures are anonymous: seen from behind, faces hidden, or hands only. Divine figures appear only in dignified traditional iconography. Master aspect 4:5; compose with a centered safe zone so each image can be extended to 9:16.
+
+## Scene 0 · image · 4:5
+
+Photorealistic cinematic close-up of a smartphone lying face-up on a warm oak wooden desk, beside a closed linen-bound journal and a ceramic cup of tea with faint steam. The phone screen glows softly with a minimal, unbranded app interface: a single empty circular progress ring, blank and with no legible characters. Soft early-morning window light from the left, long gentle shadows. 50mm lens, f/1.8, shallow depth of field with focus on the phone, slightly elevated three-quarter angle. Muted warm palette of cream, amber and soft brown. Quiet, reflective and unhurried mood. Clear negative space in the upper third.
+
+Negative: text, letters, numbers, digits, readable UI text, logos, brand names, real app interfaces, watermark, signature, red alert colors, warning icons, broken or cracked screen, harsh lighting, clutter, people, faces, celebrity likeness, political symbols
+
+## Scene 1 · image · 4:5
+
+Painterly background of aged palm-leaf manuscript texture: weathered cream and pale saffron leaves laid horizontally with fine fibrous grain and softly worn edges. All surfaces are blank, with no script. A small brass oil lamp (diya) in the lower-right corner holds a steady, softly glowing flame that casts a warm halo. Even, gentle ambient light with a subtle vignette. Flat, front-on overhead composition. The large central and upper area is kept calm and uncluttered as clean space for text added later. Palette of saffron, cream, warm ochre and muted gold. Reverent, serene and timeless mood.
+
+Negative: text, letters, Sanskrit or Devanagari characters, script, calligraphy, numbers, logos, watermark, signature, busy patterns, harsh contrast, smoke clouds, fire hazard, people, faces, political symbols
+
+## Scene 2 · image · 4:5
+
+Painterly scene in dignified traditional Indian iconography. Krishna, with a dark-blue complexion, wears a peacock-feather crown, a golden diadem, a pitambara yellow silk garment and simple floral garlands. He is seated as charioteer at the front of an ornate wooden chariot, turning calmly toward Arjuna, his expression serene and compassionate. Arjuna, a noble warrior in traditional attire with his bow resting beside him, sits in the chariot with palms folded in respectful attention. Four white horses stand at rest, unagitated. Beyond them lies the vast open plain of Kurukshetra, where the armies appear only as a faint, hazy, indistinct line on the distant horizon. The sky is a golden dawn with soft rose clouds. The scene is shot as a medium-wide view, slightly low and respectful, in a painterly classical style with warm gold, saffron and indigo palette. Serene, contemplative and sacred mood, with no conflict. Clear negative space in the upper sky for text.
+
+Negative: sexualised depiction, revealing or suggestive clothing, comedic or cartoonish style, caricature, meme style, exaggerated expressions, violence, gore, blood, injury, weapons in use, active battle, close-up combat, dead bodies, disrespectful poses, modern objects, real living people, celebrity likeness, political symbols, flags of modern parties, text, letters, numbers, logos, watermark, distorted anatomy, extra limbs
+
+## Scene 3 · image · 4:5
+
+Painterly-photorealistic interior. A person seen fully from behind, face not visible, sits cross-legged on a woven floor mat facing a large window at sunrise, wearing simple loose cotton clothing in soft beige. Warm golden light streams through the window and falls across a neat stack of filled journal pages beside them; the handwriting is too soft and blurred to read. A potted plant is on the sill. Shot on a 35mm lens at eye level from behind the person, with gentle backlight and a soft glow around the silhouette. Palette of amber, cream, honey and soft sage. Calm, grounded and quietly accomplished mood. Clean empty space in one upper corner for a label added in editing.
+
+Negative: visible face, identifiable person, celebrity likeness, legible handwriting, text, letters, numbers, logos, watermark, religious figures, clutter, harsh shadows, cold blue tones, political symbols
+
+## Scene 4 · image · 4:5
+
+Cinematic image of a quiet forest footpath after light rain. A damp earthen trail with a few scattered fallen amber and russet leaves partly covering it, yet the path is clearly continuing forward and gently curving into soft hazy morning light. Tall trees frame both sides, droplets glisten on ferns and a light mist hangs in the air. Shot on a 35mm lens at a low eye level with a centered one-point perspective, focus on the near leaves and the far path softly lit. Palette of soft sage green, warm amber, cream light and muted brown. Gentle, hopeful and forgiving mood. Clean space in one upper corner for a label added in editing.
+
+Negative: text, letters, signs, numbers, logos, watermark, people, animals, dark or ominous atmosphere, fog too dense, blocked path, fallen trees blocking way, storm, political symbols
+
+## Scene 5 · image · 4:5
+
+Close-up, painterly-realistic image in a dim, quiet room. A pair of hands, with no face visible, lights a single small terracotta clay diya using a thin match. A tiny, steady new flame blooms, and its warm golden glow spreads outward across a dark wooden surface and softly illuminates the fingertips. Shot on an 85mm macro-style lens with very shallow depth of field and a dark warm background falling off to deep shadow. Palette of deep umber, terracotta and glowing gold. Minimal, intimate and peaceful mood of beginning again. Negative space in the upper area and one corner for text added in editing.
+
+Negative: face, identifiable person, jewelry with logos, large fire, smoke, danger, burns, text, letters, numbers, logos, watermark, clutter, multiple lamps, political symbols
+
+## Scene 6 · image · 4:5
+
+Soft, painterly sunrise over a still lake. Mirror-calm water reflects a gradient sky of peach, saffron and pale gold, and gentle mist rises off the surface. Near the shore in the lower-left foreground, a single pink-white lotus is opening on its green pad, with a few dewdrops visible. Distant low hills appear as soft silhouettes. Wide composition shot on a 35mm lens at low water level, with the horizon in the lower third. Palette of saffron, blush pink, cream and soft sage. Serene, warm and inviting mood. A large, clean, calm sky area is reserved for closing text and a wordmark added in editing.
+
+Negative: text, letters, numbers, logos, wordmark, watermark, people, boats, buildings, harsh sun glare, oversaturated colors, multiple lotuses cluttering, dark clouds, political symbols

@@ -1,0 +1,85 @@
+{
+  "style_guide": "Warm, contemplative cinematic look for a 57-second short video. The master aspect ratio is 4:5, with safe-area framing that also crops cleanly to 9:16, so keep the main subjects centered with headroom.\n\nModern-life scenes (1, 2, 5, 6, 7) are photorealistic. Shoot on 35-50mm lenses with shallow depth of field, soft natural or ambient light and slow, steady camera moves (gentle push-ins, slow drifts). People are always anonymous: hands, backs and soft-focus silhouettes, never identifiable faces. There are no brand logos, app icons or readable UI.\n\nSacred scenes (3, 4, 8) shift to a painterly, reverent style inspired by traditional Indian devotional painting. They use soft gilded light, gentle haze and fine brush texture.\n\nShared palette across all scenes: deep amber, saffron gold, warm brass, dusk indigo and soft teal shadows, with restrained red accents (traffic light, diya flame) and creamy highlights. Mood is calm, unhurried, compassionate and non-judgmental. A recurring motif is a small flame of warm light, which links the brass lamp, the diya and the dawn.\n\nNo text, letters, captions, subtitles, watermarks or logos appear in any generated frame; all on-screen text is added in editing. Film grain is light and contrast is gentle, with no harsh clipping.",
+  "assets": [
+    {
+      "kind": "video",
+      "scene_index": 0,
+      "prompt": "Cinematic photorealistic macro close-up of an anonymous hand holding a modern smartphone in soft evening light. The thumb hovers hesitantly over an empty gap in a grid of blurred, abstract home-screen tiles, then pauses. Warm amber streetlight bokeh and reflections glint on the glass. 50mm lens, shallow depth of field, slow subtle push-in toward the thumb. Palette: amber, dusk indigo, soft teal shadows. Mood: quiet, introspective, gently tense. Subject centered for 4:5 and 9:16 crops.",
+      "negative_prompt": "text, letters, readable UI, app icons, brand logos, watermarks, identifiable face, celebrity likeness, real living person, political symbols, harsh lighting, distorted fingers, extra fingers, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 5.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 1,
+      "prompt": "Photorealistic interior of a car stopped at a red traffic light at dusk. Rain droplets on the windshield glow red from the signal, with blurred city lights beyond. An anonymous driver's hand, seen from the passenger-side over-shoulder angle, drifts slowly toward a phone lying face-down in the cupholder, then pauses midway and hovers. The face is never shown. 35mm lens, shallow depth of field, static camera with a faint handheld breath. Moody, calm cinematic grade in deep red, indigo and teal shadows.",
+      "negative_prompt": "text, readable street signs, license plates, brand logos, car manufacturer badges, readable phone screen, identifiable face, celebrity likeness, real living person, political symbols, crash, danger, distorted hands, extra fingers",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 2,
+      "prompt": "Painterly, reverent scene in traditional Indian devotional iconography. An ornate golden chariot drawn by white horses stands at dawn on the wide plain of Kurukshetra. Krishna sits as charioteer, blue-complexioned, wearing a peacock-feather crown, yellow silk garments and gold ornaments; he is serene and radiant, with a gentle teaching gesture. Arjuna, in princely warrior attire with his bow lowered, sits attentively and listens with humility. Distant armies are faint silhouettes softened by morning mist. Soft gilded sunrise light with a halo glow around Krishna. Medium-wide composition with the chariot centered, slow gentle drift. Palette: saffron gold, warm cream, soft dawn blue. Mood: sacred, calm, dignified.",
+      "negative_prompt": "sexualised depiction, comedic or cartoonish depiction, meme style, caricature, exaggerated expressions, violence, gore, blood, injury, wounds, active combat, weapons in use, disrespectful poses, distorted anatomy, extra limbs, modern clothing, real living people, celebrity likeness, political symbols, flags with political emblems, text, letters, watermarks, logos",
+      "aspect": "4:5",
+      "duration_seconds": 6.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 3,
+      "prompt": "Slow cinematic push-in on an aged palm-leaf manuscript resting on a carved wooden stand. The leaves are textured and softly worn, and the faint ink markings are blurred and indistinct, not legible. Beside it a small brass oil lamp burns with a gently flickering flame, and wisps of incense smoke drift through warm light. Painterly, golden rim lighting against a dark warm background. 85mm lens, shallow depth of field. Palette: brass gold, deep amber, umber shadows. Mood: reverent, timeless, contemplative.",
+      "negative_prompt": "legible text, readable letters, captions, watermarks, logos, modern objects, plastic, harsh lighting, fire hazard, excessive smoke, people, faces, political symbols",
+      "aspect": "4:5",
+      "duration_seconds": 12.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 4,
+      "prompt": "Minimal, elegant photorealistic shot of a still natural pool of water at dawn, framed top-down at a slight angle. A single droplet creates one ripple that spreads outward in concentric rings, then slowly settles until the surface is perfectly calm and mirror-like, reflecting a clear pale sky with a hint of sunrise gold at the edge. Locked-off camera with a slow-motion feel. Palette: soft teal, pale blue, gentle gold. Mood: serene, clarifying, peaceful.",
+      "negative_prompt": "text, letters, watermarks, logos, people, animals, debris, murky water, storm, harsh sunlight, oversaturated colors",
+      "aspect": "4:5",
+      "duration_seconds": 8.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 5,
+      "prompt": "Photorealistic scene of an anonymous person seated by a large window in soft morning light, seen from behind and slightly to the side, their face turned away toward the window and out of focus. Their phone lies face-down on a warm wooden table in the foreground. They take one slow, steady breath, and their shoulders visibly rise and then relax. Sheer curtains diffuse the light, and a cup of tea steams gently on the table. 50mm lens, shallow depth of field focused on the phone and hands, slow subtle drift. Palette: cream, warm wood, soft gold, light teal shadows. Mood: gentle relief, self-compassion.",
+      "negative_prompt": "text, readable screen, brand logos, identifiable face, celebrity likeness, real living person, political symbols, sad or distressed expression, cluttered room, harsh light, distorted hands",
+      "aspect": "4:5",
+      "duration_seconds": 8.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 6,
+      "prompt": "Gentle photorealistic montage of four slow two-second shots, all with warm unhurried morning light and shallow depth of field. Shot 1: anonymous hands lighting a small clay diya at a simple home altar decorated with marigolds, with a soft flame glow. Shot 2: two anonymous friends sharing tea at a small table, seen from the shoulders down with cups clinking and relaxed laughter in their posture, faces out of frame. Shot 3: a person journaling at sunrise, showing only the hand and pen over a blank-looking notebook with no legible writing. Shot 4: a lone figure seen from behind walking slowly on a tree-lined path with dappled light. Cohesive palette of saffron, warm gold, soft green and cream. Mood: nourishing, connected, hopeful.",
+      "negative_prompt": "legible text, handwriting that can be read, brand logos, identifiable faces, celebrity likeness, real living people, political symbols, deity idols in disrespectful context, harsh light, crowded scenes, distorted hands",
+      "aspect": "4:5",
+      "duration_seconds": 8.0
+    },
+    {
+      "kind": "video",
+      "scene_index": 7,
+      "prompt": "Painterly closing shot of the same small brass oil lamp from the manuscript scene. Its flame burns perfectly steady and calm against a deep, dark warm background, with a soft golden glow radiating outward. Generous empty negative space in the lower third, left clear for a logo and text to be added in editing. Centered composition with a very slow push-in. Palette: brass gold, amber, near-black umber. Mood: still, resolved, quietly hopeful.",
+      "negative_prompt": "text, letters, logos, watermarks, flickering chaos, smoke clouds, people, faces, political symbols, cluttered background",
+      "aspect": "4:5",
+      "duration_seconds": 4.0
+    },
+    {
+      "kind": "voiceover",
+      "scene_index": 0,
+      "prompt": "Warm, calm, gender-neutral narrator with a soft Indian English accent. The pace is unhurried and intimate, like a thoughtful friend speaking close to the mic. The verse in scene 4 is read slightly slower and more reverently, with natural pauses between clauses. Gentle brief pauses between scenes. No dramatic exaggeration.\n\nScript, timed to scenes:\n[0–5s] You deleted the app. So why does your thumb still go looking for it?\n[5–11s] Day three. A red light. A quiet moment. The app is gone, but the reach is still there.\n[11–17s] The Bhagavad Gita describes this pattern with remarkable precision, in Krishna's teaching to Arjuna.\n[17–29s] Bhagavad Gita, chapter two, verse fifty-nine: The objects of sense, but not the relish for them, turn away from an abstemious dweller in the body; and even relish turneth away from him after the Supreme is seen.\n[29–37s] Traditional commentators note two stages here. Restraint removes the object, but the inner taste, called rasa, can remain. That taste falls away when something higher is seen.\n[37–45s] A reflection, not scripture: deleting the app is real progress. The reaching thumb isn't failure. It's simply the taste that hasn't faded yet.\n[45–53s] Willpower can clear the screen. Lasting freedom may come from turning toward something fuller: presence, a real conversation, your own practice.\n[53–57s] Next time the thumb reaches, pause, and notice what you're truly looking for.",
+      "negative_prompt": "robotic tone, sing-song delivery, over-dramatic, rushed pacing, background noise, mispronunciation of Krishna, Arjuna, rasa or Bhagavad Gita, celebrity voice imitation",
+      "aspect": "4:5",
+      "duration_seconds": 57.0
+    },
+    {
+      "kind": "music",
+      "scene_index": 0,
+      "prompt": "Gentle ambient underscore at about 70 BPM. Soft tanpura drone in D, sparse bansuri flute phrases and warm felt piano, with subtle low synth pads.\n\nThe piece follows the story. It opens sparse and slightly suspended for the hook and car scenes. At around 11s a warm swell arrives as the Gita scene appears. It thins to a near-still drone under the verse reading at 17–29s so the narration stays clear. A light, hopeful lift enters with soft hand percussion during the montage at 45–53s. It resolves to a single sustained tanpura-and-piano chord on the final lamp shot, with a clean fade by 57s.\n\nMood: contemplative, compassionate, quietly hopeful. Mixed low beneath the voice-over.",
+      "negative_prompt": "vocals, lyrics, chanting of identifiable copyrighted mantras, EDM drops, heavy drums, aggressive percussion, dramatic war-movie brass, copyrighted melodies, abrupt ending",
+      "aspect": "4:5",
+      "duration_seconds": 57.0
+    }
+  ]
+}

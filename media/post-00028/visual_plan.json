@@ -1,0 +1,61 @@
+{
+  "style_guide": "Unified look: painterly realism with subtle Indian miniature-painting influence, soft brushwork, and gentle film-like grain. Palette: deep indigo and midnight blue for shadows, warm amber, saffron and gold for lamp and fire light, with accents of parchment cream. Lighting: low-key, intimate, with a single warm practical source (lamp, diya, hearth) against cool moonlight or dawn light. Mood: calm, tender, reverent, hopeful, never dramatic or anxious. Composition: master frames at 4:5 with the key subject inside a central safe zone and generous negative space top and bottom, so each frame can be extended or recropped to 9:16 and leave room for overlay text added in editing. People: anonymous parents only, shown from behind, in silhouette or as hands, with no visible faces and no real or celebrity likeness. Divine figures follow traditional iconography with full dignity. No text, letters, logos or watermarks rendered in any image.",
+  "assets": [
+    {
+      "kind": "image",
+      "scene_index": 0,
+      "prompt": "Painterly nursery at 3 a.m. An anonymous parent seen from behind in soft silhouette sits in a wooden rocking chair, cradling a swaddled infant against their shoulder near a tall window. A single small table lamp with a warm amber glow sits beside the chair. Through the window, faint silver moonlight and a deep indigo night sky. Gentle long shadows, a crib edge softly visible in the background. Eye-level medium-wide shot, 35mm lens feel, slight vignette. Palette of muted indigo, navy and warm amber. Calm, intimate, quiet mood. Clean dark negative space in the upper third.",
+      "negative_prompt": "text, letters, words, captions, watermark, logo, visible faces, identifiable person, celebrity likeness, harsh light, clutter, horror mood, distorted infant anatomy, extra limbs, cartoon style, oversaturated colors",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 1,
+      "prompt": "Traditional Indian miniature-style painting at dawn. Lord Krishna, serene and blue-skinned, wears yellow silk pitambara robes, gold ornaments and a crown with a single peacock feather. He sits as charioteer at the front of an ornate wooden chariot drawn by white horses, turned gently toward Arjuna and raising one hand in a calm teaching gesture. Arjuna, a dignified warrior prince in traditional attire with his bow resting beside him, sits on the chariot and listens with folded hands and a humble, attentive posture. The Kurukshetra field appears only as a distant hazy horizon with faint, still banners and no combat. Soft golden sunrise light, rich textured pigments, gold-leaf accents, and a decorative floral border. Medium-wide composition with the figures centered. A plain blank parchment-toned area of empty negative space in the lower third, reserved for the verse added in editing. Reverent, peaceful mood.",
+      "negative_prompt": "text, letters, words, script, calligraphy, watermark, logo; sexualised depiction, nudity, suggestive poses; comedic, cartoonish, caricature, meme-style or chibi depiction of divine figures; violence, gore, blood, wounds, graphic injury, active combat, corpses; real living people, celebrity likeness, politician likeness; political symbols, flags of modern parties, propaganda; disrespectful or distorted iconography, wrong skin color for Krishna, missing peacock feather, extra limbs, deformed hands, modern clothing, anachronistic objects",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 2,
+      "prompt": "Photorealistic close-up of a small hand-shaped clay diya oil lamp burning steadily on a dark, aged wooden surface. A thin, delicate wisp of grey smoke curls upward from the flame into darkness. The flame casts a warm golden circle of light across the wood grain. Macro 85mm lens, shallow depth of field, creamy dark bokeh background, low-key lighting. Deep indigo shadows with amber and saffron highlights. Quiet, reverent, meditative mood. Ample dark negative space above the flame.",
+      "negative_prompt": "text, letters, words, watermark, logo, people, hands, faces, multiple lamps, heavy smoke, fire hazard, burning house, clutter, harsh flash lighting, oversaturated colors, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 3,
+      "prompt": "Painterly close-up of an adult's hands gently holding a small baby feeding bottle and a soft white muslin cloth, lit by warm amber lamplight from one side. Nearby on a simple wooden side table sits a ceramic cup of untouched tea, gone cold, with no steam. The background falls softly into indigo shadow. 50mm lens feel, shallow depth of field, intimate top-three-quarter angle. Tender, patient, slightly weary but loving mood. Muted indigo and amber palette, soft brush textures. Negative space in the upper area.",
+      "negative_prompt": "text, letters, words, labels, brand names, watermark, logo, visible faces, identifiable person, celebrity likeness, distorted hands, extra fingers, mess, spilled liquid, harsh lighting, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 4,
+      "prompt": "A softly glowing hearth or small wood-fire stove in a simple, humble home at night. A faint ribbon of smoke rises gracefully from the embers into the darkness above. In the foreground, a small knitted baby blanket in cream wool rests neatly folded on a wooden chair. Warm amber and ember-orange tones contrast with deep indigo shadows. Painterly realism, medium shot at chair height, 35mm lens feel, gentle vignette. Peaceful stillness and a cozy, safe atmosphere. Dark negative space in the upper third.",
+      "negative_prompt": "text, letters, words, watermark, logo, people, faces, raging fire, uncontrolled flames, thick black smoke, danger, destruction, clutter, horror mood, cartoon style, oversaturated colors",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 5,
+      "prompt": "Wide painterly view of the same nursery as the opening slide, now at first light of dawn. The anonymous parent, seen in soft silhouette from the side and behind, rests back in the wooden rocking chair with the sleeping swaddled infant on their chest. The small table lamp still glows faintly in amber. Through the tall window, the sky shifts from pale morning blue to soft gold, with light spilling gently across the floor and crib. Eye-level wide shot, 28-35mm lens feel. The palette moves from indigo to blush gold. Calm, hopeful, restful mood. Open sky negative space in the upper third.",
+      "negative_prompt": "text, letters, words, watermark, logo, visible faces, identifiable person, celebrity likeness, unsafe sleep hazards, distorted infant anatomy, extra limbs, harsh sunlight, clutter, cartoon style, oversaturated colors",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    },
+    {
+      "kind": "image",
+      "scene_index": 6,
+      "prompt": "Minimal closing card. A single small clay diya flame glows at the lower center against a smooth deep indigo background. A delicate curl of smoke rises from it and fades into a soft halo of warm light. A subtle, faint gold line-art lotus motif sits in the bottom corner. Generous empty negative space fills the upper two-thirds, reserved for text added in editing. Elegant, minimal, serene and reverent. Soft gradient from indigo to midnight blue, with amber glow.",
+      "negative_prompt": "text, letters, words, typography, numbers, watermark, logo, people, faces, multiple flames, busy patterns, clutter, heavy smoke, religious or political symbols other than the lotus, oversaturated colors, cartoon style",
+      "aspect": "4:5",
+      "duration_seconds": 0.0
+    }
+  ]
+}
